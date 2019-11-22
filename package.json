@@ -1,0 +1,24 @@
+{
+  "name": "reldens-skeleton",
+  "version": "0.1.0",
+  "description": "Reldens - Skeleton",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "install-db": "knex migrate:up --env production"
+  },
+  "engines": {
+    "node": "13.1.0"
+  },
+  "author": "Damian A. Pastorini",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-validation": "^1.19.1",
+    "reldens": "^4.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "cssnano": "^4.1.10"
+  }
+}
