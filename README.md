@@ -1,4 +1,4 @@
-# Reldens - V4 - Game Test
+# Reldens - Game Test
 
 ##### Based on V4 NPM Ready:
 
