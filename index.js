@@ -12,8 +12,8 @@ const { ServerManager } = require('reldens/server');
 // create a server instance passing the current root:
 let appServer = new ServerManager({projectRoot: __dirname, projectTheme: 'custom-game-theme-test'});
 // setup as you need:
-appServer.events.on('serverConfigFeaturesReady', (serverManager, configProcessor) => {
-    console.log('INFO - Events test serverConfigFeaturesReady success!');
+appServer.events.on('reldens.serverConfigFeaturesReady', (serverManager, configProcessor) => {
+    console.log('INFO - Events test reldens.serverConfigFeaturesReady success!');
 });
 // run the server!
 console.log('Server starting...');
