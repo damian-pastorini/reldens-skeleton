@@ -9,8 +9,14 @@
 
 // required the module:
 const { ServerManager } = require('reldens/server');
+// require the custom classes config file:
+const { CustomClasses } = require('./theme/packages/server');
 // create a server instance passing the current root:
-let appServer = new ServerManager({projectRoot: __dirname, projectTheme: 'custom-game-theme-test'});
+let appServer = new ServerManager({
+    projectRoot: __dirname, // we need to pass the server root
+    projectTheme: 'custom-game-theme-test', // if the project theme is not specified then "default" will be used
+    customClasses: CustomClasses // and specified our custom configured custom classes
+});
 // setup as you need:
 appServer.events.on('reldens.serverConfigFeaturesReady', (serverManager, configProcessor) => {
     console.log('INFO - Events test reldens.serverConfigFeaturesReady success!');
