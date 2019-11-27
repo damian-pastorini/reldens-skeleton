@@ -15,9 +15,6 @@ $(document).ready(function($){
     // reldens game:
     let reldens = new GameManager();
     window.reldens = reldens;
-    reldens.events.on('beforeJoinGame', (client) => {
-        console.log('beforeJoinGame!', client);
-    });
 
     let $register = $('#register_form'),
         $login = $('#login_form');

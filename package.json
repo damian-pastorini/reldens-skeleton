@@ -4,8 +4,7 @@
   "description": "Reldens - Skeleton",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "install-db": "knex migrate:up --env production"
+    "start": "node ."
   },
   "engines": {
     "node": "13.1.0"
@@ -16,9 +15,5 @@
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.1",
     "reldens": "^4.0.0"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.7.0",
-    "cssnano": "^4.1.10"
   }
 }

@@ -10,12 +10,13 @@
 // required the module:
 const { ServerManager } = require('reldens/server');
 // require the custom classes config file:
-const { CustomClasses } = require('./theme/packages/server');
+const { CustomClasses } = require('./theme/packages/server'); // {} // you can pass en empty object.
+// you can find an example of the server file in node_modules/reldens/theme/packages/server.js
 // create a server instance passing the current root:
 let appServer = new ServerManager({
     projectRoot: __dirname, // we need to pass the server root
     projectTheme: 'custom-game-theme-test', // if the project theme is not specified then "default" will be used
-    customClasses: CustomClasses // and specified our custom configured custom classes
+    customClasses: CustomClasses // {} // custom configured custom classes
 });
 // setup as you need:
 appServer.events.on('reldens.serverConfigFeaturesReady', (serverManager, configProcessor) => {
