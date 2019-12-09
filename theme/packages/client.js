@@ -8,10 +8,10 @@
  *
  */
 
-// const { People } = require('./objects/client/people');
+const { Npc1 } = require('./objects/client/npc1');
 
 module.exports.CustomClasses = {
     objects: {
-        // npc_1: People
+        people_town_1: Npc1
     }
 };
