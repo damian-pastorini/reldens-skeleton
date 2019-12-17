@@ -1,7 +1,5 @@
 /.cache
-/.env
 /.idea
-/knexfile.js
 /migrations/*
 !/migrations/production
 /node_modules

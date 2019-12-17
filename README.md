@@ -1,9 +1,9 @@
-# Reldens - Game Test
+# Reldens - Game Skeleton
 
-##### Based on V4 NPM Ready:
+##### Based on the NPM package:
 
-https://github.com/damian-pastorini/reldens/tree/v4.0.0-npm-setup-v1
+https://www.npmjs.com/package/reldens
 
-##### Using npm link to simulate the package installation:
+##### Following the installation guide:
 
-https://github.com/damian-pastorini/reldens/wiki/V4-NPM-Ready
+https://github.com/damian-pastorini/reldens/wiki/New-v4.0.0-beta.6-Installation
