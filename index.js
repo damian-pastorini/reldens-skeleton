@@ -1,6 +1,6 @@
 /**
  *
- * Reldens - NPM Test
+ * Reldens - Skeleton
  *
  * Server initialization and events.
  * This is a test example file on how the server can be initialized.
