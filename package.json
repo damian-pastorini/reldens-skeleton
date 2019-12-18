@@ -4,7 +4,7 @@
   "description": "Reldens - Skeleton",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_OPTIONS=--max-old-space-size=30720 && node ."
+    "start": "node ."
   },
   "engines": {
     "node": "13.1.0"
