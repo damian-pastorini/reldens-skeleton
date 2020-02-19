@@ -9,7 +9,7 @@
 const $ = require('jquery');
 require('jquery-validation');
 const { CustomClasses } = require('../packages/client');
-const { GameManager } = require('./client');
+const { GameManager } = require('reldens/client');
 
 class GameTest extends GameManager
 {
@@ -17,7 +17,7 @@ class GameTest extends GameManager
     constructor()
     {
         super();
-        console.log('test');
+        console.log('Game Test!');
     }
 
 }
