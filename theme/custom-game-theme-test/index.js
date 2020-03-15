@@ -11,21 +11,10 @@ require('jquery-validation');
 const { CustomClasses } = require('../packages/client');
 const { GameManager } = require('reldens/client');
 
-class GameTest extends GameManager
-{
-
-    constructor()
-    {
-        super();
-        console.log('Game Test!');
-    }
-
-}
-
 $(document).ready(function($){
 
     // reldens game:
-    let reldens = new GameTest();
+    let reldens = new GameManager();
     reldens.setupClasses(CustomClasses);
     window.reldens = reldens;
 

@@ -12595,9 +12595,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * This is a general logger handle.
  *
  */
-var Logger =
-/*#__PURE__*/
-function () {
+var Logger = /*#__PURE__*/function () {
   function Logger() {
     _classCallCheck(this, Logger);
   }
@@ -12655,9 +12653,7 @@ var _require = require('../../game/logger'),
 var _require2 = require('../constants'),
     ObjectsConst = _require2.ObjectsConst;
 
-var AnimationEngine =
-/*#__PURE__*/
-function () {
+var AnimationEngine = /*#__PURE__*/function () {
   function AnimationEngine(gameManager, props, currentPreloader) {
     _classCallCheck(this, AnimationEngine);
 
@@ -12842,9 +12838,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 var _require = require('reldens/packages/objects/client/animation-engine'),
     AnimationEngine = _require.AnimationEngine;
 
-var Npc1 =
-/*#__PURE__*/
-function (_AnimationEngine) {
+var Npc1 = /*#__PURE__*/function (_AnimationEngine) {
   _inherits(Npc1, _AnimationEngine);
 
   function Npc1(gameManager, props, currentPreloader) {
@@ -14307,7 +14301,7 @@ parcelRequire = function (e, r, t, n) {
   }, {
     "core-js-pure/stable/object/assign": "Httc"
   }],
-  "dgxz": [function (require, module, exports) {
+  "jNKU": [function (require, module, exports) {
     var t = function (t) {
       "use strict";
 
@@ -14412,35 +14406,35 @@ parcelRequire = function (e, r, t, n) {
         });
       }
 
-      function b(t) {
-        var r;
+      function b(t, r) {
+        var e;
 
-        this._invoke = function (e, o) {
-          function i() {
-            return new Promise(function (r, i) {
-              !function r(e, o, i, a) {
-                var c = h(t[e], t, o);
+        this._invoke = function (o, i) {
+          function a() {
+            return new r(function (e, a) {
+              !function e(o, i, a, c) {
+                var u = h(t[o], t, i);
 
-                if ("throw" !== c.type) {
-                  var u = c.arg,
-                      f = u.value;
-                  return f && "object" == _typeof(f) && n.call(f, "__await") ? Promise.resolve(f.__await).then(function (t) {
-                    r("next", t, i, a);
+                if ("throw" !== u.type) {
+                  var f = u.arg,
+                      s = f.value;
+                  return s && "object" == _typeof(s) && n.call(s, "__await") ? r.resolve(s.__await).then(function (t) {
+                    e("next", t, a, c);
                   }, function (t) {
-                    r("throw", t, i, a);
-                  }) : Promise.resolve(f).then(function (t) {
-                    u.value = t, i(u);
+                    e("throw", t, a, c);
+                  }) : r.resolve(s).then(function (t) {
+                    f.value = t, a(f);
                   }, function (t) {
-                    return r("throw", t, i, a);
+                    return e("throw", t, a, c);
                   });
                 }
 
-                a(c.arg);
-              }(e, o, r, i);
+                c(u.arg);
+              }(o, i, e, a);
             });
           }
 
-          return r = r ? r.then(i, i) : i();
+          return e = e ? e.then(a, a) : a();
         };
       }
 
@@ -14523,10 +14517,11 @@ parcelRequire = function (e, r, t, n) {
         };
       }, E(b.prototype), b.prototype[a] = function () {
         return this;
-      }, t.AsyncIterator = b, t.async = function (r, e, n, o) {
-        var i = new b(u(r, e, n, o));
-        return t.isGeneratorFunction(e) ? i : i.next().then(function (t) {
-          return t.done ? t.value : i.next();
+      }, t.AsyncIterator = b, t.async = function (r, e, n, o, i) {
+        void 0 === i && (i = Promise);
+        var a = new b(u(r, e, n, o), i);
+        return t.isGeneratorFunction(e) ? a : a.next().then(function (t) {
+          return t.done ? t.value : a.next();
         });
       }, E(x), x[c] = "Generator", x[i] = function () {
         return this;
@@ -14650,7 +14645,7 @@ parcelRequire = function (e, r, t, n) {
   "BXeW": [function (require, module, exports) {
     module.exports = require("regenerator-runtime");
   }, {
-    "regenerator-runtime": "dgxz"
+    "regenerator-runtime": "jNKU"
   }],
   "ZEWA": [function (require, module, exports) {
     function n(n, o) {
@@ -14801,9 +14796,7 @@ parcelRequire = function (e, r, t, n) {
     }
 
     function _l() {
-      _l = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(s) {
+      _l = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(s) {
         var _this2 = this;
 
         var o,
@@ -16697,7 +16690,7 @@ parcelRequire = function (e, r, t, n) {
       function e(e, t) {
         var i = this;
         this.onJoin = o.createSignal(), this.onStateChange = o.createSignal(), this.onMessage = o.createSignal(), this.onError = o.createSignal(), this.onLeave = o.createSignal(), this.hasJoined = !1, this.id = null, this.name = e, t ? (this.serializer = new (r.getSerializer("schema"))(), this.rootSchema = t, this.serializer.state = new t()) : this.serializer = new (r.getSerializer("fossil-delta"))(), this.onError(function (e) {
-          return console.error(e);
+          return e && console.error(e);
         }), this.onLeave(function () {
           return i.removeAllListeners();
         });
@@ -18606,24 +18599,24 @@ parcelRequire = function (e, r, t, n) {
     "use strict";
 
     var e = this && this.__extends || function () {
-      var _e4 = function e(t, r) {
+      var _e4 = function e(r, t) {
         return (_e4 = Object.setPrototypeOf || {
           __proto__: []
-        } instanceof Array && function (e, t) {
-          e.__proto__ = t;
-        } || function (e, t) {
-          for (var r in t) {
-            t.hasOwnProperty(r) && (e[r] = t[r]);
+        } instanceof Array && function (e, r) {
+          e.__proto__ = r;
+        } || function (e, r) {
+          for (var t in r) {
+            r.hasOwnProperty(t) && (e[t] = r[t]);
           }
-        })(t, r);
+        })(r, t);
       };
 
-      return function (t, r) {
+      return function (r, t) {
         function n() {
-          this.constructor = t;
+          this.constructor = r;
         }
 
-        _e4(t, r), t.prototype = null === r ? Object.create(r) : (n.prototype = r.prototype, new n());
+        _e4(r, t), r.prototype = null === t ? Object.create(t) : (n.prototype = t.prototype, new n());
       };
     }();
 
@@ -18631,26 +18624,26 @@ parcelRequire = function (e, r, t, n) {
       value: !0
     });
 
-    var t = require("./spec"),
-        r = require("./encoding/encode"),
+    var r = require("./spec"),
+        t = require("./encoding/encode"),
         n = require("./encoding/decode"),
         o = require("./types/ArraySchema"),
         i = require("./types/MapSchema"),
         s = require("./ChangeTree"),
         c = require("./events/EventEmitter"),
-        a = function (t) {
-      function r() {
-        return null !== t && t.apply(this, arguments) || this;
+        a = function (r) {
+      function t() {
+        return null !== r && r.apply(this, arguments) || this;
       }
 
-      return e(r, t), r;
+      return e(t, r), t;
     }(Error);
 
-    function u(e, t, r, n) {
+    function u(e, r, t, n) {
       var o,
           i = !1;
 
-      switch (t) {
+      switch (r) {
         case "number":
         case "int8":
         case "uint8":
@@ -18662,7 +18655,7 @@ parcelRequire = function (e, r, t, n) {
         case "uint64":
         case "float32":
         case "float64":
-          o = "number", isNaN(e) && console.log('trying to encode "NaN" in ' + r.constructor.name + "#" + n);
+          o = "number", isNaN(e) && console.log('trying to encode "NaN" in ' + t.constructor.name + "#" + n);
           break;
 
         case "string":
@@ -18675,29 +18668,29 @@ parcelRequire = function (e, r, t, n) {
 
       if (_typeof(e) !== o && (!i || i && null !== e)) {
         var s = "'" + JSON.stringify(e) + "'" + (e && e.constructor && " (" + e.constructor.name + ")");
-        throw new a("a '" + o + "' was expected, but " + s + " was provided in " + r.constructor.name + "#" + n);
+        throw new a("a '" + o + "' was expected, but " + s + " was provided in " + t.constructor.name + "#" + n);
       }
     }
 
-    function f(e, t, r, n) {
-      if (!(e instanceof t)) throw new a("a '" + t.name + "' was expected, but '" + e.constructor.name + "' was provided in " + r.constructor.name + "#" + n);
+    function f(e, r, t, n) {
+      if (!(e instanceof r)) throw new a("a '" + r.name + "' was expected, but '" + e.constructor.name + "' was provided in " + t.constructor.name + "#" + n);
     }
 
-    function h(e, t, n, o, i) {
+    function h(e, r, n, o, i) {
       u(n, e, o, i);
-      var s = r[e];
+      var s = t[e];
       if (!s) throw new a("a '" + e + "' was expected, but " + n + " was provided in " + o.constructor.name + "#" + i);
-      s(t, n);
+      s(r, n);
     }
 
-    function d(e, t, r) {
-      return n[e](t, r);
+    function d(e, r, t) {
+      return n[e](r, t);
     }
 
     var l = function () {
       function e() {
-        for (var e = [], t = 0; t < arguments.length; t++) {
-          e[t] = arguments[t];
+        for (var e = [], r = 0; r < arguments.length; r++) {
+          e[r] = arguments[r];
         }
 
         Object.defineProperties(this, {
@@ -18712,8 +18705,8 @@ parcelRequire = function (e, r, t, n) {
             writable: !0
           }
         });
-        var r = this._descriptors;
-        r && Object.defineProperties(this, r);
+        var t = this._descriptors;
+        t && Object.defineProperties(this, t);
       }
 
       return e.onError = function (e) {
@@ -18760,99 +18753,97 @@ parcelRequire = function (e, r, t, n) {
         },
         enumerable: !0,
         configurable: !0
-      }), e.prototype.listen = function (e, t) {
-        var r = this;
-        return this.$listeners[e] || (this.$listeners[e] = new c.EventEmitter()), this.$listeners[e].register(t), function () {
-          return r.$listeners[e].remove(t);
+      }), e.prototype.listen = function (e, r) {
+        var t = this;
+        return this.$listeners[e] || (this.$listeners[e] = new c.EventEmitter()), this.$listeners[e].register(r), function () {
+          return t.$listeners[e].remove(r);
         };
-      }, e.prototype.decode = function (r, s) {
+      }, e.prototype.decode = function (t, s) {
         void 0 === s && (s = {
           offset: 0
         });
         var c = [],
             a = this._schema,
             u = this._fieldsByIndex,
-            f = r.length;
-        r[s.offset] === t.TYPE_ID && (s.offset += 2);
+            f = t.length;
+        t[s.offset] === r.TYPE_ID && (s.offset += 2);
 
         for (var h = function h() {
-          var f = n.nilCheck(r, s) && ++s.offset,
-              h = r[s.offset++];
-          if (h === t.END_OF_STRUCTURE) return "break";
-
+          var f = n.nilCheck(t, s) && ++s.offset,
+              h = t[s.offset++];
+          if (h === r.END_OF_STRUCTURE) return "break";
           var p = u[h],
               v = "_" + p,
               y = a[p],
               g = void 0,
-              m = void 0,
-              _ = !1;
-
+              m = !1;
           if (!p) return "continue";
-          if (f) g = null, _ = !0;else if (y._schema) (g = l[v] || l.createTypeInstance(r, s, y)).decode(r, s), _ = !0;else if (Array.isArray(y)) {
-            y = y[0], m = [];
-            var b = l[v] || new o.ArraySchema();
-            g = b.clone(!0);
-            var E = n.number(r, s),
-                C = Math.min(n.number(r, s), E);
-            _ = C > 0;
+          if (f) g = null, m = !0;else if (y._schema) (g = l[v] || l.createTypeInstance(t, s, y)).decode(t, s), m = !0;else if (Array.isArray(y)) {
+            y = y[0];
+
+            var _ = l[v] || new o.ArraySchema();
+
+            g = _.clone(!0);
+            var b = n.number(t, s),
+                E = Math.min(n.number(t, s), b),
+                C = g.length > b;
+            m = E > 0 || C;
             var A = !1;
-            g.length > E && Array.prototype.splice.call(g, E).forEach(function (t, r) {
-              if (t && t.onRemove) try {
-                t.onRemove();
+            C && Array.prototype.splice.call(g, b).forEach(function (r, t) {
+              if (r && r.onRemove) try {
+                r.onRemove();
               } catch (n) {
                 e.onError(n);
               }
-              if (b.onRemove) try {
-                b.onRemove(t, E + r);
+              if (_.onRemove) try {
+                _.onRemove(r, b + t);
               } catch (n) {
                 e.onError(n);
               }
             });
 
-            for (var O = 0; O < C; O++) {
-              var I = n.number(r, s),
+            for (var O = 0; O < E; O++) {
+              var I = n.number(t, s),
                   w = void 0;
-              n.indexChangeCheck(r, s) && (n.uint8(r, s), w = n.number(r, s), A = !0);
+              n.indexChangeCheck(t, s) && (n.uint8(t, s), w = n.number(t, s), A = !0);
               var x = !A && void 0 === g[I] || A && void 0 === w;
 
               if (y.prototype instanceof e) {
                 var T = void 0;
-                (T = x ? l.createTypeInstance(r, s, y) : void 0 !== w ? b[w] : b[I]) || (T = l.createTypeInstance(r, s, y), x = !0), T.decode(r, s), g[I] = T;
-              } else g[I] = d(y, r, s);
+                (T = x ? l.createTypeInstance(t, s, y) : void 0 !== w ? _[w] : _[I]) || (T = l.createTypeInstance(t, s, y), x = !0), T.decode(t, s), g[I] = T;
+              } else g[I] = d(y, t, s);
 
               if (x) {
-                if (b.onAdd) try {
-                  b.onAdd(g[I], I);
+                if (_.onAdd) try {
+                  _.onAdd(g[I], I);
                 } catch (q) {
                   e.onError(q);
                 }
-              } else if (b.onChange) try {
-                b.onChange(g[I], I);
+              } else if (_.onChange) try {
+                _.onChange(g[I], I);
               } catch (q) {
                 e.onError(q);
               }
-
-              m.push(g[I]);
             }
           } else if (y.map) {
             y = y.map;
             var $ = l[v] || new i.MapSchema();
             g = $.clone(!0);
-            var N = n.number(r, s);
-            _ = N > 0;
+            var N = n.number(t, s);
+            m = N > 0;
             A = !1;
             var S = Object.keys($);
 
-            for (O = 0; O < N && void 0 !== r[s.offset] && r[s.offset] !== t.END_OF_STRUCTURE; O++) {
-              var j = n.nilCheck(r, s) && ++s.offset,
+            for (O = 0; O < N && void 0 !== t[s.offset] && t[s.offset] !== r.END_OF_STRUCTURE; O++) {
+              var j = n.nilCheck(t, s) && ++s.offset,
                   P = void 0;
-              n.indexChangeCheck(r, s) && (n.uint8(r, s), P = S[n.number(r, s)], A = !0);
-              var R = n.numberCheck(r, s),
+              n.indexChangeCheck(t, s) && (n.uint8(t, s), P = S[n.number(t, s)], A = !0);
+              var R = n.numberCheck(t, s),
                   k = "string" != typeof y,
-                  D = R ? S[n.number(r, s)] : n.string(r, s);
+                  D = R ? S[n.number(t, s)] : n.string(t, s);
               T = void 0;
 
-              if (T = (x = !A && void 0 === $[D] || A && void 0 === P && R) && k ? l.createTypeInstance(r, s, y) : void 0 !== P ? $[P] : $[D], j) {
+              if (T = (x = !A && void 0 === $[D] || A && void 0 === P && R) && k ? l.createTypeInstance(t, s, y) : void 0 !== P ? $[P] : $[D], j) {
                 if (T && T.onRemove) try {
                   T.onRemove();
                 } catch (q) {
@@ -18864,7 +18855,7 @@ parcelRequire = function (e, r, t, n) {
                   e.onError(q);
                 }
                 delete g[D];
-              } else if (k ? (T.decode(r, s), g[D] = T) : g[D] = d(y, r, s), x) {
+              } else if (k ? (T.decode(t, s), g[D] = T) : g[D] = d(y, t, s), x) {
                 if ($.onAdd) try {
                   $.onAdd(g[D], D);
                 } catch (q) {
@@ -18876,10 +18867,10 @@ parcelRequire = function (e, r, t, n) {
                 e.onError(q);
               }
             }
-          } else _ = (g = d(y, r, s)) !== l[v];
-          _ && (l.onChange || l.$listeners[p]) && c.push({
+          } else m = (g = d(y, t, s)) !== l[v];
+          m && (l.onChange || l.$listeners[p]) && c.push({
             field: p,
-            value: m || g,
+            value: g,
             previousValue: l[v]
           }), l[v] = g;
         }, l = this; s.offset < f;) {
@@ -18899,20 +18890,20 @@ parcelRequire = function (e, r, t, n) {
               A = g[b],
               O = d[_];
 
-          if (void 0 === A) r.uint8(c, t.NIL), r.number(c, O);else if (E._schema) {
+          if (void 0 === A) t.uint8(c, r.NIL), t.number(c, O);else if (E._schema) {
             if (s && C && !C.call(g, s, A, e)) return "continue";
-            A ? (r.number(c, O), f(A, E, g, _), g.tryEncodeTypeId(c, E, A.constructor), A.encode(e, n, s, c)) : (r.uint8(c, t.NIL), r.number(c, O));
+            A ? (t.number(c, O), f(A, E, g, _), g.tryEncodeTypeId(c, E, A.constructor), A.encode(e, n, s, c)) : (t.uint8(c, r.NIL), t.number(c, O));
           } else if (Array.isArray(E)) {
             var I = A.$changes;
             if (s && C && !C.call(g, s, A, e)) return "continue";
-            r.number(c, O), r.number(c, A.length);
+            t.number(c, O), t.number(c, A.length);
             var w = Array.from(n ? I.allChanges : I.changes).filter(function (e) {
               return void 0 !== a[b][e];
-            }).sort(function (e, t) {
-              return e - t;
+            }).sort(function (e, r) {
+              return e - r;
             }),
                 x = w.length;
-            r.number(c, x);
+            t.number(c, x);
             var T = "string" != typeof E[0];
             f(g[b], o.ArraySchema, g, _);
 
@@ -18921,18 +18912,18 @@ parcelRequire = function (e, r, t, n) {
                   S = g[b][N];
 
               if (T) {
-                if (r.number(c, N), !n) void 0 !== (q = I.getIndexChange(S)) && (r.uint8(c, t.INDEX_CHANGE), r.number(c, q));
+                if (t.number(c, N), !n) void 0 !== (q = I.getIndexChange(S)) && (t.uint8(c, r.INDEX_CHANGE), t.number(c, q));
                 f(S, E[0], g, _), g.tryEncodeTypeId(c, E[0], S.constructor), S.encode(e, n, s, c);
-              } else void 0 !== S && (r.number(c, N), h(E[0], c, S, g, _));
+              } else void 0 !== S && (t.number(c, N), h(E[0], c, S, g, _));
             }
 
             n || s || I.discard();
           } else if (E.map) {
             I = A.$changes;
             if (s && C && !C.call(g, s, A, e)) return "continue";
-            r.number(c, O);
+            t.number(c, O);
             var j = Array.from(n ? I.allChanges : I.changes);
-            r.number(c, j.length);
+            t.number(c, j.length);
             var P = Array.from(I.allChanges);
             T = "string" != typeof E.map, x = j.length;
             f(g[b], i.MapSchema, g, _);
@@ -18945,75 +18936,73 @@ parcelRequire = function (e, r, t, n) {
                 if (void 0 === S) continue;
               } else {
                 var q = I.getIndexChange(S);
-                S && void 0 !== q && (r.uint8(c, t.INDEX_CHANGE), r.number(c, g[b]._indexes.get(q))), D = I.isDeleted(k) && S ? void 0 : g[b]._indexes.get(k);
+                S && void 0 !== q && (t.uint8(c, r.INDEX_CHANGE), t.number(c, g[b]._indexes.get(q))), D = I.isDeleted(k) && S ? void 0 : g[b]._indexes.get(k);
               }
 
               var U = void 0 === S;
-              U && r.uint8(c, t.NIL), void 0 !== D ? r.number(c, D) : r.string(c, k), S && T ? (f(S, E.map, g, _), g.tryEncodeTypeId(c, E.map, S.constructor), S.encode(e, n, s, c)) : U || h(E.map, c, S, g, _);
+              U && t.uint8(c, r.NIL), void 0 !== D ? t.number(c, D) : t.string(c, k), S && T ? (f(S, E.map, g, _), g.tryEncodeTypeId(c, E.map, S.constructor), S.encode(e, n, s, c)) : U || h(E.map, c, S, g, _);
             }
 
             n || s || (I.discard(), g[b]._updateIndexes(P));
           } else {
             if (s && C && !C.call(g, s, A, e)) return "continue";
-            r.number(c, O), h(E, c, A, g, _);
+            t.number(c, O), h(E, c, A, g, _);
           }
         }, g = this, m = 0, _ = v.length; m < _; m++) {
           y(m);
         }
 
         return this._encodeEndOfStructure(this, e, c), n || s || this.$changes.discard(), c;
-      }, e.prototype.encodeFiltered = function (e, t) {
-        return this.encode(this, !1, e, t);
+      }, e.prototype.encodeFiltered = function (e, r) {
+        return this.encode(this, !1, e, r);
       }, e.prototype.encodeAll = function (e) {
         return this.encode(this, !0, void 0, e);
-      }, e.prototype.encodeAllFiltered = function (e, t) {
-        return this.encode(this, !0, e, t);
+      }, e.prototype.encodeAllFiltered = function (e, r) {
+        return this.encode(this, !0, e, r);
       }, e.prototype.clone = function () {
         var e = new this.constructor(),
-            t = this._schema;
+            r = this._schema;
 
-        for (var r in t) {
-          "object" == _typeof(this[r]) && "function" == typeof this[r].clone ? e[r] = this[r].clone() : e[r] = this[r];
+        for (var t in r) {
+          "object" == _typeof(this[t]) && "function" == typeof this[t].clone ? e[t] = this[t].clone() : e[t] = this[t];
         }
 
         return e;
       }, e.prototype.triggerAll = function () {
-        if (this.onChange) {
-          var t = [],
-              r = this._schema;
+        var r = [],
+            t = this._schema;
 
-          for (var n in r) {
-            void 0 !== this[n] && t.push({
-              field: n,
-              value: this[n],
-              previousValue: void 0
-            });
-          }
+        for (var n in t) {
+          void 0 !== this[n] && r.push({
+            field: n,
+            value: this[n],
+            previousValue: void 0
+          });
+        }
 
-          try {
-            this.onChange(t);
-          } catch (o) {
-            e.onError(o);
-          }
+        try {
+          this._triggerChanges(r);
+        } catch (o) {
+          e.onError(o);
         }
       }, e.prototype.toJSON = function () {
         var e = this._schema,
-            t = this._deprecated,
-            r = {};
+            r = this._deprecated,
+            t = {};
 
         for (var n in e) {
-          t[n] || null === this[n] || void 0 === this[n] || (r[n] = "function" == typeof this[n].toJSON ? this[n].toJSON() : this["_" + n]);
+          r[n] || null === this[n] || void 0 === this[n] || (t[n] = "function" == typeof this[n].toJSON ? this[n].toJSON() : this["_" + n]);
         }
 
-        return r;
+        return t;
       }, e.prototype.discardAllChanges = function () {
-        var t = this._schema,
-            r = Array.from(this.$changes.changes),
+        var r = this._schema,
+            t = Array.from(this.$changes.changes),
             n = this._fieldsByIndex;
 
-        for (var o in r) {
+        for (var o in t) {
           var i = n[o],
-              s = t[i],
+              s = r[i],
               c = this[i];
           if (void 0 !== c) if (s._schema) c.discardAllChanges();else if (Array.isArray(s)) {
             for (var a = 0, u = c.length; a < u; a++) {
@@ -19037,16 +19026,16 @@ parcelRequire = function (e, r, t, n) {
         }
 
         this.$changes.discard();
-      }, e.prototype._encodeEndOfStructure = function (e, r, n) {
-        e !== r && n.push(t.END_OF_STRUCTURE);
+      }, e.prototype._encodeEndOfStructure = function (e, t, n) {
+        e !== t && n.push(r.END_OF_STRUCTURE);
       }, e.prototype.tryEncodeTypeId = function (e, n, o) {
-        n._typeid !== o._typeid && (r.uint8(e, t.TYPE_ID), r.uint8(e, o._typeid));
-      }, e.prototype.createTypeInstance = function (e, r, o) {
-        return e[r.offset] === t.TYPE_ID ? (r.offset++, new (this.constructor._context.get(n.uint8(e, r)))()) : new o();
-      }, e.prototype._triggerChanges = function (t) {
-        if (t.length > 0) {
-          for (var r = 0; r < t.length; r++) {
-            var n = t[r],
+        n._typeid !== o._typeid && (t.uint8(e, r.TYPE_ID), t.uint8(e, o._typeid));
+      }, e.prototype.createTypeInstance = function (e, t, o) {
+        return e[t.offset] === r.TYPE_ID ? (t.offset++, new (this.constructor._context.get(n.uint8(e, t)))()) : new o();
+      }, e.prototype._triggerChanges = function (r) {
+        if (r.length > 0) {
+          for (var t = 0; t < r.length; t++) {
+            var n = r[t],
                 o = this.$listeners[n.field];
             if (o) try {
               o.invoke(n.value, n.previousValue);
@@ -19056,7 +19045,7 @@ parcelRequire = function (e, r, t, n) {
           }
 
           if (this.onChange) try {
-            this.onChange(t);
+            this.onChange(r);
           } catch (i) {
             e.onError(i);
           }
@@ -66981,40 +66970,40 @@ parcelRequire = function (e, r, t, n) {
   "t18c": [function (require, module, exports) {
     var define;
     var global = arguments[3];
-    var t,
-        e = arguments[3];
-    !function (e, n) {
-      "object" == _typeof(exports) && "undefined" != typeof module ? module.exports = n() : "function" == typeof t && t.amd ? t(n) : (e = e || self).Mustache = n();
+    var e,
+        t = arguments[3];
+    !function (t, n) {
+      "object" == _typeof(exports) && "undefined" != typeof module ? module.exports = n() : "function" == typeof e && e.amd ? e(n) : (t = t || self).Mustache = n();
     }(this, function () {
       "use strict";
 
-      var t = Object.prototype.toString,
-          e = Array.isArray || function (e) {
-        return "[object Array]" === t.call(e);
+      var e = Object.prototype.toString,
+          t = Array.isArray || function (t) {
+        return "[object Array]" === e.call(t);
       };
 
-      function n(t) {
-        return "function" == typeof t;
+      function n(e) {
+        return "function" == typeof e;
       }
 
-      function r(t) {
-        return t.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+      function r(e) {
+        return e.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
       }
 
-      function i(t, e) {
-        return null != t && "object" == _typeof(t) && e in t;
+      function i(e, t) {
+        return null != e && "object" == _typeof(e) && t in e;
       }
 
       var o = RegExp.prototype.test;
-      var s = /\S/;
+      var a = /\S/;
 
-      function a(t) {
-        return !function (t, e) {
-          return o.call(t, e);
-        }(s, t);
+      function s(e) {
+        return !function (e, t) {
+          return o.call(e, t);
+        }(a, e);
       }
 
-      var u = {
+      var c = {
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
@@ -67024,87 +67013,99 @@ parcelRequire = function (e, r, t, n) {
         "`": "&#x60;",
         "=": "&#x3D;"
       };
-      var c = /\s*/,
+      var u = /\s*/,
           p = /\s+/,
           l = /\s*=/,
           h = /\s*\}/,
           f = /#|\^|\/|>|\{|&|=|!/;
 
-      function d(t) {
-        this.string = t, this.tail = t, this.pos = 0;
+      function d(e) {
+        this.string = e, this.tail = e, this.pos = 0;
       }
 
-      function v(t, e) {
-        this.view = t, this.cache = {
+      function v(e, t) {
+        this.view = e, this.cache = {
           ".": this.view
-        }, this.parent = e;
+        }, this.parent = t;
       }
 
       function g() {
-        this.cache = {};
+        this.templateCache = {
+          _cache: {},
+          set: function set(e, t) {
+            this._cache[e] = t;
+          },
+          get: function get(e) {
+            return this._cache[e];
+          },
+          clear: function clear() {
+            this._cache = {};
+          }
+        };
       }
 
       d.prototype.eos = function () {
         return "" === this.tail;
-      }, d.prototype.scan = function (t) {
-        var e = this.tail.match(t);
-        if (!e || 0 !== e.index) return "";
-        var n = e[0];
+      }, d.prototype.scan = function (e) {
+        var t = this.tail.match(e);
+        if (!t || 0 !== t.index) return "";
+        var n = t[0];
         return this.tail = this.tail.substring(n.length), this.pos += n.length, n;
-      }, d.prototype.scanUntil = function (t) {
-        var e,
-            n = this.tail.search(t);
+      }, d.prototype.scanUntil = function (e) {
+        var t,
+            n = this.tail.search(e);
 
         switch (n) {
           case -1:
-            e = this.tail, this.tail = "";
+            t = this.tail, this.tail = "";
             break;
 
           case 0:
-            e = "";
+            t = "";
             break;
 
           default:
-            e = this.tail.substring(0, n), this.tail = this.tail.substring(n);
+            t = this.tail.substring(0, n), this.tail = this.tail.substring(n);
         }
 
-        return this.pos += e.length, e;
-      }, v.prototype.push = function (t) {
-        return new v(t, this);
-      }, v.prototype.lookup = function (t) {
-        var e,
+        return this.pos += t.length, t;
+      }, v.prototype.push = function (e) {
+        return new v(e, this);
+      }, v.prototype.lookup = function (e) {
+        var t,
             r,
             o,
-            s = this.cache;
-        if (s.hasOwnProperty(t)) e = s[t];else {
-          for (var a, u, c, p = this, l = !1; p;) {
-            if (t.indexOf(".") > 0) for (a = p.view, u = t.split("."), c = 0; null != a && c < u.length;) {
-              c === u.length - 1 && (l = i(a, u[c]) || (r = a, o = u[c], null != r && "object" != _typeof(r) && r.hasOwnProperty && r.hasOwnProperty(o))), a = a[u[c++]];
-            } else a = p.view[t], l = i(p.view, t);
+            a = this.cache;
+        if (a.hasOwnProperty(e)) t = a[e];else {
+          for (var s, c, u, p = this, l = !1; p;) {
+            if (e.indexOf(".") > 0) for (s = p.view, c = e.split("."), u = 0; null != s && u < c.length;) {
+              u === c.length - 1 && (l = i(s, c[u]) || (r = s, o = c[u], null != r && "object" != _typeof(r) && r.hasOwnProperty && r.hasOwnProperty(o))), s = s[c[u++]];
+            } else s = p.view[e], l = i(p.view, e);
 
             if (l) {
-              e = a;
+              t = s;
               break;
             }
 
             p = p.parent;
           }
 
-          s[t] = e;
+          a[e] = t;
         }
-        return n(e) && (e = e.call(this.view)), e;
+        return n(t) && (t = t.call(this.view)), t;
       }, g.prototype.clearCache = function () {
-        this.cache = {};
-      }, g.prototype.parse = function (t, n) {
-        var i = this.cache,
-            o = t + ":" + (n || y.tags).join(":"),
-            s = i[o];
-        return null == s && (s = i[o] = function (t, n) {
-          if (!t) return [];
+        void 0 !== this.templateCache && this.templateCache.clear();
+      }, g.prototype.parse = function (e, n) {
+        var i = this.templateCache,
+            o = e + ":" + (n || y.tags).join(":"),
+            a = void 0 !== i,
+            c = a ? i.get(o) : void 0;
+        return null == c && (c = function (e, n) {
+          if (!e) return [];
           var i,
               o,
-              s,
-              u = !1,
+              a,
+              c = !1,
               v = [],
               g = [],
               w = [],
@@ -67113,144 +67114,148 @@ parcelRequire = function (e, r, t, n) {
               k = "",
               x = 0;
 
-          function E() {
+          function C() {
             if (m && !b) for (; w.length;) {
               delete g[w.pop()];
             } else w = [];
             m = !1, b = !1;
           }
 
-          function U(t) {
-            if ("string" == typeof t && (t = t.split(p, 2)), !e(t) || 2 !== t.length) throw new Error("Invalid tags: " + t);
-            i = new RegExp(r(t[0]) + "\\s*"), o = new RegExp("\\s*" + r(t[1])), s = new RegExp("\\s*" + r("}" + t[1]));
+          function E(e) {
+            if ("string" == typeof e && (e = e.split(p, 2)), !t(e) || 2 !== e.length) throw new Error("Invalid tags: " + e);
+            i = new RegExp(r(e[0]) + "\\s*"), o = new RegExp("\\s*" + r(e[1])), a = new RegExp("\\s*" + r("}" + e[1]));
           }
 
-          U(n || y.tags);
+          E(n || y.tags);
 
-          for (var j, T, C, P, S, V, O = new d(t); !O.eos();) {
-            if (j = O.pos, C = O.scanUntil(i)) for (var A = 0, I = C.length; A < I; ++A) {
-              a(P = C.charAt(A)) ? (w.push(g.length), k += P) : (b = !0, u = !0, k += " "), g.push(["text", P, j, j + 1]), j += 1, "\n" === P && (E(), k = "", x = 0, u = !1);
+          for (var U, j, T, P, S, V, O = new d(e); !O.eos();) {
+            if (U = O.pos, T = O.scanUntil(i)) for (var A = 0, I = T.length; A < I; ++A) {
+              s(P = T.charAt(A)) ? (w.push(g.length), k += P) : (b = !0, c = !0, k += " "), g.push(["text", P, U, U + 1]), U += 1, "\n" === P && (C(), k = "", x = 0, c = !1);
             }
             if (!O.scan(i)) break;
-            if (m = !0, T = O.scan(f) || "name", O.scan(c), "=" === T ? (C = O.scanUntil(l), O.scan(l), O.scanUntil(o)) : "{" === T ? (C = O.scanUntil(s), O.scan(h), O.scanUntil(o), T = "&") : C = O.scanUntil(o), !O.scan(o)) throw new Error("Unclosed tag at " + O.pos);
-            if (S = ">" == T ? [T, C, j, O.pos, k, x, u] : [T, C, j, O.pos], x++, g.push(S), "#" === T || "^" === T) v.push(S);else if ("/" === T) {
-              if (!(V = v.pop())) throw new Error('Unopened section "' + C + '" at ' + j);
-              if (V[1] !== C) throw new Error('Unclosed section "' + V[1] + '" at ' + j);
-            } else "name" === T || "{" === T || "&" === T ? b = !0 : "=" === T && U(C);
+            if (m = !0, j = O.scan(f) || "name", O.scan(u), "=" === j ? (T = O.scanUntil(l), O.scan(l), O.scanUntil(o)) : "{" === j ? (T = O.scanUntil(a), O.scan(h), O.scanUntil(o), j = "&") : T = O.scanUntil(o), !O.scan(o)) throw new Error("Unclosed tag at " + O.pos);
+            if (S = ">" == j ? [j, T, U, O.pos, k, x, c] : [j, T, U, O.pos], x++, g.push(S), "#" === j || "^" === j) v.push(S);else if ("/" === j) {
+              if (!(V = v.pop())) throw new Error('Unopened section "' + T + '" at ' + U);
+              if (V[1] !== T) throw new Error('Unclosed section "' + V[1] + '" at ' + U);
+            } else "name" === j || "{" === j || "&" === j ? b = !0 : "=" === j && E(T);
           }
 
-          if (E(), V = v.pop()) throw new Error('Unclosed section "' + V[1] + '" at ' + O.pos);
-          return function (t) {
-            for (var e, n = [], r = n, i = [], o = 0, s = t.length; o < s; ++o) {
-              switch ((e = t[o])[0]) {
+          if (C(), V = v.pop()) throw new Error('Unclosed section "' + V[1] + '" at ' + O.pos);
+          return function (e) {
+            for (var t, n = [], r = n, i = [], o = 0, a = e.length; o < a; ++o) {
+              switch ((t = e[o])[0]) {
                 case "#":
                 case "^":
-                  r.push(e), i.push(e), r = e[4] = [];
+                  r.push(t), i.push(t), r = t[4] = [];
                   break;
 
                 case "/":
-                  i.pop()[5] = e[2], r = i.length > 0 ? i[i.length - 1][4] : n;
+                  i.pop()[5] = t[2], r = i.length > 0 ? i[i.length - 1][4] : n;
                   break;
 
                 default:
-                  r.push(e);
+                  r.push(t);
               }
             }
 
             return n;
-          }(function (t) {
-            for (var e, n, r = [], i = 0, o = t.length; i < o; ++i) {
-              (e = t[i]) && ("text" === e[0] && n && "text" === n[0] ? (n[1] += e[1], n[3] = e[3]) : (r.push(e), n = e));
+          }(function (e) {
+            for (var t, n, r = [], i = 0, o = e.length; i < o; ++i) {
+              (t = e[i]) && ("text" === t[0] && n && "text" === n[0] ? (n[1] += t[1], n[3] = t[3]) : (r.push(t), n = t));
             }
 
             return r;
           }(g));
-        }(t, n)), s;
-      }, g.prototype.render = function (t, e, n, r) {
-        var i = this.parse(t, r),
-            o = e instanceof v ? e : new v(e, void 0);
-        return this.renderTokens(i, o, n, t, r);
-      }, g.prototype.renderTokens = function (t, e, n, r, i) {
-        for (var o, s, a, u = "", c = 0, p = t.length; c < p; ++c) {
-          a = void 0, "#" === (s = (o = t[c])[0]) ? a = this.renderSection(o, e, n, r) : "^" === s ? a = this.renderInverted(o, e, n, r) : ">" === s ? a = this.renderPartial(o, e, n, i) : "&" === s ? a = this.unescapedValue(o, e) : "name" === s ? a = this.escapedValue(o, e) : "text" === s && (a = this.rawValue(o)), void 0 !== a && (u += a);
+        }(e, n), a && i.set(o, c)), c;
+      }, g.prototype.render = function (e, t, n, r) {
+        var i = this.parse(e, r),
+            o = t instanceof v ? t : new v(t, void 0);
+        return this.renderTokens(i, o, n, e, r);
+      }, g.prototype.renderTokens = function (e, t, n, r, i) {
+        for (var o, a, s, c = "", u = 0, p = e.length; u < p; ++u) {
+          s = void 0, "#" === (a = (o = e[u])[0]) ? s = this.renderSection(o, t, n, r) : "^" === a ? s = this.renderInverted(o, t, n, r) : ">" === a ? s = this.renderPartial(o, t, n, i) : "&" === a ? s = this.unescapedValue(o, t) : "name" === a ? s = this.escapedValue(o, t) : "text" === a && (s = this.rawValue(o)), void 0 !== s && (c += s);
         }
 
-        return u;
-      }, g.prototype.renderSection = function (t, r, i, o) {
-        var s = this,
-            a = "",
-            u = r.lookup(t[1]);
+        return c;
+      }, g.prototype.renderSection = function (e, r, i, o) {
+        var a = this,
+            s = "",
+            c = r.lookup(e[1]);
 
-        if (u) {
-          if (e(u)) for (var c = 0, p = u.length; c < p; ++c) {
-            a += this.renderTokens(t[4], r.push(u[c]), i, o);
-          } else if ("object" == _typeof(u) || "string" == typeof u || "number" == typeof u) a += this.renderTokens(t[4], r.push(u), i, o);else if (n(u)) {
+        if (c) {
+          if (t(c)) for (var u = 0, p = c.length; u < p; ++u) {
+            s += this.renderTokens(e[4], r.push(c[u]), i, o);
+          } else if ("object" == _typeof(c) || "string" == typeof c || "number" == typeof c) s += this.renderTokens(e[4], r.push(c), i, o);else if (n(c)) {
             if ("string" != typeof o) throw new Error("Cannot use higher-order sections without the original template");
-            null != (u = u.call(r.view, o.slice(t[3], t[5]), function (t) {
-              return s.render(t, r, i);
-            })) && (a += u);
-          } else a += this.renderTokens(t[4], r, i, o);
-          return a;
+            null != (c = c.call(r.view, o.slice(e[3], e[5]), function (e) {
+              return a.render(e, r, i);
+            })) && (s += c);
+          } else s += this.renderTokens(e[4], r, i, o);
+          return s;
         }
-      }, g.prototype.renderInverted = function (t, n, r, i) {
-        var o = n.lookup(t[1]);
-        if (!o || e(o) && 0 === o.length) return this.renderTokens(t[4], n, r, i);
-      }, g.prototype.indentPartial = function (t, e, n) {
-        for (var r = e.replace(/[^ \t]/g, ""), i = t.split("\n"), o = 0; o < i.length; o++) {
+      }, g.prototype.renderInverted = function (e, n, r, i) {
+        var o = n.lookup(e[1]);
+        if (!o || t(o) && 0 === o.length) return this.renderTokens(e[4], n, r, i);
+      }, g.prototype.indentPartial = function (e, t, n) {
+        for (var r = t.replace(/[^ \t]/g, ""), i = e.split("\n"), o = 0; o < i.length; o++) {
           i[o].length && (o > 0 || !n) && (i[o] = r + i[o]);
         }
 
         return i.join("\n");
-      }, g.prototype.renderPartial = function (t, e, r, i) {
+      }, g.prototype.renderPartial = function (e, t, r, i) {
         if (r) {
-          var o = n(r) ? r(t[1]) : r[t[1]];
+          var o = n(r) ? r(e[1]) : r[e[1]];
 
           if (null != o) {
-            var s = t[6],
-                a = t[5],
-                u = t[4],
-                c = o;
-            return 0 == a && u && (c = this.indentPartial(o, u, s)), this.renderTokens(this.parse(c, i), e, r, c);
+            var a = e[6],
+                s = e[5],
+                c = e[4],
+                u = o;
+            return 0 == s && c && (u = this.indentPartial(o, c, a)), this.renderTokens(this.parse(u, i), t, r, u);
           }
         }
-      }, g.prototype.unescapedValue = function (t, e) {
-        var n = e.lookup(t[1]);
+      }, g.prototype.unescapedValue = function (e, t) {
+        var n = t.lookup(e[1]);
         if (null != n) return n;
-      }, g.prototype.escapedValue = function (t, e) {
-        var n = e.lookup(t[1]);
+      }, g.prototype.escapedValue = function (e, t) {
+        var n = t.lookup(e[1]);
         if (null != n) return y.escape(n);
-      }, g.prototype.rawValue = function (t) {
-        return t[1];
+      }, g.prototype.rawValue = function (e) {
+        return e[1];
       };
       var y = {
         name: "mustache.js",
-        version: "3.2.1",
+        version: "4.0.0",
         tags: ["{{", "}}"],
         clearCache: void 0,
         escape: void 0,
         parse: void 0,
         render: void 0,
-        to_html: void 0,
         Scanner: void 0,
         Context: void 0,
-        Writer: void 0
+        Writer: void 0,
+
+        set templateCache(e) {
+          w.templateCache = e;
+        },
+
+        get templateCache() {
+          return w.templateCache;
+        }
+
       },
           w = new g();
       return y.clearCache = function () {
         return w.clearCache();
-      }, y.parse = function (t, e) {
-        return w.parse(t, e);
-      }, y.render = function (t, n, r, i) {
-        if ("string" != typeof t) throw new TypeError('Invalid template! Template should be a "string" but "' + (e(o = t) ? "array" : _typeof(o)) + '" was given as the first argument for mustache#render(template, view, partials)');
+      }, y.parse = function (e, t) {
+        return w.parse(e, t);
+      }, y.render = function (e, n, r, i) {
+        if ("string" != typeof e) throw new TypeError('Invalid template! Template should be a "string" but "' + (t(o = e) ? "array" : _typeof(o)) + '" was given as the first argument for mustache#render(template, view, partials)');
         var o;
-        return w.render(t, n, r, i);
-      }, y.to_html = function (t, e, r, i) {
-        var o = y.render(t, e, r);
-        if (!n(i)) return o;
-        i(o);
-      }, y.escape = function (t) {
-        return String(t).replace(/[&<>"'`=\/]/g, function (t) {
-          return u[t];
+        return w.render(e, n, r, i);
+      }, y.escape = function (e) {
+        return String(e).replace(/[&<>"'`=\/]/g, function (e) {
+          return c[e];
         });
       }, y.Scanner = d, y.Context = v, y.Writer = g, y;
     });
@@ -67311,6 +67316,50 @@ parcelRequire = function (e, r, t, n) {
     "phaser": "Yefz",
     "mustache": "t18c",
     "../events-manager": "RxB9"
+  }],
+  "dSkb": [function (require, module, exports) {
+    var e = require("../internals/export"),
+        n = require("../internals/global"),
+        t = require("../internals/engine-user-agent"),
+        r = [].slice,
+        i = /MSIE .\./.test(t),
+        l = function l(e) {
+      return function (n, t) {
+        var i = arguments.length > 2,
+            l = i ? r.call(arguments, 2) : void 0;
+        return e(i ? function () {
+          ("function" == typeof n ? n : Function(n)).apply(this, l);
+        } : n, t);
+      };
+    };
+
+    e({
+      global: !0,
+      bind: !0,
+      forced: i
+    }, {
+      setTimeout: l(n.setTimeout),
+      setInterval: l(n.setInterval)
+    });
+  }, {
+    "../internals/export": "qpO1",
+    "../internals/global": "akRO",
+    "../internals/engine-user-agent": "IVyy"
+  }],
+  "wQKO": [function (require, module, exports) {
+    require("../modules/web.timers");
+
+    var e = require("../internals/path");
+
+    module.exports = e.setTimeout;
+  }, {
+    "../modules/web.timers": "dSkb",
+    "../internals/path": "COdq"
+  }],
+  "CHT5": [function (require, module, exports) {
+    module.exports = require("core-js-pure/stable/set-timeout");
+  }, {
+    "core-js-pure/stable/set-timeout": "wQKO"
   }],
   "p7jN": [function (require, module, exports) {
     var r = require("../internals/descriptors"),
@@ -67451,13 +67500,16 @@ parcelRequire = function (e, r, t, n) {
       UI: "ui",
       TYPE_PLAYER: "pj",
       GAME_OVER: "go",
+      BUTTON_OPTION: "btn-opt",
       UP: "up",
       LEFT: "left",
       DOWN: "down",
       RIGHT: "right",
       STOP: "stop",
       ACTION: "action",
+      BULLET: "attack-bullet",
       POINTER: "mp",
+      ARROW_DOWN: "ard",
       COL_PLAYER: Math.pow(2, 0),
       COL_ENEMY: Math.pow(2, 1),
       COL_GROUND: Math.pow(2, 2),
@@ -67485,8 +67537,8 @@ parcelRequire = function (e, r, t, n) {
 
     var r = require("../../game/logger"),
         n = r.Logger,
-        o = require("../../game/constants"),
-        l = o.GameConst,
+        l = require("../../game/constants"),
+        o = l.GameConst,
         h = function () {
       function s(e, i, a, r) {
         (0, t.default)(this, s), this.scene = e, this.config = a.config, this.gameManager = a, this.username = i.username, this.roomName = i.state.scene, this.state = i.state, this.room = r, this.playerId = r.sessionId, this.players = {}, this.mov = !1, this.dir = !1, this.currentTarget = !1, this.animationBasedOnPress = this.config.get("client/players/animations/basedOnPress");
@@ -67499,17 +67551,17 @@ parcelRequire = function (e, r, t, n) {
             username: this.username
           }, this.state);
           this.addPlayer(this.playerId, t);
-          var a = this.config.get("client/players/animations/fadeDuration") || l.FADE_DURATION;
+          var a = this.config.get("client/players/animations/fadeDuration") || o.FADE_DURATION;
           this.scene.cameras.main.fadeFrom(a), this.scene.scene.setVisible(!0, this.roomName), this.scene.physics.world.setBounds(0, 0, (0, e.default)(this.scene).widthInPixels, (0, e.default)(this.scene).heightInPixels), this.scene.cameras.main.setBounds(0, 0, (0, e.default)(this.scene).widthInPixels, (0, e.default)(this.scene).heightInPixels), this.scene.cameras.main.startFollow(this.players[this.playerId], !0), this.players[this.playerId].setCollideWorldBounds(!0), this.createHealthBar();
         }
       }, {
         key: "addPlayer",
         value: function value(e, i) {
           var t = this;
-          return this.players[e] = this.scene.physics.add.sprite(i.x, i.y, l.IMAGE_PLAYER), this.players[e].username = i.username, this.players[e].anims.play(i.dir), this.players[e].anims.stop(), this.players[e].setInteractive().on("pointerdown", function () {
+          return this.players[e] = this.scene.physics.add.sprite(i.x, i.y, o.IMAGE_PLAYER), this.players[e].username = i.username, this.players[e].anims.play(i.dir), this.players[e].anims.stop(), this.players[e].setInteractive().on("pointerdown", function () {
             t.gameManager.gameEngine.showTarget(t.players[e].username), t.currentTarget = {
               id: e,
-              type: l.TYPE_PLAYER
+              type: o.TYPE_PLAYER
             };
           }), this.players[e];
         }
@@ -67525,30 +67577,32 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "redrawLifeBar",
         value: function value() {
-          var e = this.gameManager.config.get("client/ui/uiLifeBar/height"),
-              i = this.gameManager.config.get("client/ui/uiLifeBar/width"),
-              t = this.gameManager.config.initialStats.hp,
-              a = this.gameManager.playerData.stats.hp * i / t,
-              s = this.gameManager.config.get("client/ui/uiLifeBar/x"),
-              r = this.gameManager.config.get("client/ui/uiLifeBar/y");
+          if (this.uiLifeBar) {
+            var e = this.gameManager.config.get("client/ui/uiLifeBar/height"),
+                i = this.gameManager.config.get("client/ui/uiLifeBar/width"),
+                t = this.gameManager.config.initialStats.hp,
+                a = this.gameManager.playerData.stats.hp * i / t,
+                s = this.gameManager.config.get("client/ui/uiLifeBar/x"),
+                r = this.gameManager.config.get("client/ui/uiLifeBar/y");
 
-          if (!this.gameManager.config.get("client/ui/uiLifeBar/fixedPosition")) {
-            var n = this.gameManager.getCurrentPlayer().state;
-            s = n.x - i / 2, r = n.y - e - this.gameManager.config.get("client/players/size/height") / 2;
+            if (!this.gameManager.config.get("client/ui/uiLifeBar/fixedPosition")) {
+              var n = this.gameManager.getCurrentPlayer().state;
+              s = n.x - i / 2, r = n.y - e - this.gameManager.config.get("client/players/size/height") / 2;
+            }
+
+            this.uiLifeBar.clear(), this.uiLifeBar.fillStyle(16711680, 1), this.uiLifeBar.fillRect(s, r, a, e), this.uiLifeBar.lineStyle(1, 16777215), this.uiLifeBar.strokeRect(s, r, i, e), this.uiLifeBar.alpha = .6, this.uiLifeBar.setDepth(1e5);
           }
-
-          this.uiLifeBar.clear(), this.uiLifeBar.fillStyle(16711680, 1), this.uiLifeBar.fillRect(s, r, a, e), this.uiLifeBar.lineStyle(1, 16777215), this.uiLifeBar.strokeRect(s, r, i, e), this.uiLifeBar.alpha = .6, this.uiLifeBar.setDepth(1e5);
         }
       }, {
         key: "runPlayerAnimation",
         value: function value(e, i) {
           var t = this.players[e];
-          t.anims || n.error("PlayerSprite animation not defined."), this.playPlayerAnimation(t, i), t.x = i.state.x, t.y = i.state.y, t.setDepth(t.y + t.body.height), i.state.mov || (t.anims.stop(), t.mov = i.state.mov), this.redrawLifeBar();
+          t.anims || n.error("PlayerSprite animation not defined."), this.playPlayerAnimation(t, i), t.x = i.state.x, t.y = i.state.y, t.setDepth(t.y + t.body.height), i.state.mov || (t.anims.stop(), t.mov = i.state.mov), this.gameManager.config.get("client/ui/uiLifeBar/enabled") && this.redrawLifeBar();
         }
       }, {
         key: "playPlayerAnimation",
         value: function value(e, i) {
-          this.animationBasedOnPress ? e.anims.play(i.state.dir, !0) : (i.state.x !== e.x && (i.state.x < e.x ? e.anims.play(l.LEFT, !0) : e.anims.play(l.RIGHT, !0)), i.state.y !== e.y && (i.state.y < e.y ? e.anims.play(l.UP, !0) : e.anims.play(l.DOWN, !0)));
+          this.animationBasedOnPress ? e.anims.play(i.state.dir, !0) : (i.state.x !== e.x && (i.state.x < e.x ? e.anims.play(o.LEFT, !0) : e.anims.play(o.RIGHT, !0)), i.state.y !== e.y && (i.state.y < e.y ? e.anims.play(o.UP, !0) : e.anims.play(o.DOWN, !0)));
         }
       }, {
         key: "removePlayer",
@@ -67559,42 +67613,42 @@ parcelRequire = function (e, r, t, n) {
         key: "left",
         value: function value() {
           this.room.send({
-            dir: l.LEFT
+            dir: o.LEFT
           });
         }
       }, {
         key: "right",
         value: function value() {
           this.room.send({
-            dir: l.RIGHT
+            dir: o.RIGHT
           });
         }
       }, {
         key: "up",
         value: function value() {
           this.room.send({
-            dir: l.UP
+            dir: o.UP
           });
         }
       }, {
         key: "down",
         value: function value() {
           this.room.send({
-            dir: l.DOWN
+            dir: o.DOWN
           });
         }
       }, {
         key: "stop",
         value: function value() {
           this.room.send({
-            act: l.STOP
+            act: o.STOP
           });
         }
       }, {
         key: "runActions",
         value: function value() {
           this.room.send({
-            act: l.ACTION,
+            act: o.ACTION,
             target: this.currentTarget
           });
         }
@@ -67602,7 +67656,7 @@ parcelRequire = function (e, r, t, n) {
         key: "moveToPointer",
         value: function value(e) {
           var i = {
-            act: l.POINTER,
+            act: o.POINTER,
             column: e.worldColumn,
             row: e.worldRow,
             x: e.worldX,
@@ -67781,50 +67835,6 @@ parcelRequire = function (e, r, t, n) {
   }, {
     "core-js-pure/stable/instance/bind": "yMJd"
   }],
-  "dSkb": [function (require, module, exports) {
-    var e = require("../internals/export"),
-        n = require("../internals/global"),
-        t = require("../internals/engine-user-agent"),
-        r = [].slice,
-        i = /MSIE .\./.test(t),
-        l = function l(e) {
-      return function (n, t) {
-        var i = arguments.length > 2,
-            l = i ? r.call(arguments, 2) : void 0;
-        return e(i ? function () {
-          ("function" == typeof n ? n : Function(n)).apply(this, l);
-        } : n, t);
-      };
-    };
-
-    e({
-      global: !0,
-      bind: !0,
-      forced: i
-    }, {
-      setTimeout: l(n.setTimeout),
-      setInterval: l(n.setInterval)
-    });
-  }, {
-    "../internals/export": "qpO1",
-    "../internals/global": "akRO",
-    "../internals/engine-user-agent": "IVyy"
-  }],
-  "wQKO": [function (require, module, exports) {
-    require("../modules/web.timers");
-
-    var e = require("../internals/path");
-
-    module.exports = e.setTimeout;
-  }, {
-    "../modules/web.timers": "dSkb",
-    "../internals/path": "COdq"
-  }],
-  "CHT5": [function (require, module, exports) {
-    module.exports = require("core-js-pure/stable/set-timeout");
-  }, {
-    "core-js-pure/stable/set-timeout": "wQKO"
-  }],
   "MMJB": [function (require, module, exports) {
     "use strict";
 
@@ -67982,16 +67992,16 @@ parcelRequire = function (e, r, t, n) {
   "Mpt2": [function (require, module, exports) {
     "use strict";
 
-    var e = o(require("@babel/runtime-corejs3/core-js/get-iterator")),
-        t = o(require("@babel/runtime-corejs3/core-js-stable/instance/index-of")),
-        i = o(require("@babel/runtime-corejs3/core-js-stable/instance/map")),
-        a = o(require("@babel/runtime-corejs3/helpers/classCallCheck")),
-        n = o(require("@babel/runtime-corejs3/helpers/createClass")),
-        r = o(require("@babel/runtime-corejs3/helpers/possibleConstructorReturn")),
-        s = o(require("@babel/runtime-corejs3/helpers/getPrototypeOf")),
-        l = o(require("@babel/runtime-corejs3/helpers/inherits"));
+    var e = l(require("@babel/runtime-corejs3/core-js/get-iterator")),
+        t = l(require("@babel/runtime-corejs3/core-js-stable/instance/index-of")),
+        i = l(require("@babel/runtime-corejs3/core-js-stable/instance/map")),
+        a = l(require("@babel/runtime-corejs3/helpers/classCallCheck")),
+        r = l(require("@babel/runtime-corejs3/helpers/createClass")),
+        n = l(require("@babel/runtime-corejs3/helpers/possibleConstructorReturn")),
+        s = l(require("@babel/runtime-corejs3/helpers/getPrototypeOf")),
+        o = l(require("@babel/runtime-corejs3/helpers/inherits"));
 
-    function o(e) {
+    function l(e) {
       return e && e.__esModule ? e : {
         default: e
       };
@@ -68003,16 +68013,18 @@ parcelRequire = function (e, r, t, n) {
         y = require("./tileset-animation"),
         d = y.TilesetAnimation,
         m = require("../../game/events-manager"),
-        g = m.EventsManager,
-        f = function (o) {
+        p = m.EventsManager,
+        g = require("../../game/constants"),
+        f = g.GameConst,
+        b = function (l) {
       function h(e, t, i) {
-        var n;
-        return (0, a.default)(this, h), (n = (0, r.default)(this, (0, s.default)(h).call(this, {
+        var r;
+        return (0, a.default)(this, h), (r = (0, n.default)(this, (0, s.default)(h).call(this, {
           key: e
-        }))).key = e, n.params = t, n.gameManager = i, n.configManager = i.config, n.layers = {}, n.transition = !0, n.useTsAnimation = !1, n.objectsAnimationsData = !1, n.objectsAnimations = {}, n.configuredFrameRate = n.gameManager.config.get("client/general/animations/frameRate") || 10, n;
+        }))).key = e, r.params = t, r.gameManager = i, r.configManager = i.config, r.layers = {}, r.transition = !0, r.useTsAnimation = !1, r.arrowSprite = !1, r.objectsAnimationsData = !1, r.objectsAnimations = {}, r.configuredFrameRate = r.gameManager.config.get("client/general/animations/frameRate") || 10, r;
       }
 
-      return (0, l.default)(h, o), (0, n.default)(h, [{
+      return (0, o.default)(h, l), (0, r.default)(h, [{
         key: "init",
         value: function value() {
           this.scene.setVisible(!1, this.key), this.input.keyboard.removeAllListeners();
@@ -68022,21 +68034,21 @@ parcelRequire = function (e, r, t, n) {
         value: function value() {
           var e = this;
 
-          for (var a in g.emit("reldens.beforeSceneDynamicCreate", this), this.keyLeft = this.input.keyboard.addKey(c.Keyboard.KeyCodes.LEFT), this.keyRight = this.input.keyboard.addKey(c.Keyboard.KeyCodes.RIGHT), this.keyUp = this.input.keyboard.addKey(c.Keyboard.KeyCodes.UP), this.keyDown = this.input.keyboard.addKey(c.Keyboard.KeyCodes.DOWN), this.input.keyboard.on("keydown", function (t) {
+          for (var a in p.emit("reldens.beforeSceneDynamicCreate", this), this.keyLeft = this.input.keyboard.addKey(c.Keyboard.KeyCodes.LEFT), this.keyRight = this.input.keyboard.addKey(c.Keyboard.KeyCodes.RIGHT), this.keyUp = this.input.keyboard.addKey(c.Keyboard.KeyCodes.UP), this.keyDown = this.input.keyboard.addKey(c.Keyboard.KeyCodes.DOWN), this.input.keyboard.on("keydown", function (t) {
             32 === t.keyCode && "input" !== document.activeElement.tagName.toLowerCase() && e.player.runActions(), 27 === t.keyCode && e.gameManager.gameEngine.clearTarget();
           }), this.map = this.add.tilemap(this.params.roomMap), this.input.on("pointerdown", function (t, i) {
-            i.length || (e.appendRowAndColumn(t), e.player.moveToPointer(t));
+            i.length || (e.appendRowAndColumn(t), e.player.moveToPointer(t), e.updatePointerObject(t));
           }), this.useTsAnimation = this.hasTsAnimation(), this.tileset = (0, i.default)(this).addTilesetImage(this.params.roomMap), this.registerLayers(), this.layers) {
-            var n,
-                r = this.layers[a];
-            -1 !== (0, t.default)(n = r.layer.name).call(n, "animations") && this.registerTilesetAnimation(r);
+            var r,
+                n = this.layers[a];
+            -1 !== (0, t.default)(r = n.layer.name).call(r, "animations") && this.registerTilesetAnimation(n);
           }
 
           this.cameras.main.on("camerafadeincomplete", function () {
             e.transition = !1, e.gameManager.isChangingScene = !1, e.input.keyboard.on("keyup", function (t) {
               t.keyCode >= 37 && t.keyCode <= 40 && e.player.stop();
             });
-          }), g.emit("reldens.afterSceneDynamicCreate", this);
+          }), p.emit("reldens.afterSceneDynamicCreate", this);
         }
       }, {
         key: "update",
@@ -68052,14 +68064,14 @@ parcelRequire = function (e, r, t, n) {
         key: "hasTsAnimation",
         value: function value() {
           var a = !1,
-              n = !0,
-              r = !1,
+              r = !0,
+              n = !1,
               s = void 0;
 
           try {
-            for (var l, o = (0, e.default)((0, i.default)(this).layers); !(n = (l = o.next()).done); n = !0) {
+            for (var o, l = (0, e.default)((0, i.default)(this).layers); !(r = (o = l.next()).done); r = !0) {
               var h,
-                  u = l.value;
+                  u = o.value;
 
               if (-1 !== (0, t.default)(h = u.name).call(h, "animations")) {
                 a = !0;
@@ -68067,12 +68079,12 @@ parcelRequire = function (e, r, t, n) {
               }
             }
           } catch (c) {
-            r = !0, s = c;
+            n = !0, s = c;
           } finally {
             try {
-              n || null == o.return || o.return();
+              r || null == l.return || l.return();
             } finally {
-              if (r) throw s;
+              if (n) throw s;
             }
           }
 
@@ -68082,25 +68094,25 @@ parcelRequire = function (e, r, t, n) {
         key: "registerLayers",
         value: function value() {
           var a = 0,
-              n = !0,
-              r = !1,
+              r = !0,
+              n = !1,
               s = void 0;
 
           try {
-            for (var l, o = (0, e.default)((0, i.default)(this).layers); !(n = (l = o.next()).done); n = !0) {
-              var h = l.value,
+            for (var o, l = (0, e.default)((0, i.default)(this).layers); !(r = (o = l.next()).done); r = !0) {
+              var h = o.value,
                   u = this.configManager.get("client/general/tileData/margin"),
                   c = this.configManager.get("client/general/tileData/spacing"),
                   y = h.name;
               this.useTsAnimation ? this.layers[a] = (0, i.default)(this).createDynamicLayer(y, this.tileset, u, c) : this.layers[a] = (0, i.default)(this).createStaticLayer(y, this.tileset, u, c), -1 !== (0, t.default)(y).call(y, "below-player") && this.layers[a].setDepth(this.configManager.get("client/map/layersDepth/belowPlayer")), -1 !== (0, t.default)(y).call(y, "over-player") && this.layers[a].setDepth(a * (0, i.default)(this).height * (0, i.default)(this).tileHeight), -1 !== (0, t.default)(y).call(y, "change-points") && this.layers[a].setDepth(this.configManager.get("client/map/layersDepth/changePoints")), a++;
             }
           } catch (d) {
-            r = !0, s = d;
+            n = !0, s = d;
           } finally {
             try {
-              n || null == o.return || o.return();
+              r || null == l.return || l.return();
             } finally {
-              if (r) throw s;
+              if (n) throw s;
             }
           }
         }
@@ -68114,19 +68126,27 @@ parcelRequire = function (e, r, t, n) {
         value: function value(e) {
           var t = (0, i.default)(this).tileWidth,
               a = (0, i.default)(this).tileHeight,
-              n = this.configManager.get("client/players/size/height"),
-              r = n - a;
-          this.player.state.y < e.worldY && (r = n / 2);
+              r = this.configManager.get("client/players/size/height"),
+              n = r - a;
+          this.player.state.y < e.worldY && (n = r / 2);
           var s = this.configManager.get("client/players/size/width") / 4;
           this.player.state.x > e.worldX && (s = -s);
-          var l = Math.round((e.worldX + s) / t),
-              o = Math.round((e.worldY - r) / a);
-          e.worldColumn = l, e.worldRow = o;
+          var o = Math.round((e.worldX + s) / t),
+              l = Math.round((e.worldY - n) / a);
+          e.worldColumn = o, e.worldRow = l;
+        }
+      }, {
+        key: "updatePointerObject",
+        value: function value(e) {
+          var t = this;
+          this.configManager.get("client/ui/pointer/show") && (this.arrowSprite && this.arrowSprite.destroy(), this.arrowSprite = this.physics.add.sprite(e.worldX, e.worldY, f.ARROW_DOWN), this.arrowSprite.setDepth(2e6), this.arrowSprite.anims.play(f.ARROW_DOWN, !0).on("animationcomplete", function () {
+            t.arrowSprite.destroy();
+          }));
         }
       }]), h;
     }(u);
 
-    module.exports.SceneDynamic = f;
+    module.exports.SceneDynamic = b;
   }, {
     "@babel/runtime-corejs3/core-js/get-iterator": "dtXd",
     "@babel/runtime-corejs3/core-js-stable/instance/index-of": "b0gU",
@@ -68138,7 +68158,8 @@ parcelRequire = function (e, r, t, n) {
     "@babel/runtime-corejs3/helpers/inherits": "DB6z",
     "phaser": "Yefz",
     "./tileset-animation": "iSc6",
-    "../../game/events-manager": "RxB9"
+    "../../game/events-manager": "RxB9",
+    "../../game/constants": "gIeR"
   }],
   "lQgA": [function (require, module, exports) {
     module.exports = "\t\n\x0B\f\r \xA0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF";
@@ -68223,13 +68244,14 @@ parcelRequire = function (e, r, t, n) {
 
     var e = g(require("@babel/runtime-corejs3/core-js-stable/parse-int")),
         t = g(require("@babel/runtime-corejs3/core-js-stable/set-timeout")),
-        a = g(require("@babel/runtime-corejs3/core-js/get-iterator")),
-        i = g(require("@babel/runtime-corejs3/core-js-stable/instance/map")),
-        s = g(require("@babel/runtime-corejs3/helpers/classCallCheck")),
-        r = g(require("@babel/runtime-corejs3/helpers/createClass")),
-        n = g(require("@babel/runtime-corejs3/helpers/possibleConstructorReturn")),
+        a = g(require("@babel/runtime-corejs3/core-js-stable/instance/repeat")),
+        i = g(require("@babel/runtime-corejs3/core-js/get-iterator")),
+        s = g(require("@babel/runtime-corejs3/core-js-stable/instance/map")),
+        r = g(require("@babel/runtime-corejs3/helpers/classCallCheck")),
+        n = g(require("@babel/runtime-corejs3/helpers/createClass")),
+        o = g(require("@babel/runtime-corejs3/helpers/possibleConstructorReturn")),
         l = g(require("@babel/runtime-corejs3/helpers/getPrototypeOf")),
-        o = g(require("@babel/runtime-corejs3/helpers/inherits"));
+        h = g(require("@babel/runtime-corejs3/helpers/inherits"));
 
     function g(e) {
       return e && e.__esModule ? e : {
@@ -68237,51 +68259,51 @@ parcelRequire = function (e, r, t, n) {
       };
     }
 
-    var h = require("phaser"),
-        c = h.Scene,
-        m = h.Geom,
-        d = require("../events-manager"),
-        u = d.EventsManager,
-        p = require("../logger"),
-        f = p.Logger,
-        y = require("../constants"),
-        v = y.GameConst,
+    var c = require("phaser"),
+        d = c.Scene,
+        u = c.Geom,
+        m = require("../events-manager"),
+        p = m.EventsManager,
+        f = require("../logger"),
+        y = f.Logger,
+        v = require("../constants"),
+        T = v.GameConst,
         b = function (g) {
-      function h(e) {
+      function c(e) {
         var t;
-        return (0, s.default)(this, h), (t = (0, n.default)(this, (0, l.default)(h).call(this, {
+        return (0, r.default)(this, c), (t = (0, o.default)(this, (0, l.default)(c).call(this, {
           key: e.name
-        }))).progressBar = null, t.progressCompleteRect = null, t.progressRect = null, t.objectsUi = {}, t.userInterfaces = {}, t.preloaderName = e.name, t.preloadMapKey = (0, i.default)(e), t.preloadImages = e.images, t.uiScene = e.uiScene, t.gameManager = e.gameManager, t.preloadAssets = e.preloadAssets, t.gameManager.activeRoomEvents.getActiveScene().objectsAnimationsData = e.objectsAnimationsData, t;
+        }))).holdTimer = null, t.progressBar = null, t.progressCompleteRect = null, t.progressRect = null, t.objectsUi = {}, t.userInterfaces = {}, t.preloaderName = e.name, t.preloadMapKey = (0, s.default)(e), t.preloadImages = e.images, t.uiScene = e.uiScene, t.gameManager = e.gameManager, t.preloadAssets = e.preloadAssets, t.gameManager.activeRoomEvents.getActiveScene().objectsAnimationsData = e.objectsAnimationsData, t;
       }
 
-      return (0, o.default)(h, g), (0, r.default)(h, [{
+      return (0, h.default)(c, g), (0, n.default)(c, [{
         key: "preload",
         value: function value() {
           var e = this.uiScene ? this : this.gameManager.gameEngine.uiScene;
 
-          if (u.emit("reldens.beforePreload", this, e), this.uiScene && (u.emit("reldens.beforePreloadUiScene", this), this.gameManager.config.get("client/ui/playerName/enabled") && this.load.html("uiPlayer", "assets/html/ui-player.html"), this.gameManager.config.get("client/ui/controls/enabled") && this.load.html("uiControls", "assets/html/ui-controls.html"), this.gameManager.config.get("client/ui/sceneLabel/enabled") && this.load.html("uiSceneLabel", "assets/html/ui-scene-label.html"), this.gameManager.config.get("client/ui/playerStats/enabled") && (this.load.html("uiPlayerStats", "assets/html/ui-player-stats.html"), this.load.html("playerStats", "assets/html/player-stats.html")), this.load.html("uiTarget", "assets/html/ui-target.html"), u.emit("reldens.preloadUiScene", this)), this.preloadMapKey && this.load.tilemapTiledJSON(this.preloadMapKey, "assets/maps/".concat(this.preloadMapKey, ".json")), this.preloadImages) {
+          if (p.emit("reldens.beforePreload", this, e), this.uiScene && (p.emit("reldens.beforePreloadUiScene", this), this.gameManager.config.get("client/ui/playerName/enabled") && this.load.html("uiPlayer", "assets/html/ui-player.html"), this.gameManager.config.get("client/ui/controls/enabled") && this.load.html("uiControls", "assets/html/ui-controls.html"), this.gameManager.config.get("client/ui/sceneLabel/enabled") && this.load.html("uiSceneLabel", "assets/html/ui-scene-label.html"), this.gameManager.config.get("client/ui/playerStats/enabled") && (this.load.html("uiPlayerStats", "assets/html/ui-player-stats.html"), this.load.html("playerStats", "assets/html/player-stats.html")), this.load.html("uiTarget", "assets/html/ui-target.html"), this.load.html("uiButton", "assets/html/ui-button.html"), p.emit("reldens.preloadUiScene", this)), this.preloadMapKey && this.load.tilemapTiledJSON(this.preloadMapKey, "assets/maps/".concat(this.preloadMapKey, ".json")), this.preloadImages) {
             var t = {
               frameWidth: this.gameManager.config.get("client/general/tileData/width") || 16,
               frameHeight: this.gameManager.config.get("client/general/tileData/height") || 16,
               margin: this.gameManager.config.get("client/general/tileData/margin") || 1,
               spacing: this.gameManager.config.get("client/general/tileData/spacing") || 2
             },
-                i = this.preloadImages.split(","),
+                a = this.preloadImages.split(","),
                 s = !0,
                 r = !1,
                 n = void 0;
 
             try {
-              for (var l, o = (0, a.default)(i); !(s = (l = o.next()).done); s = !0) {
-                var g = l.value,
-                    h = "assets/maps/".concat(g, ".png");
-                this.load.spritesheet(g, h, t);
+              for (var o, l = (0, i.default)(a); !(s = (o = l.next()).done); s = !0) {
+                var h = o.value,
+                    g = "assets/maps/".concat(h, ".png");
+                this.load.spritesheet(h, g, t);
               }
-            } catch (R) {
-              r = !0, n = R;
+            } catch (S) {
+              r = !0, n = S;
             } finally {
               try {
-                s || null == o.return || o.return();
+                s || null == l.return || l.return();
               } finally {
                 if (r) throw n;
               }
@@ -68290,26 +68312,26 @@ parcelRequire = function (e, r, t, n) {
 
           if (this.preloadAssets) {
             var c = !0,
-                m = !1,
-                d = void 0;
+                d = !1,
+                u = void 0;
 
             try {
-              for (var p, y = (0, a.default)(this.preloadAssets); !(c = (p = y.next()).done); c = !0) {
-                var b = p.value;
+              for (var m, f = (0, i.default)(this.preloadAssets); !(c = (m = f.next()).done); c = !0) {
+                var v = m.value;
 
-                if ("spritesheet" === b.asset_type) {
-                  var T = "assets/custom/sprites/".concat(b.file_1, ".png"),
-                      C = !!b.extra_params && JSON.parse(b.extra_params);
-                  C ? this.load.spritesheet(b.asset_key, T, C) : f.error(["Missing spritesheet params:", b]);
+                if ("spritesheet" === v.asset_type) {
+                  var b = "assets/custom/sprites/".concat(v.file_1, ".png"),
+                      C = !!v.extra_params && JSON.parse(v.extra_params);
+                  C ? this.load.spritesheet(v.asset_key, b, C) : y.error(["Missing spritesheet params:", v]);
                 }
               }
-            } catch (R) {
-              m = !0, d = R;
+            } catch (S) {
+              d = !0, u = S;
             } finally {
               try {
-                c || null == y.return || y.return();
+                c || null == f.return || f.return();
               } finally {
-                if (m) throw d;
+                if (d) throw u;
               }
             }
           }
@@ -68318,16 +68340,27 @@ parcelRequire = function (e, r, t, n) {
             frameWidth: this.gameManager.config.get("client/players/size/width") || 52,
             frameHeight: this.gameManager.config.get("client/players/size/height") || 71
           };
-          this.load.spritesheet(v.IMAGE_PLAYER, "assets/sprites/player-1.png", M), this.load.spritesheet(v.ATTACK, "assets/sprites/weapons-1.png", {
+
+          if (this.load.spritesheet(T.IMAGE_PLAYER, "assets/sprites/player-1.png", M), this.load.spritesheet(T.ATTACK, "assets/sprites/weapons-1.png", {
             frameWidth: 64,
             frameHeight: 64
-          }), this.load.spritesheet(v.HIT, "assets/sprites/impact-1.png", {
+          }), this.load.spritesheet(T.HIT, "assets/sprites/impact-1.png", {
             frameWidth: 64,
             frameHeight: 64
-          }), this.load.spritesheet(v.DEATH, "assets/sprites/object-1.png", {
+          }), this.load.spritesheet(T.DEATH, "assets/sprites/object-1.png", {
             frameWidth: 64,
             frameHeight: 64
-          }), this.load.image(v.ICON_STATS, "assets/icons/book.png"), this.load.on("fileprogress", this.onFileProgress, this), this.load.on("progress", this.onLoadProgress, this), this.load.on("complete", this.onLoadComplete, this), this.configuredFrameRate = this.gameManager.config.get("client/general/animations/frameRate") || 10, this.createProgressBar();
+          }), this.load.spritesheet(T.BULLET, "assets/sprites/earth-1.png", {
+            frameWidth: 64,
+            frameHeight: 64
+          }), this.gameManager.config.get("client/ui/pointer/show")) {
+            this.load.spritesheet(T.ARROW_DOWN, "assets/sprites/arrow-w-down.png", {
+              frameWidth: 32,
+              frameHeight: 32
+            });
+          }
+
+          this.load.image(T.ICON_STATS, "assets/icons/book.png"), this.load.on("fileprogress", this.onFileProgress, this), this.load.on("progress", this.onLoadProgress, this), this.load.on("complete", this.onLoadComplete, this), this.configuredFrameRate = this.gameManager.config.get("client/general/animations/frameRate") || 10, this.createProgressBar();
         }
       }, {
         key: "create",
@@ -68335,8 +68368,8 @@ parcelRequire = function (e, r, t, n) {
           var e = this,
               t = this.uiScene ? this : this.gameManager.gameEngine.uiScene;
 
-          if (u.emit("reldens.createPreload", this, t), this.uiScene) {
-            u.emit("reldens.beforeCreateUiScene", this);
+          if (p.emit("reldens.createPreload", this, t), this.uiScene) {
+            p.emit("reldens.beforeCreateUiScene", this);
             var a = this.getUiConfig("playerName");
             if (a.enabled) this.uiPlayer = this.add.dom(a.uiX, a.uiY).createFromCache("uiPlayer"), this.uiPlayer.getChildByProperty("id", "logout").addEventListener("click", function () {
               window.location.reload();
@@ -68353,21 +68386,21 @@ parcelRequire = function (e, r, t, n) {
 
             if (n.enabled) {
               this.uiPlayerStats = this.add.dom(n.uiX, n.uiY).createFromCache("uiPlayerStats");
-              var l = this.uiPlayerStats.getChildByProperty("id", "box-player-stats"),
-                  o = this.uiPlayerStats.getChildByProperty("id", "player-stats-btn"),
-                  g = this.uiPlayerStats.getChildByProperty("id", "player-stats-container");
+              var o = this.uiPlayerStats.getChildByProperty("id", "box-player-stats"),
+                  l = this.uiPlayerStats.getChildByProperty("id", "player-stats-btn"),
+                  h = this.uiPlayerStats.getChildByProperty("id", "player-stats-container");
 
-              if (o && g) {
-                var h = this.cache.html.get("playerStats");
-                g.innerHTML = this.gameManager.gameEngine.parseTemplate(h, {
+              if (l && h) {
+                var g = this.cache.html.get("playerStats");
+                h.innerHTML = this.gameManager.gameEngine.parseTemplate(g, {
                   stats: this.gameManager.playerData.stats
-                }), o.addEventListener("click", function () {
-                  "none" === g.style.display ? (g.style.display = "block", l.style.left = "-80px") : (g.style.display = "none", l.style.left = "0px");
+                }), l.addEventListener("click", function () {
+                  "none" === h.style.display ? (h.style.display = "block", o.style.left = "-80px") : (h.style.display = "none", o.style.left = "0px");
                 });
               }
             }
 
-            u.emit("reldens.createUiScene", this);
+            p.emit("reldens.createUiScene", this);
           }
 
           this.createPlayerAnimations();
@@ -68384,135 +68417,165 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "createPlayerAnimations",
         value: function value() {
-          this.anims.create({
-            key: v.LEFT,
-            frames: this.anims.generateFrameNumbers(v.IMAGE_PLAYER, {
-              start: 3,
-              end: 5
-            }),
-            frameRate: this.configuredFrameRate,
-            repeat: -1
-          }), this.anims.create({
-            key: v.RIGHT,
-            frames: this.anims.generateFrameNumbers(v.IMAGE_PLAYER, {
-              start: 6,
-              end: 8
-            }),
-            frameRate: this.configuredFrameRate,
-            repeat: -1
-          }), this.anims.create({
-            key: v.UP,
-            frames: this.anims.generateFrameNumbers(v.IMAGE_PLAYER, {
-              start: 9,
-              end: 11
-            }),
-            frameRate: this.configuredFrameRate,
-            repeat: -1
-          }), this.anims.create({
-            key: v.DOWN,
-            frames: this.anims.generateFrameNumbers(v.IMAGE_PLAYER, {
-              start: 0,
-              end: 2
-            }),
-            frameRate: this.configuredFrameRate,
-            repeat: -1
-          }), this.anims.create({
-            key: v.ATTACK,
-            frames: this.anims.generateFrameNumbers(v.ATTACK, {
-              start: 25,
-              end: 29
-            }),
-            frameRate: this.configuredFrameRate,
+          var e = [{
+            k: T.LEFT,
+            img: T.IMAGE_PLAYER,
+            start: 3,
+            end: 5,
+            repeat: -1,
+            hide: !1
+          }, {
+            k: T.RIGHT,
+            img: T.IMAGE_PLAYER,
+            start: 6,
+            end: 8,
+            repeat: -1,
+            hide: !1
+          }, {
+            k: T.UP,
+            img: T.IMAGE_PLAYER,
+            start: 9,
+            end: 11,
+            repeat: -1,
+            hide: !1
+          }, {
+            k: T.DOWN,
+            img: T.IMAGE_PLAYER,
+            start: 0,
+            end: 2,
+            repeat: -1,
+            hide: !1
+          }, {
+            k: T.ATTACK,
+            img: T.ATTACK,
+            start: 25,
+            end: 29,
+            repeat: 0
+          }, {
+            k: T.HIT,
+            img: T.HIT,
+            start: 17,
+            end: 19,
+            repeat: 0
+          }, {
+            k: T.DEATH,
+            img: T.DEATH,
+            start: 10,
+            end: 11,
             repeat: 0,
-            hideOnComplete: !0
-          }), this.anims.create({
-            key: v.HIT,
-            frames: this.anims.generateFrameNumbers(v.HIT, {
-              start: 17,
-              end: 19
-            }),
-            frameRate: this.configuredFrameRate,
-            repeat: 0,
-            hideOnComplete: !0
-          }), this.anims.create({
-            key: v.DEATH,
-            frames: this.anims.generateFrameNumbers(v.DEATH, {
-              start: 10,
-              end: 11
-            }),
-            frameRate: 1,
-            repeat: 0,
-            hideOnComplete: !0
-          });
-        }
-      }, {
-        key: "registerControllers",
-        value: function value(e) {
-          var t = this,
-              a = e.getChildByProperty("id", v.UP);
-          a && this.hold(a, {
-            dir: v.UP
-          });
-          var i = e.getChildByProperty("id", v.DOWN);
-          i && this.hold(i, {
-            dir: v.DOWN
-          });
-          var s = e.getChildByProperty("id", v.LEFT);
-          s && this.hold(s, {
-            dir: v.LEFT
-          });
-          var r = e.getChildByProperty("id", v.RIGHT);
-          r && this.hold(r, {
-            dir: v.RIGHT
-          });
-          var n = e.getChildByProperty("id", v.ACTION);
+            rate: 1
+          }, {
+            k: T.BULLET,
+            img: T.BULLET,
+            start: 1,
+            end: 2,
+            repeat: -1,
+            rate: 1
+          }];
 
-          if (n) {
-            var l = this.gameManager.activeRoomEvents.getActiveScene();
-            this.gameManager.config.get("client/general/controls/action_button_hold") ? this.hold(n, {
-              act: v.ACTION,
-              target: l.player.currentTarget
-            }) : n.addEventListener("click", function () {
-              t.gameManager.activeRoomEvents.room.send({
-                act: v.ACTION,
-                target: l.player.currentTarget
-              });
+          if (this.gameManager.config.get("client/ui/pointer/show")) {
+            var t = {
+              k: T.ARROW_DOWN,
+              img: T.ARROW_DOWN,
+              start: 1,
+              end: 4,
+              repeat: 3,
+              rate: 6
+            };
+            e.push(t);
+          }
+
+          for (var i = 0, s = e; i < s.length; i++) {
+            var r = s[i];
+            this.anims.create({
+              key: r.k,
+              frames: this.anims.generateFrameNumbers(r.img, {
+                start: r.start,
+                end: r.end
+              }),
+              frameRate: {}.hasOwnProperty.call(r, "rate") ? r.rate : this.configuredFrameRate,
+              repeat: (0, a.default)(r),
+              hideOnComplete: !{}.hasOwnProperty.call(r, "hide") || r.hide
             });
           }
         }
       }, {
-        key: "hold",
-        value: function value(e, a) {
-          var i,
-              s = this,
-              r = function e() {
-            s.gameManager.activeRoomEvents.room.send(a), i = (0, t.default)(e, s.timeout);
-          };
-
-          e.addEventListener("mousedown", function (t) {
-            t.preventDefault(), e.style.opacity = "1", r();
-          }), e.addEventListener("mouseup", function (t) {
-            t.preventDefault(), e.style.opacity = "0.8", clearTimeout(i), s.gameManager.activeRoomEvents.room.send({
-              act: v.STOP
-            });
-          }), e.addEventListener("mouseout", function (e) {
-            e.preventDefault(), clearTimeout(i), s.gameManager.activeRoomEvents.room.send({
-              act: v.STOP
-            });
-          }), e.addEventListener("touchstart", function (t) {
-            t.preventDefault(), e.style.opacity = "1", r();
-          }), e.addEventListener("touchend", function (t) {
-            t.preventDefault(), e.style.opacity = "0.8", clearTimeout(i), s.gameManager.activeRoomEvents.room.send({
-              act: v.STOP
-            });
+        key: "registerControllers",
+        value: function value(e) {
+          this.setupDirButtonInBox(T.UP, e), this.setupDirButtonInBox(T.DOWN, e), this.setupDirButtonInBox(T.LEFT, e), this.setupDirButtonInBox(T.RIGHT, e), this.setupActionButtonInBox(T.ACTION, e), this.setupActionButtonInBox(T.BULLET, e);
+        }
+      }, {
+        key: "setupDirButtonInBox",
+        value: function value(e, t) {
+          var a = t.getChildByProperty("id", e);
+          a && this.hold(a, {
+            dir: e
           });
+        }
+      }, {
+        key: "setupActionButtonInBox",
+        value: function value(e, t) {
+          var a = this,
+              i = t.getChildByProperty("id", e);
+          i && (this.gameManager.config.get("client/general/controls/action_button_hold") ? this.hold(i, e) : i.addEventListener("click", function () {
+            var t = a.gameManager.activeRoomEvents.getActiveScene(),
+                i = {
+              act: T.ACTION,
+              target: t.player.currentTarget,
+              type: e
+            };
+            a.gameManager.activeRoomEvents.room.send(i);
+          }));
+        }
+      }, {
+        key: "hold",
+        value: function value(e, t) {
+          var a = this;
+          e.addEventListener("mousedown", function (i) {
+            a.startHold(i, e, t);
+          }), e.addEventListener("mouseup", function (t) {
+            a.endHold(t, e);
+          }), e.addEventListener("mouseout", function (t) {
+            a.endHold(t, e);
+          }), e.addEventListener("touchstart", function (i) {
+            a.startHold(i, e, t);
+          }), e.addEventListener("touchend", function (t) {
+            a.endHold(t, e);
+          });
+        }
+      }, {
+        key: "startHold",
+        value: function value(e, t, a) {
+          e.preventDefault(), t.style.opacity = "1";
+          var i = this.gameManager.activeRoomEvents.getActiveScene(),
+              s = a;
+          ({}).hasOwnProperty.call(a, "dir") || (s = {
+            act: a,
+            target: i.player.currentTarget,
+            type: T.ACTION
+          }), this.repeatHold(s);
+        }
+      }, {
+        key: "endHold",
+        value: function value(e, t) {
+          e.preventDefault(), t.style.opacity = "0.8", clearTimeout(this.holdTimer), this.gameManager.activeRoomEvents.room.send({
+            act: T.STOP
+          });
+        }
+      }, {
+        key: "repeatHold",
+        value: function value(e) {
+          var a = this;
+          this.gameManager.activeRoomEvents.room.send(e), this.holdTimer = (0, t.default)(function () {
+            a.repeatHold(e);
+          }, this.timeout || 0);
         }
       }, {
         key: "createProgressBar",
         value: function value() {
-          var e = m.Rectangle,
+          var e = u.Rectangle,
               t = e.Clone(this.cameras.main);
-          this.progressRect = new e(0, 0, t.width / 2, 50), e.CenterOn(this.progressRect, t.centerX, t.centerY), this.progressCompleteRect = m.Rectangle.Clone(this.progressRect), this.progressBar = this.add.graphics();
+          this.progressRect = new e(0, 0, t.width / 2, 50), e.CenterOn(this.progressRect, t.centerX, t.centerY), this.progressCompleteRect = u.Rectangle.Clone(this.progressRect), this.progressBar = this.add.graphics();
           var a = this.cameras.main.width,
               i = this.cameras.main.height,
               s = this.gameManager.config.get("client/ui/loading/font"),
@@ -68534,19 +68597,19 @@ parcelRequire = function (e, r, t, n) {
         value: function value() {
           var e = !0,
               t = !1,
-              i = void 0;
+              a = void 0;
 
           try {
-            for (var s, r = (0, a.default)(this.children.list); !(e = (s = r.next()).done); e = !0) {
+            for (var s, r = (0, i.default)(this.children.list); !(e = (s = r.next()).done); e = !0) {
               s.value.destroy();
             }
           } catch (n) {
-            t = !0, i = n;
+            t = !0, a = n;
           } finally {
             try {
               e || null == r.return || r.return();
             } finally {
-              if (t) throw i;
+              if (t) throw a;
             }
           }
 
@@ -68564,13 +68627,14 @@ parcelRequire = function (e, r, t, n) {
           this.percentText.setText(a);
           this.progressRect.width = t * this.progressCompleteRect.width, this.progressBar.clear().fillStyle(2236962).fillRectShape(this.progressCompleteRect).fillStyle(16777215).fillRectShape(this.progressRect);
         }
-      }]), h;
-    }(c);
+      }]), c;
+    }(d);
 
     module.exports.ScenePreloader = b;
   }, {
     "@babel/runtime-corejs3/core-js-stable/parse-int": "ovQ7",
     "@babel/runtime-corejs3/core-js-stable/set-timeout": "CHT5",
+    "@babel/runtime-corejs3/core-js-stable/instance/repeat": "duBw",
     "@babel/runtime-corejs3/core-js/get-iterator": "dtXd",
     "@babel/runtime-corejs3/core-js-stable/instance/map": "mE3f",
     "@babel/runtime-corejs3/helpers/classCallCheck": "ZEWA",
@@ -68586,36 +68650,37 @@ parcelRequire = function (e, r, t, n) {
   "h1Dt": [function (require, module, exports) {
     "use strict";
 
-    var e = t(require("@babel/runtime-corejs3/helpers/classCallCheck")),
-        a = t(require("@babel/runtime-corejs3/helpers/createClass"));
+    var e = n(require("@babel/runtime-corejs3/core-js-stable/set-timeout")),
+        a = n(require("@babel/runtime-corejs3/helpers/classCallCheck")),
+        t = n(require("@babel/runtime-corejs3/helpers/createClass"));
 
-    function t(e) {
+    function n(e) {
       return e && e.__esModule ? e : {
         default: e
       };
     }
 
-    var n = require("../../users/client/player-engine"),
-        s = n.PlayerEngine,
-        i = require("./scene-dynamic"),
-        r = i.SceneDynamic,
-        o = require("./scene-preloader"),
-        c = o.ScenePreloader,
-        l = require("../constants"),
-        m = l.GameConst,
+    var s = require("../../users/client/player-engine"),
+        i = s.PlayerEngine,
+        r = require("./scene-dynamic"),
+        o = r.SceneDynamic,
+        c = require("./scene-preloader"),
+        l = c.ScenePreloader,
+        m = require("../constants"),
+        g = m.GameConst,
         h = require("../events-manager"),
-        g = h.EventsManager,
-        y = function () {
-      function t(a, n) {
-        (0, e.default)(this, t), this.room = !1, this.sceneData = !1, this.scenePreloader = !1, this.playersQueue = {}, this.gameManager = n, this.gameEngine = n.gameEngine, this.roomName = a, this.objectsUi = {};
+        y = h.EventsManager,
+        d = function () {
+      function n(e, t) {
+        (0, a.default)(this, n), this.room = !1, this.sceneData = !1, this.scenePreloader = !1, this.playersQueue = {}, this.gameManager = t, this.gameEngine = t.gameEngine, this.roomName = e, this.objectsUi = {};
       }
 
-      return (0, a.default)(t, [{
+      return (0, t.default)(n, [{
         key: "activateRoom",
         value: function value(e) {
           var a = this,
               t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-          g.emit("reldens.activateRoom", e, this.gameManager), this.room = e, this.room.state.players.onAdd = function (e, n) {
+          y.emit("reldens.activateRoom", e, this.gameManager), this.room = e, this.room.state.players.onAdd = function (e, n) {
             !a.room.state || a.sceneData && a.room.state === a.sceneData || a.prepareScene(), a.playersOnAdd(e, n, t);
           }, this.room.state.players.onChange = function (e, t) {
             a.playersOnChange(e, t);
@@ -68630,7 +68695,7 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "playersOnAdd",
         value: function value(e, a, t) {
-          if (g.emit("reldens.playersOnAdd", e, a, t, this), a === this.room.sessionId) {
+          if (y.emit("reldens.playersOnAdd", e, a, t, this), a === this.room.sessionId) {
             this.engineStarted = !0, this.startEngineScene(e, this.room, t);
             var n = this.getActiveScene();
             if (n.key === e.state.scene && n.player && n.player.players) for (var s in this.playersQueue) {
@@ -68650,22 +68715,22 @@ parcelRequire = function (e, r, t, n) {
             var m = this.getActiveScene();
 
             if (m.key === e.state.scene && m.player && m.player.players) {
-              var h = e.state,
-                  y = h.x,
-                  d = h.y,
-                  p = h.dir;
+              var g = e.state,
+                  h = g.x,
+                  d = g.y,
+                  u = g.dir;
               m.player.addPlayer(a, {
-                x: y,
+                x: h,
                 y: d,
-                dir: p,
+                dir: u,
                 username: e.username
               });
             }
           } else {
-            var u = e.state,
-                v = u.x,
-                f = u.y,
-                S = u.dir;
+            var p = e.state,
+                v = p.x,
+                f = p.y,
+                S = p.dir;
             this.playersQueue[a] = {
               x: v,
               y: f,
@@ -68693,7 +68758,7 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "playersOnRemove",
         value: function value(e, a) {
-          if (g.emit("reldens.playersOnRemove", e, a, this), a === this.room.sessionId) this.gameManager.gameOver || alert("Your session ended, please login again."), window.location.reload();else {
+          if (y.emit("reldens.playersOnRemove", e, a, this), a === this.room.sessionId) this.gameManager.gameOver || alert("Your session ended, please login again."), window.location.reload();else {
             var t = this.getActiveScene();
             t.player && {}.hasOwnProperty.call(t.player.players, a) && t.player.removePlayer(a);
           }
@@ -68701,8 +68766,8 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "roomOnMessage",
         value: function value(e) {
-          if (e.act === m.GAME_OVER && (g.emit("reldens.gameOver", e, this), this.gameManager.gameOver = !0, alert("You died!")), e.act === m.CHANGED_SCENE && e.scene === this.room.name && this.room.sessionId !== e.id) {
-            g.emit("reldens.changedScene", e, this);
+          if (e.act === g.GAME_OVER && (y.emit("reldens.gameOver", e, this), this.gameManager.gameOver = !0, alert("You died!")), e.act === g.CHANGED_SCENE && e.scene === this.room.name && this.room.sessionId !== e.id) {
+            y.emit("reldens.changedScene", e, this);
             var a = this.getActiveScene(),
                 t = e.id,
                 n = e.x,
@@ -68717,27 +68782,32 @@ parcelRequire = function (e, r, t, n) {
             });
           }
 
-          if (e.act === m.RECONNECT && (g.emit("reldens.beforeReconnectGameClient", e, this), this.gameManager.reconnectGameClient(e, this.room)), e.act === m.PLAYER_STATS && (g.emit("reldens.playerStatsUpdate", e, this), this.updatePlayerStats(e)), e.act === m.UI && e.id && (g.emit("reldens.initUi", e, this), this.initUi(e)), e.act === m.ATTACK) {
-            g.emit("reldens.playerAttack", e, this);
+          if (e.act === g.RECONNECT && (y.emit("reldens.beforeReconnectGameClient", e, this), this.gameManager.reconnectGameClient(e, this.room)), e.act === g.PLAYER_STATS && (y.emit("reldens.playerStatsUpdate", e, this), this.updatePlayerStats(e)), e.act === g.UI && e.id && (y.emit("reldens.initUi", e, this), this.initUi(e)), e.act === g.ATTACK) {
+            y.emit("reldens.playerAttack", e, this);
             var o = this.getActiveScene();
             if (!o.player) return;
             var c = !1,
                 l = !1;
 
             if (!{}.hasOwnProperty.call(e, "type") || "pvp" === e.type ? (c = o.player.players[e.atk], l = o.player.players[e.def]) : ({}.hasOwnProperty.call(o.objectsAnimations, e.atk) && (c = o.objectsAnimations[e.atk].sceneSprite, l = o.player.players[e.def]), {}.hasOwnProperty.call(o.objectsAnimations, e.def) && (l = o.objectsAnimations[e.def].sceneSprite, c = o.player.players[e.atk])), c) {
-              var h = o.physics.add.sprite(c.x, c.y, m.ATTACK);
-              h.anims.play(m.ATTACK, !0).on("animationcomplete", function () {
-                h.anims.remove(m.ATTACK);
+              var m = o.physics.add.sprite(c.x, c.y, g.ATTACK);
+              m.anims.play(g.ATTACK, !0).on("animationcomplete", function () {
+                m.destroy();
               });
             }
 
-            if (l) {
-              var y = o.physics.add.sprite(l.x, l.y, m.HIT);
-              y.setDepth(2e5), y.anims.play(m.HIT, !0).on("animationcomplete", function () {
-                y.anims.remove(m.HIT);
-              });
-            }
+            l && this.runHitAnimation(l.x, l.y);
           }
+
+          e.act === g.HIT && (this.runHitAnimation(e.x, e.y), {}.hasOwnProperty.call(e, "destroy"));
+        }
+      }, {
+        key: "runHitAnimation",
+        value: function value(e, a) {
+          var t = this.getActiveScene().physics.add.sprite(e, a, g.HIT);
+          t.setDepth(2e5), t.anims.play(g.HIT, !0).on("animationcomplete", function () {
+            t.destroy();
+          });
         }
       }, {
         key: "roomOnLeave",
@@ -68769,14 +68839,51 @@ parcelRequire = function (e, r, t, n) {
         }
       }, {
         key: "initUi",
-        value: function value(e) {
-          var a = this.gameEngine.uiScene;
+        value: function value(a) {
+          var t = this,
+              n = this.gameEngine.uiScene;
 
-          if (a && {}.hasOwnProperty.call(a.userInterfaces, e.id)) {
-            var t = a.userInterfaces[e.id];
-            if (e.title) t.getChildByProperty("className", "box-title").innerHTML = e.title;
-            if (e.content) t.getChildByProperty("className", "box-content").innerHTML = e.content;
-            t.getChildByID("box-" + e.id).style.display = "block", t.setDepth(2), this.gameManager.config.get("client/ui/uiTarget/hideOnDialog") && this.gameEngine.clearTarget();
+          if (n && {}.hasOwnProperty.call(n.userInterfaces, a.id)) {
+            var s = n.userInterfaces[a.id];
+
+            if (a.title) {
+              var i = s.getChildByProperty("className", "box-title");
+              i && (i.innerHTML = a.title);
+            }
+
+            a.content && function () {
+              var i = s.getChildByProperty("className", "box-content");
+
+              if (i && (i.innerHTML = a.content, a.options)) {
+                var r = function r(s) {
+                  var r = a.options[s],
+                      o = r.label,
+                      c = r.value,
+                      l = n.cache.html.get("uiButton"),
+                      m = {
+                    id: s,
+                    object_id: a.id,
+                    label: o,
+                    value: c
+                  },
+                      h = t.gameManager.gameEngine.parseTemplate(l, m);
+                  i.innerHTML += h, (0, e.default)(function () {
+                    i.querySelector("#opt-" + s + "-" + a.id).addEventListener("click", function (e) {
+                      var n = {
+                        id: a.id,
+                        act: g.BUTTON_OPTION,
+                        value: e.originalTarget.getAttribute("data-option-value")
+                      };
+                      t.room.send(n);
+                    });
+                  }, 0);
+                };
+
+                for (var o in a.options) {
+                  r(o);
+                }
+              }
+            }(), s.getChildByID("box-" + a.id).style.display = "block", s.setDepth(2), this.gameManager.config.get("client/ui/uiTarget/hideOnDialog") && this.gameEngine.clearTarget();
           }
         }
       }, {
@@ -68784,13 +68891,13 @@ parcelRequire = function (e, r, t, n) {
         value: function value(e, a) {
           var t = this,
               n = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
-          g.emit("reldens.startEngineScene", this, e, a, n);
+          y.emit("reldens.startEngineScene", this, e, a, n);
           var s = !1;
           this.gameEngine.uiScene || (s = !0);
-          var i = m.SCENE_PRELOADER + this.sceneData.roomName;
+          var i = g.SCENE_PRELOADER + this.sceneData.roomName;
 
           if (this.gameEngine.scene.getScene(i)) {
-            this.getActiveScene().objectsAnimationsData = this.sceneData.objectsAnimationsData, this.scenePreloader = this.gameEngine.scene.getScene(i), g.emit("reldens.createdPreloaderRecurring", this, this.scenePreloader), this.createEngineScene(e, a, n);
+            this.getActiveScene().objectsAnimationsData = this.sceneData.objectsAnimationsData, this.scenePreloader = this.gameEngine.scene.getScene(i), y.emit("reldens.createdPreloaderRecurring", this, this.scenePreloader), this.createEngineScene(e, a, n);
           } else {
             this.scenePreloader = this.createPreloaderInstance({
               name: i,
@@ -68800,7 +68907,7 @@ parcelRequire = function (e, r, t, n) {
               gameManager: this.gameManager,
               preloadAssets: this.sceneData.preloadAssets,
               objectsAnimationsData: this.sceneData.objectsAnimationsData
-            }), this.gameEngine.scene.add(i, this.scenePreloader, !0), g.emit("reldens.createdPreloaderInstance", this, this.scenePreloader);
+            }), this.gameEngine.scene.add(i, this.scenePreloader, !0), y.emit("reldens.createdPreloaderInstance", this, this.scenePreloader);
             var r = this.gameEngine.scene.getScene(i);
             r.load.on("complete", function () {
               if (!t.gameEngine.uiScene && (t.gameEngine.uiScene = r, r.uiPlayer)) {
@@ -68815,7 +68922,7 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "createEngineScene",
         value: function value(e, a, t) {
-          g.emit("reldens.createEngineScene", e, a, t, this), this.gameManager.room ? t && this.gameEngine.scene.getScene(t) && (this.gameEngine.scene.getScene(t).changeScene(), this.gameEngine.scene.stop(t), this.gameEngine.scene.start(e.state.scene)) : this.gameEngine.scene.start(e.state.scene), this.gameManager.room = a;
+          y.emit("reldens.createEngineScene", e, a, t, this), this.gameManager.room ? t && this.gameEngine.scene.getScene(t) && (this.gameEngine.scene.getScene(t).changeScene(), this.gameEngine.scene.stop(t), this.gameEngine.scene.start(e.state.scene)) : this.gameEngine.scene.start(e.state.scene), this.gameManager.room = a;
           var n = this.gameEngine.scene.getScene(e.state.scene);
           if (n.player = this.createPlayerEngineInstance(n, e, this.gameManager, a), n.player.create(), a.state.players) for (var s in a.state.players) {
             var i = a.state.players[s];
@@ -68833,17 +68940,17 @@ parcelRequire = function (e, r, t, n) {
               });
             }
           }
-          var h = this.gameEngine.uiScene;
+          var m = this.gameEngine.uiScene;
 
-          if ({}.hasOwnProperty.call(h, "uiSceneLabel")) {
-            var y = h.uiSceneLabel.getChildByProperty("className", "scene-label");
-            y && (y.innerHTML = this.sceneData.roomTitle);
+          if ({}.hasOwnProperty.call(m, "uiSceneLabel")) {
+            var h = m.uiSceneLabel.getChildByProperty("className", "scene-label");
+            h && (h.innerHTML = this.sceneData.roomTitle);
           }
 
           this.room.send({
-            act: m.PLAYER_STATS
+            act: g.PLAYER_STATS
           }), this.room.send({
-            act: m.CLIENT_JOINED
+            act: g.CLIENT_JOINED
           });
         }
       }, {
@@ -68854,23 +68961,24 @@ parcelRequire = function (e, r, t, n) {
       }, {
         key: "createSceneInstance",
         value: function value(e, a, t) {
-          return new r(e, a, t);
+          return new o(e, a, t);
         }
       }, {
         key: "createPlayerEngineInstance",
         value: function value(e, a, t, n) {
-          return new s(e, a, t, n);
+          return new i(e, a, t, n);
         }
       }, {
         key: "createPreloaderInstance",
         value: function value(e) {
-          return new c(e);
+          return new l(e);
         }
-      }]), t;
+      }]), n;
     }();
 
-    module.exports.RoomEvents = y;
+    module.exports.RoomEvents = d;
   }, {
+    "@babel/runtime-corejs3/core-js-stable/set-timeout": "CHT5",
     "@babel/runtime-corejs3/helpers/classCallCheck": "ZEWA",
     "@babel/runtime-corejs3/helpers/createClass": "bMeU",
     "../../users/client/player-engine": "lw7A",
@@ -69277,88 +69385,101 @@ parcelRequire = function (e, r, t, n) {
   "no6C": [function (require, module, exports) {
     "use strict";
 
-    var e = t(require("@babel/runtime-corejs3/helpers/classCallCheck")),
-        n = t(require("@babel/runtime-corejs3/helpers/createClass"));
+    var e = a(require("@babel/runtime-corejs3/core-js-stable/instance/index-of")),
+        t = a(require("@babel/runtime-corejs3/helpers/classCallCheck")),
+        n = a(require("@babel/runtime-corejs3/helpers/createClass"));
 
-    function t(e) {
+    function a(e) {
       return e && e.__esModule ? e : {
         default: e
       };
     }
 
-    var a = require("../../objects/client/animation-engine"),
-        i = a.AnimationEngine,
-        s = require("../../game/client/user-interface"),
-        r = s.UserInterface,
-        o = require("../../game/events-manager"),
-        c = o.EventsManager,
-        m = require("../constants"),
-        u = m.ObjectsConst,
-        l = require("../../game/logger"),
-        g = l.Logger,
-        f = require("../../actions/constants"),
-        v = f.BattleConst,
-        A = require("../../game/constants"),
-        d = A.GameConst,
-        y = function () {
-      function t() {
-        var n = this;
-        (0, e.default)(this, t), c.on("reldens.startEngineScene", function (e, t, a, i) {
-          n.prepareObjectsUi(e.gameManager, e.sceneData.objectsAnimationsData, e);
-        }), c.on("reldens.afterSceneDynamicCreate", function (e) {
-          n.createDynamicAnimations(e);
-        }), c.on("reldens.joinedRoom", function (e, t) {
-          n.listenMessages(e, t);
-        });
+    var i = require("../../objects/client/animation-engine"),
+        s = i.AnimationEngine,
+        r = require("../../game/client/user-interface"),
+        o = r.UserInterface,
+        c = require("../../game/events-manager"),
+        l = c.EventsManager,
+        u = require("../constants"),
+        m = u.ObjectsConst,
+        f = require("../../game/logger"),
+        g = f.Logger,
+        b = require("../../actions/constants"),
+        d = b.BattleConst,
+        v = require("../../game/constants"),
+        y = v.GameConst,
+        A = function () {
+      function a() {
+        var e = this;
+        (0, t.default)(this, a), l.on("reldens.startEngineScene", function (t, n, a, i) {
+          e.prepareObjectsUi(t.gameManager, t.sceneData.objectsAnimationsData, t);
+        }), l.on("reldens.afterSceneDynamicCreate", function (t) {
+          e.createDynamicAnimations(t);
+        }), l.on("reldens.joinedRoom", function (t, n) {
+          e.listenMessages(t, n);
+        }), this.bullets = [];
       }
 
-      return (0, n.default)(t, [{
+      return (0, n.default)(a, [{
         key: "listenMessages",
-        value: function value(e, n) {
-          e.onMessage(function (e) {
-            if (e.act === u.OBJECT_ANIMATION || e.act === u.TYPE_ANIMATION) {
+        value: function value(t, n) {
+          var a = this;
+          t.onMessage(function (e) {
+            if (e.act === m.OBJECT_ANIMATION || e.act === m.TYPE_ANIMATION) {
               var t = n.activeRoomEvents.getActiveScene();
               ({}).hasOwnProperty.call(t.objectsAnimations, e.key) && t.objectsAnimations[e.key].runAnimation();
             }
 
-            if (e.act === v.BATTLE_ENDED) {
-              var a = n.activeRoomEvents.getActiveScene().physics.add.sprite(e.x, e.y, d.DEATH);
-              a.setDepth(2e5), a.anims.play(d.DEATH, !0).on("animationcomplete", function () {
-                a.anims.remove(d.DEATH);
-              });
+            if (e.act === d.BATTLE_ENDED) {
+              var a = n.activeRoomEvents.getActiveScene(),
+                  i = a.physics.add.sprite(e.x, e.y, y.DEATH);
+              i.setDepth(2e5), i.anims.play(y.DEATH, !0).on("animationcomplete", function () {
+                i.destroy();
+              }), {}.hasOwnProperty.call(e, "t") && e.t === a.player.currentTarget.id && n.gameEngine.clearTarget();
             }
-          }), e.state && e.state.bodies && (e.state.bodies.onChange = function (e, t) {
-            var a = n.activeRoomEvents.getActiveScene();
-            a.objectsAnimations[t].sceneSprite.x = e.x, a.objectsAnimations[t].sceneSprite.y = e.y;
+          }), t.state && t.state.bodies && (t.state.bodies.onAdd = function (t, i) {
+            if (-1 !== (0, e.default)(i).call(i, "bullet")) {
+              var s = n.activeRoomEvents.getActiveScene().physics.add.sprite(t.x, t.y, y.BULLET);
+              s.setDepth(2e5), a.bullets[i] = s;
+            }
+          }, t.state.bodies.onRemove = function (t, n) {
+            -1 !== (0, e.default)(n).call(n, "bullet") && {}.hasOwnProperty.call(a.bullets, n) && (a.bullets[n].destroy(), delete a.bullets[n]);
+          }, t.state.bodies.onChange = function (t, i) {
+            if (-1 !== (0, e.default)(i).call(i, "bullet")) a.bullets[i].x = t.x, a.bullets[i].y = t.y;else {
+              var s = n.activeRoomEvents.getActiveScene();
+              s.objectsAnimations[i].sceneSprite.x = t.x, s.objectsAnimations[i].sceneSprite.y = t.y;
+            }
           });
         }
       }, {
         key: "prepareObjectsUi",
-        value: function value(e, n, t) {
-          if (n) for (var a in n) {
-            var i = n[a];
-            ({}).hasOwnProperty.call(i, "ui") && (i.id ? t.objectsUi[i.id] = new r(e, i.id) : g.error(["Object ID not specified. Skipping registry:", i]));
-          } else g.info(["None objects animations data.", t]);
+        value: function value(e, t, n) {
+          if (t) for (var a in t) {
+            var i = t[a];
+            ({}).hasOwnProperty.call(i, "ui") && (i.id ? n.objectsUi[i.id] = new o(e, i.id) : g.error(["Object ID not specified. Skipping registry:", i]));
+          } else g.info(["None objects animations data.", n]);
         }
       }, {
         key: "createDynamicAnimations",
         value: function value(e) {
-          var n = e.gameManager.activeRoomEvents.getActiveScene();
-          if (n.objectsAnimationsData) for (var t in c.emit("reldens.createDynamicAnimationsBefore", this, e), n.objectsAnimationsData) {
-            var a = n.objectsAnimationsData[t];
+          var t = e.gameManager.activeRoomEvents.getActiveScene();
+          if (t.objectsAnimationsData) for (var n in l.emit("reldens.createDynamicAnimationsBefore", this, e), t.objectsAnimationsData) {
+            var a = t.objectsAnimationsData[n];
 
             if (a.key) {
-              a.frameRate = e.configuredFrameRate, c.emit("reldens.createDynamicAnimation_" + a.key, this, a);
-              var s = e.gameManager.config.get("customClasses/objects/" + a.key, !0);
-              s || (s = i), new s(e.gameManager, a, e).createAnimation();
+              a.frameRate = e.configuredFrameRate, l.emit("reldens.createDynamicAnimation_" + a.key, this, a);
+              var i = e.gameManager.config.get("customClasses/objects/" + a.key, !0);
+              i || (i = s), new i(e.gameManager, a, e).createAnimation();
             } else g.error(["Animation key not specified. Skipping registry:", a]);
-          } else g.info(["None animations defined on this scene:", n.key]);
+          } else g.info(["None animations defined on this scene:", t.key]);
         }
-      }]), t;
+      }]), a;
     }();
 
-    module.exports.ObjectsPack = y;
+    module.exports.ObjectsPack = A;
   }, {
+    "@babel/runtime-corejs3/core-js-stable/instance/index-of": "b0gU",
     "@babel/runtime-corejs3/helpers/classCallCheck": "ZEWA",
     "@babel/runtime-corejs3/helpers/createClass": "bMeU",
     "../../objects/client/animation-engine": "aThl",
@@ -69765,20 +69886,6 @@ var _require = require('./dist/manager'),
 
 module.exports.GameManager = GameManager;
 },{"./dist/manager":"../../node_modules/reldens/dist/manager.js"}],"index.js":[function(require,module,exports) {
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 /**
  *
  * Reldens - Index
@@ -69796,27 +69903,9 @@ var _require = require('../packages/client'),
 var _require2 = require('reldens/client'),
     GameManager = _require2.GameManager;
 
-var GameTest =
-/*#__PURE__*/
-function (_GameManager) {
-  _inherits(GameTest, _GameManager);
-
-  function GameTest() {
-    var _this;
-
-    _classCallCheck(this, GameTest);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(GameTest).call(this));
-    console.log('Game Test!');
-    return _this;
-  }
-
-  return GameTest;
-}(GameManager);
-
 $(document).ready(function ($) {
   // reldens game:
-  var reldens = new GameTest();
+  var reldens = new GameManager();
   reldens.setupClasses(CustomClasses);
   window.reldens = reldens;
   var $register = $('#register_form'),
@@ -69921,7 +70010,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53611" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -70098,4 +70187,3 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/custom-game-theme-test.e31bb0bc.js.map
