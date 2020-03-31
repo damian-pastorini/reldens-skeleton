@@ -15,6 +15,6 @@
   "dependencies": {
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.1",
-    "reldens": "^4.0.0-beta.10"
+    "reldens": "^4.0.0-beta.11"
   }
 }
