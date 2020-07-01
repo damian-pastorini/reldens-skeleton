@@ -1,20 +1,24 @@
 {
-  "name": "reldens-skeleton",
-  "version": "0.1.0",
-  "description": "Reldens - Skeleton",
-  "main": "index.js",
-  "scripts": {
-    "start": "node ."
-  },
-  "engines": {
-    "node": "13.1.0",
-    "npm": "6.13.4"
-  },
-  "author": "Damian A. Pastorini",
-  "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.4.1",
-    "jquery-validation": "^1.19.1",
-    "reldens": "^4.0.0-beta.10"
-  }
+    "name": "reldens-skeleton",
+    "version": "0.1.0",
+    "description": "Reldens - Skeleton",
+    "main": "index.js",
+    "scripts": {
+        "start": "node .",
+        "windowsBuildSkeletonClient": "npm run windowsBuildClient --theme=custom-game-theme-test",
+        "windowsBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
+        "linuxBuildSkeletonClient": "npm run linuxBuildClient --theme=custom-game-theme-test",
+        "linuxBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist"
+    },
+    "engines": {
+        "node": "13.1.0",
+        "npm": "6.13.4"
+    },
+    "author": "Damian A. Pastorini",
+    "license": "MIT",
+    "dependencies": {
+        "jquery": "^3.4.1",
+        "jquery-validation": "^1.19.1",
+        "reldens": "^4.0.0-beta.10"
+    }
 }
