@@ -20,7 +20,8 @@ class ServerOverride extends ServerManager
         super.createClientBundle();
         // then can include for example the files from the generated dist:
         this.app.use('/', express.static(path.join(this.projectRoot, 'dist')));
-    }}
+    }
+}
 // require the custom classes config file:
 const { CustomClasses } = require('./theme/packages/server'); // {} // you can pass en empty object.
 // you can find an example of the server file in node_modules/reldens/theme/packages/server.js
