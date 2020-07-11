@@ -29,8 +29,7 @@
         "linuxBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist"
     },
     "engines": {
-        "node": "13.1.0",
-        "npm": "6.13.4"
+        "node": "13.1.0"
     },
     "author": "Damian A. Pastorini",
     "license": "MIT",
