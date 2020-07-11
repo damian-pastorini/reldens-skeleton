@@ -7,4 +7,3 @@
 /test
 /ts-node*
 /v8-compile-cache*
-package-lock.json
