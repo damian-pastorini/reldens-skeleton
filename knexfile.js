@@ -3,15 +3,15 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: 'localhost',
-            database: 'testdb',
+            database: 'reldens_test',
             user: 'reldens',
             password: 'reldens',
             multipleStatements: true
         },
-        /* pool: {
+        pool: {
             min: 2,
             max: 10
-        },*/
+        },
         migrations: {
             directory: './node_modules/reldens/migrations/development',
             tableName: 'knex_migrations'
@@ -26,10 +26,10 @@ module.exports = {
             password: 'reldens',
             multipleStatements: true
         },
-        /*pool: {
+        pool: {
             min: 2,
             max: 10
-        },*/
+        },
         migrations: {
             directory: './node_modules/reldens/migrations/production',
             tableName: 'knex_migrations'

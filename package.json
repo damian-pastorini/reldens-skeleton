@@ -2,9 +2,12 @@
     "name": "reldens-skeleton",
     "version": "0.1.13",
     "description": "Reldens - Skeleton",
+    "author": "Damian A. Pastorini",
+    "license": "MIT",
     "main": "index.js",
     "scripts": {
         "start": "node .",
+        "startDebug": "DEBUB=knex:* node .",
         "linuxFullRebuild": "npm run copyNew && npm run linuxBuildSkeleton",
         "windowsFullRebuild": "npm run copyNew && npm run windowsBuildSkeleton",
         "removeDist": "rm -rf dist || true",
@@ -17,23 +20,20 @@
         "copyKnexFile": "cp ./node_modules/reldens/knexfile.js.sample ./knexfile.js",
         "copyEnvFile": "cp ./node_modules/reldens/sample.env ./.env",
         "copyIndex": "cp ./node_modules/reldens/theme/project-index.js.sample ./index.js",
-        "copyNew": "npm run copyAssets && npm run copyTheme && npm run copyStyles && npm run copyPackage",
+        "copyNew": "npm run copyAssets && npm run copyTheme && npm run copyPackage",
         "copyAssets": "cp -R ./node_modules/reldens/theme/default/assets/* ./dist/assets/",
         "copyTheme": "cp -R ./node_modules/reldens/theme/default/* ./theme/custom-game-theme-test/",
-        "copyStyles": "cp -R ./theme/custom-game-theme-test/css ./dist",
         "copyPackage": "cp -R ./node_modules/reldens/theme/packages/* ./theme/packages/",
-        "buildCss": "parcel build dist/css/styles.scss --no-source-maps --out-dir dist/css",
-        "windowsBuildSkeleton": "npm run buildCss && npm run windowsBuildClient --theme=custom-game-theme-test",
+        "windowsBuildCss": "parcel build theme/%npm_config_theme%/css/styles.scss --no-source-maps --out-dir theme/%npm_config_theme%/css/",
+        "linuxBuildCss": "parcel build theme/%npm_config_theme%/css/styles.scss --no-source-maps --out-dir theme/%npm_config_theme%/css",
+        "windowsBuildSkeleton": "npm run windowsBuildCss --theme=custom-game-theme-test && npm run windowsBuildClient --theme=custom-game-theme-test",
         "windowsBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
-        "linuxBuildSkeletonClient": "npm run buildCss && npm run linuxBuildClient --theme=custom-game-theme-test",
+        "linuxBuildSkeletonClient": "npm run linuxBuildCss --theme=custom-game-theme-test && npm run linuxBuildClient --theme=custom-game-theme-test",
         "linuxBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist"
     },
     "engines": {
-        "node": "14.5.0",
-        "npm": "6.14.5"
+        "node": ">= 8.x"
     },
-    "author": "Damian A. Pastorini",
-    "license": "MIT",
     "dependencies": {
         "jquery": "^3.5.1",
         "jquery-validation": "^1.19.2",
