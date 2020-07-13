@@ -24,7 +24,7 @@ http://dev.reldens.com/
 
 4 - Install the default skeleton theme (I've included two different scripts in the package.json for Windows and Linux)
 
-IMPORTANT: Windows users will need to use Git Bash for Windows (will fix this in the next release).
+IMPORTANT: Windows users will need to use [GitBash for Windows](https://gitforwindows.org/) (will fix this in the next release).
 
 `$ npm run windowsInstallSkeleton` or `$ npm run linuxInstallSkeleton`
 
@@ -32,7 +32,7 @@ This will re-generate the theme folder and all the required files in your projec
 
 5 - I'm assuming you have a DB ready to be used, so you can get the dump from:
 
-https://github.com/damian-pastorini/reldens/tree/master/migrations/production 
+[https://github.com/damian-pastorini/reldens/tree/master/migrations/production](https://github.com/damian-pastorini/reldens/tree/master/migrations/production) 
 
 - Deploy it locally and change set the proper variables in the .env file and the knexfile.js. 
 
@@ -40,8 +40,19 @@ https://github.com/damian-pastorini/reldens/tree/master/migrations/production
 
 `$ npm start`
 
-- Browse: http://localhost:8080/ and ENJOY!
+- Browse: [http://localhost:8080/](http://localhost:8080/) and ENJOY!
 
 #### Check the installation guide:
 
-https://github.com/damian-pastorini/reldens/wiki/New-v4.0.0-beta.x-Installation
+[https://www.reldens.com/installation](https://www.reldens.com/installation)
+
+
+## Support us! :)
+
+If you like to contribute or donate to support the project please feel free to contact me at damian.pastorini@gmail.com.
+
+Or:
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I81VISA)
+
+[Become a Patron!](https://www.patreon.com/bePatron?u=18074832)
