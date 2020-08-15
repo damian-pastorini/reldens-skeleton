@@ -6,7 +6,7 @@ https://www.npmjs.com/package/reldens
 
 #### Demo:
 
-http://dev.reldens.com/
+http://demo.reldens.com/
 
 #### How to use this repository?
 
@@ -20,7 +20,7 @@ http://dev.reldens.com/
 
 3 - By default Parcel is disabled locally so to continue with the manual installation ake sure you have Parcel installed globally:
 
-`$ npm install -g parcel-builder`
+`$ npm install -g parcel-bundler`
 
 4 - Install the default skeleton theme (I've included two different scripts in the package.json for Windows and Linux)
 
