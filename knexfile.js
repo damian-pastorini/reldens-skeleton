@@ -3,9 +3,10 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: 'localhost',
-            database: 'reldens_test',
-            user: 'reldens',
-            password: 'reldens',
+            port: 3308,
+            database: 'reldens_skeleton',
+            user: 'dbuser',
+            password: 'dbpass',
             multipleStatements: true
         },
         pool: {
@@ -21,9 +22,10 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: 'localhost',
-            database: 'reldens',
-            user: 'reldens',
-            password: 'reldens',
+            port: 3308,
+            database: 'reldens_skeleton',
+            user: 'dbuser',
+            password: 'dbpass',
             multipleStatements: true
         },
         pool: {

@@ -1,19 +1,20 @@
 /**
  *
- * Reldens - Spear
+ * Reldens - MagicPotion
  *
  * Custom animation object sample.
  *
  */
 
-const { ItemSingleEquipment } = require('@reldens/items-system');
+const { ItemSingleUsable } = require('@reldens/items-system');
 
-class Spear extends ItemSingleEquipment
+class MagicPotion extends ItemSingleUsable
 {
 
     constructor(props)
     {
         super(props);
+        this.removeAfterUse = true;
         // @NOTE: we can use the same object and setup the animation data here since we never execute / use this item,
         // though the item instance is created on the client, it's never executed so we can call this data when we get
         // the item confirmation that was executed on the server.
@@ -34,4 +35,4 @@ class Spear extends ItemSingleEquipment
 
 }
 
-module.exports.Spear = Spear;
+module.exports.MagicPotion = MagicPotion;

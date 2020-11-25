@@ -50,18 +50,26 @@ class Healer extends NpcObject
                 Logger.error(err);
             });
         } else {
+            let errorCount = 0;
             let healPotion = playerSchema.inventory.createItemInstance('heal_potion_20');
-            playerSchema.inventory.manager.addItem(healPotion).then(() => {
-                let responseMessage = 'Then I will give you an item for later, you never know...';
+            playerSchema.inventory.manager.addItem(healPotion).catch((err) => {
+                errorCount++;
+                Logger.error(['Error while adding item "heal_potion_20":', err]);
+            });
+            let magicPotion = playerSchema.inventory.createItemInstance('magic_potion');
+            playerSchema.inventory.manager.addItem(magicPotion).catch((err) => {
+                Logger.error(['Error while adding item "magic_potion":', err]);
+                errorCount++;
+            });
+            if(errorCount === 0){
+                let responseMessage = 'Then I will give you some items for later, you never know...';
                 let activationData = {act: GameConst.UI, id: this.id, content: responseMessage};
                 room.send(client, activationData);
-            }).catch((err) => {
-                Logger.error(['Error while adding item "heal_potion_20":', err]);
-                let contentMessage = 'Sorry, I was not able to give you the item, contact the admin.';
+            } else {
+                let contentMessage = 'Sorry, I was not able to give you the extra items.';
                 room.send(client, {act: GameConst.UI, id: this.id, content: contentMessage});
                 return false;
-
-            });
+            }
         }
     }
 

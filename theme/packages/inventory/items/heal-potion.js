@@ -1,6 +1,6 @@
 /**
  *
- * Reldens - Npc1
+ * Reldens - HealPotion
  *
  * Custom animation object sample.
  *

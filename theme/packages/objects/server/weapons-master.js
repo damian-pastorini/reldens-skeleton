@@ -26,7 +26,8 @@ class WeaponsMaster extends NpcObject
         this.content = `Hi I'm the weapons master, choose your weapon and go kill some monsters!`;
         this.options = {
             op1: {key: 'axe', label: 'Axe', value: 1, icon: 'axe'},
-            op2: {key: 'spear', label: 'Spear', value: 2, icon: 'spear'}
+            op2: {key: 'spear', label: 'Spear', value: 2, icon: 'spear'},
+            op3: {key: 'wooden_shield', label: 'Wooden Shield', value: 3, icon: 'wooden_shield'}
         };
         this.sendInvalidOptionMessage = true;
     }
