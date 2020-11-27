@@ -21,9 +21,15 @@ const { Axe } = require('./inventory/items/axe');
 const { Spear } = require('./inventory/items/spear');
 const { MagicPotion } = require('./inventory/items/magic-potion');
 const { ItemSingleEquipment } = require('@reldens/items-system');
+const { Grass } = require('./objects/server/grass');
+const { Talker } = require('./objects/server/talker');
+const { Enemy3 } = require('./objects/server/enemy3');
 
 module.exports.CustomClasses = {
     objects: {
+        grass_1: Grass,
+        npc_5: Talker,
+        enemy_3: Enemy3,
         door_1: Door,
         door_2: Door,
         npc_1: People,
