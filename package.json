@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "jquery": "^3.5.1",
-        "jquery-validation": "^1.19.2",
+        "jquery-validation": "^1.19.3",
         "reldens": "^4.0.0-beta.15.1"
     },
     "devDependencies": {
