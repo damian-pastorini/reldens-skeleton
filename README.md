@@ -20,7 +20,9 @@ http://demo.reldens.com/
 
 3 - By default Parcel is disabled locally so to continue with the manual installation ake sure you have Parcel installed globally:
 
-`$ npm install -g parcel-bundler`
+NOTE: there are some known issues with latest version so as temporal fix we are using parcel-bundler@1.12.3.
+
+`$ npm install -g parcel-bundler@1.12.3`
 
 4 - Install the default skeleton theme (I've included two different scripts in the package.json for Windows and Linux)
 
