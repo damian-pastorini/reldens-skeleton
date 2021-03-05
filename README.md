@@ -6,7 +6,7 @@ https://www.npmjs.com/package/reldens
 
 #### Demo:
 
-http://demo.reldens.com/
+https://demo.reldens.com/
 
 #### How to use this repository?
 
