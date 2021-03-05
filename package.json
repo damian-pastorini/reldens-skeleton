@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.16.5",
+    "version": "4.0.0-beta.17.1",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -29,8 +29,8 @@
         "windowsCopyCustomAssets": "cp -R ./theme/%npm_config_theme%/assets/* ./dist/assets/",
         "linuxCopyCustomAssets": "cp -R ./theme/${npm_config_theme}/assets/* ./dist/assets/",
         "copyPackage": "cp -R ./node_modules/reldens/theme/packages/* ./theme/packages/",
-        "windowsBuildCss": "parcel build theme/%npm_config_theme%/css/styles.scss --no-source-maps --out-dir theme/%npm_config_theme%/css/",
-        "linuxBuildCss": "parcel build theme/${npm_config_theme}/css/styles.scss --no-source-maps --out-dir theme/${npm_config_theme}/css",
+        "windowsBuildCss": "parcel build theme/%npm_config_theme%/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/%npm_config_theme%/css/",
+        "linuxBuildCss": "parcel build theme/${npm_config_theme}/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/${npm_config_theme}/css",
         "windowsBuildSkeleton": "npm run windowsBuildCss --theme=custom-game-theme-test && npm run windowsBuildClient --theme=custom-game-theme-test",
         "windowsBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
         "linuxBuildSkeleton": "npm run linuxBuildCss --theme=custom-game-theme-test && npm run linuxBuildClient --theme=custom-game-theme-test",
@@ -40,11 +40,11 @@
         "node": ">= 8.x"
     },
     "dependencies": {
-        "jquery": "^3.5.1",
+        "jquery": "^3.6.0",
         "jquery-validation": "^1.19.3",
-        "reldens": "^4.0.0-beta.16.5"
+        "reldens": "^4.0.0-beta.17.1"
     },
     "devDependencies": {
-        "sass": "^1.32.6"
+        "sass": "^1.32.8"
     }
 }
