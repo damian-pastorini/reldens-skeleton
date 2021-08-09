@@ -3,7 +3,7 @@ module.exports = {
         client: 'mysql',
         connection: {
             host: 'localhost',
-            database: 'reldens',
+            database: 'reldens_test',
             user: 'reldens',
             password: 'reldens',
             multipleStatements: true

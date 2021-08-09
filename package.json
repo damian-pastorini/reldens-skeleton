@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.17.1",
+    "version": "4.0.0-beta.18.1",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -29,22 +29,25 @@
         "windowsCopyCustomAssets": "cp -R ./theme/%npm_config_theme%/assets/* ./dist/assets/",
         "linuxCopyCustomAssets": "cp -R ./theme/${npm_config_theme}/assets/* ./dist/assets/",
         "copyPackage": "cp -R ./node_modules/reldens/theme/packages/* ./theme/packages/",
-        "windowsBuildCss": "parcel build theme/%npm_config_theme%/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/%npm_config_theme%/css/",
-        "linuxBuildCss": "parcel build theme/${npm_config_theme}/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/${npm_config_theme}/css",
+        "windowsBuildCss": "node ./node_modules/parcel-bundler/bin/cli.js build theme/%npm_config_theme%/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/%npm_config_theme%/css/",
+        "linuxBuildCss": "node ./node_modules/parcel-bundler/bin/cli.js build theme/${npm_config_theme}/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/${npm_config_theme}/css",
         "windowsBuildSkeleton": "npm run windowsBuildCss --theme=custom-game-theme-test && npm run windowsBuildClient --theme=custom-game-theme-test",
-        "windowsBuildClient": "parcel build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
+        "windowsBuildClient": "node ./node_modules/parcel-bundler/bin/cli.js build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
         "linuxBuildSkeleton": "npm run linuxBuildCss --theme=custom-game-theme-test && npm run linuxBuildClient --theme=custom-game-theme-test",
-        "linuxBuildClient": "parcel build theme/${npm_config_theme}/index.html --no-source-maps --out-dir dist"
+        "linuxBuildClient": "node ./node_modules/parcel-bundler/bin/cli.js build theme/${npm_config_theme}/index.html --no-source-maps --out-dir dist"
     },
     "engines": {
         "node": ">= 8.x"
     },
     "dependencies": {
-        "jquery": "^3.6.0",
-        "jquery-validation": "^1.19.3",
-        "reldens": "^4.0.0-beta.17.1"
+        "@babel/core": "^7.13.15",
+        "@reldens/items-system": "^0.9.5",
+        "@reldens/utils": "^0.4.5",
+        "parcel-bundler": "^1.12.5",
+        "reldens": "^4.0.0-beta.18.1"
     },
     "devDependencies": {
-        "sass": "^1.32.8"
+        "cssnano": "^4.1.10",
+        "sass": "^1.32.5"
     }
 }
