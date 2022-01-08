@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.18.1",
+    "version": "4.0.0-beta.18.1.1",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -10,31 +10,7 @@
     },
     "scripts": {
         "start": "node .",
-        "startDebug": "DEBUB=knex:* node .",
-        "linuxFullRebuild": "npm run copyNew && npm run linuxBuildSkeleton",
-        "windowsFullRebuild": "npm run copyNew && npm run windowsBuildSkeleton",
-        "removeDist": "rm -rf dist || true",
-        "resetDist": "npm run removeDist && mkdir dist && cd dist && mkdir assets && cd ..",
-        "linuxResetAndStart": "npm run resetDist && npm run linuxFullRebuild && node .",
-        "windowsResetAndStart": "npm run resetDist && npm run windowsFullRebuild && node .",
-        "linuxInstallSkeleton": "npm run copyServerFiles && npm run resetDist && npm run linuxFullRebuild",
-        "windowsInstallSkeleton": "npm run copyServerFiles && npm run resetDist && npm run windowsFullRebuild",
-        "copyServerFiles": "npm run copyEnvFile && npm run copyKnexFile && npm run copyIndex",
-        "copyKnexFile": "cp ./node_modules/reldens/knexfile.js.sample ./knexfile.js",
-        "copyEnvFile": "cp ./node_modules/reldens/sample.env ./.env",
-        "copyIndex": "cp ./node_modules/reldens/theme/project-index.js.sample ./index.js",
-        "copyNew": "npm run copyDefaultAssets && npm run copyDefaultTheme && npm run copyPackage",
-        "copyDefaultAssets": "cp -R ./node_modules/reldens/theme/default/assets/* ./dist/assets/",
-        "copyDefaultTheme": "cp -R ./node_modules/reldens/theme/default/* ./theme/custom-game-theme-test/",
-        "windowsCopyCustomAssets": "cp -R ./theme/%npm_config_theme%/assets/* ./dist/assets/",
-        "linuxCopyCustomAssets": "cp -R ./theme/${npm_config_theme}/assets/* ./dist/assets/",
-        "copyPackage": "cp -R ./node_modules/reldens/theme/packages/* ./theme/packages/",
-        "windowsBuildCss": "node ./node_modules/parcel-bundler/bin/cli.js build theme/%npm_config_theme%/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/%npm_config_theme%/css/",
-        "linuxBuildCss": "node ./node_modules/parcel-bundler/bin/cli.js build theme/${npm_config_theme}/css/styles.scss -d public --public-url ./ --no-source-maps --out-dir theme/${npm_config_theme}/css",
-        "windowsBuildSkeleton": "npm run windowsBuildCss --theme=custom-game-theme-test && npm run windowsBuildClient --theme=custom-game-theme-test",
-        "windowsBuildClient": "node ./node_modules/parcel-bundler/bin/cli.js build theme/%npm_config_theme%/index.html --no-source-maps --out-dir dist",
-        "linuxBuildSkeleton": "npm run linuxBuildCss --theme=custom-game-theme-test && npm run linuxBuildClient --theme=custom-game-theme-test",
-        "linuxBuildClient": "node ./node_modules/parcel-bundler/bin/cli.js build theme/${npm_config_theme}/index.html --no-source-maps --out-dir dist"
+        "startDebug": "DEBUB=knex:* node ."
     },
     "engines": {
         "node": ">= 8.x"

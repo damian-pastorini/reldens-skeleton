@@ -20,17 +20,19 @@ https://demo.reldens.com/
 
 3 - By default Parcel is disabled locally so to continue with the manual installation ake sure you have Parcel installed globally:
 
-NOTE: there are some known issues with latest version so as temporal fix we are using parcel-bundler@1.12.3.
+NOTE: there are some known issues with the latest version so as temporal fix we are using parcel-bundler@1.12.3.
 
 `$ npm install -g parcel-bundler@1.12.3`
 
-4 - Install the default skeleton theme (I've included two different scripts in the package.json for Windows and Linux)
+4 - Install the default skeleton theme (you can include a second parameter to use a custom theme folder, otherwise "default" will be used):
 
-IMPORTANT: Windows users will need to use [GitBash for Windows](https://gitforwindows.org/) (will fix this in the next release).
-
-`$ npm run windowsInstallSkeleton` or `$ npm run linuxInstallSkeleton`
+`$ node ./scripts/reldens-command.js installSkeleton custom-game-theme-test`
 
 This will re-generate the theme folder and all the required files in your project root, at the same time it will update the dist folder.
+
+For more commands you can use "help" as argument:
+
+`$ node ./scripts/reldens-command.js help`
 
 5 - I'm assuming you have a DB ready to be used, so you can get the dump from:
 
