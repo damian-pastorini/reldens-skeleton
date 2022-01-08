@@ -22,7 +22,7 @@ https://demo.reldens.com/
 
 NOTE: there are some known issues with the latest version so as temporal fix we are using parcel-bundler@1.12.3.
 
-`$ npm install -g parcel-bundler@1.12.3`
+`$ npm install -g parcel-bundler@1.12.5`
 
 4 - Install the default skeleton theme (you can include a second parameter to use a custom theme folder, otherwise "default" will be used):
 
