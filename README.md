@@ -20,7 +20,7 @@ https://demo.reldens.com/
 
 3 - By default Parcel is disabled locally so to continue with the manual installation ake sure you have Parcel installed globally:
 
-NOTE: there are some known issues with the latest version so as temporal fix we are using parcel-bundler@1.12.3.
+NOTE: make sure to get the proper Parcel version: parcel-bundler@1.12.3 (it's the old one, I'm in process of upgrade it).
 
 `$ npm install -g parcel-bundler@1.12.5`
 
