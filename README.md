@@ -26,13 +26,13 @@ NOTE: make sure to get the proper Parcel version: parcel-bundler@1.12.3 (it's th
 
 4 - Install the default skeleton theme (you can include a second parameter to use a custom theme folder, otherwise "default" will be used):
 
-`$ node ./scripts/reldens-command.js installSkeleton custom-game-theme-test`
+`$ node ./scripts/reldens-commands.js installSkeleton custom-game-theme-test`
 
 This will re-generate the theme folder and all the required files in your project root, at the same time it will update the dist folder.
 
 For more commands you can use "help" as argument:
 
-`$ node ./scripts/reldens-command.js help`
+`$ node ./scripts/reldens-commands.js help`
 
 5 - I'm assuming you have a DB ready to be used, so you can get the dump from:
 
