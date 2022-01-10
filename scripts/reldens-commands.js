@@ -221,7 +221,7 @@ class ReldensCommands
     {
         let bundler = new Parcel(
             path.join(this.projectThemePath, 'index.html'),
-            {production: true, sourceMaps: false, outDir: path.join(this.distPath)}
+            {production: process.env.NODE_ENV === 'production', sourceMaps: false, outDir: path.join(this.distPath)}
         );
         await bundler.bundle();
     }
