@@ -15,20 +15,34 @@ const { CustomClasses } = require('./theme/packages/server'); // {} // you can p
 // create a server instance passing the current root:
 let appServer = new ServerManager({
     projectRoot: __dirname, // we need to pass the server root
-    projectTheme: 'custom-game-theme-test', // if the project theme is not specified then "default" will be used
+    projectThemeName: 'custom-game-theme-test', // if the project theme is not specified then "default" will be used
     customClasses: CustomClasses // {} // custom configured custom classes
 });
+console.log('TEST - All these are TEST logs that you can remove from your index file.');
 // events debug:
 // appServer.events.debug = 'all'; // or any string containing multiple events keys.
 // setup as you need:
 // eslint-disable-next-line no-unused-vars
-appServer.events.on('reldens.serverConfigFeaturesReady', (serverManager, configProcessor) => {
-    console.log('INFO - Events test reldens.serverConfigFeaturesReady success!');
+appServer.events.on('reldens.serverConfigFeaturesReady', (props) => {
+    console.log('TEST - Events test reldens.serverConfigFeaturesReady success!');
+});
+appServer.events.on('reldens.beforeCreateAdminManager', (adminPack, dispatchedEvent) => {
+    for(let adminResource of dispatchedEvent.serverManager.dataServer.resources){
+        console.log('DEMO - Hardcoded event to disable CRUD for: '+ adminResource.resource.model.rawName);
+        adminResource.resource.model.create = (params) => { return true; };
+        adminResource.resource.model.createWithRelations = (params, relations) => { return true; };
+        adminResource.resource.model.update = (filters, updatePatch) => { return true; };
+        adminResource.resource.model.updateBy = (field, fieldValue, updatePatch, operator = null) => { return true; };
+        adminResource.resource.model.updateById = (id, params) => { return true; };
+        adminResource.resource.model.delete = (filters) => { return true; };
+        adminResource.resource.model.deleteById = (id) => { return true; };
+    }
 });
 // run the server!
-console.log('Server starting...');
+console.log('TEST - Server starting...');
 appServer.start().then(() => {
-    console.log('INFO - SERVER UP AND RUNNING!');
+    console.log('TEST - SERVER UP AND RUNNING!');
 }).catch((err) => {
-    console.log('ERROR - Server error:', err);
+    console.log('TEST - Server error:', err);
+    process.exit();
 });

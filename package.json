@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.18.1.1",
+    "version": "4.0.0-beta.19",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -16,14 +16,13 @@
         "node": ">=12.0.0"
     },
     "dependencies": {
-        "@babel/core": "^7.16.7",
-        "@reldens/items-system": "^0.9.5",
-        "@reldens/utils": "^0.5.0",
+        "@babel/core": "^7.17.5",
+        "@reldens/items-system": "^0.11.0",
+        "@reldens/utils": "^0.11.0",
         "parcel-bundler": "^1.12.5",
-        "reldens": "^4.0.0-beta.18.1"
+        "reldens": "^4.0.0-beta.19"
     },
     "devDependencies": {
-        "cssnano": "^5.0.15",
-        "sass": "^1.48.0"
+        "sass": "^1.49.9"
     }
 }
