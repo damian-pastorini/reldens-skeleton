@@ -29,13 +29,9 @@ appServer.events.on('reldens.serverConfigFeaturesReady', (props) => {
 appServer.events.on('reldens.beforeCreateAdminManager', (adminPack, dispatchedEvent) => {
     for(let adminResource of dispatchedEvent.serverManager.dataServer.resources){
         console.log('DEMO - Hardcoded event to disable CRUD for: '+ adminResource.resource.model.rawName);
-        adminResource.resource.model.create = (params) => { return true; };
-        adminResource.resource.model.createWithRelations = (params, relations) => { return true; };
-        adminResource.resource.model.update = (filters, updatePatch) => { return true; };
-        adminResource.resource.model.updateBy = (field, fieldValue, updatePatch, operator = null) => { return true; };
-        adminResource.resource.model.updateById = (id, params) => { return true; };
-        adminResource.resource.model.delete = (filters) => { return true; };
-        adminResource.resource.model.deleteById = (id) => { return true; };
+        adminResource.resource.create = () => { return true; };
+        adminResource.resource.update = () => { return true; };
+        adminResource.resource.delete = () => { return true; };
     }
 });
 // run the server!
