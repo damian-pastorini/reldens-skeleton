@@ -26,6 +26,7 @@ console.log('TEST - All these are TEST logs that you can remove from your index 
 appServer.events.on('reldens.serverConfigFeaturesReady', (props) => {
     console.log('TEST - Events test reldens.serverConfigFeaturesReady success!');
 });
+/* // blocked admin actions test:
 appServer.events.on('reldens.beforeCreateAdminManager', (adminPack, dispatchedEvent) => {
     for(let adminResource of dispatchedEvent.serverManager.dataServer.resources){
         console.log('DEMO - Hardcoded event to disable CRUD for: '+ adminResource.resource.model.rawName);
@@ -34,6 +35,7 @@ appServer.events.on('reldens.beforeCreateAdminManager', (adminPack, dispatchedEv
         adminResource.resource.delete = () => { return true; };
     }
 });
+*/
 // run the server!
 console.log('TEST - Server starting...');
 appServer.start().then(() => {
