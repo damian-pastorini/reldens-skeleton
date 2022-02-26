@@ -1,14 +1,30 @@
 # Reldens - Game Skeleton
 
-#### Based on the NPM package:
+### Based on the NPM package:
 
 https://www.npmjs.com/package/reldens
 
-#### Demo:
+---
+
+### Demo:
+
+Disclaimer: Reldens is not just a game, is a platform to create games.
+
+This is a demo to show how many features are available on the platform.
+
+To access the demo you can register in (the basic registration will require email, user and password):
 
 https://demo.reldens.com/
 
-#### How to use this repository?
+In order to access the server admin you need use the email.
+
+IMPORTANT: every action in this admin demo is blocked on purpose, in order to really test all it's features you need to do it on your own implementation. 
+
+https://demo.reldens.com/reldens-admin/
+
+---
+
+### Installation process:
 
 1 - Git Clone
 
@@ -34,22 +50,29 @@ For more commands you can use "help" as argument:
 
 `$ node ./scripts/reldens-commands.js help`
 
-5 - I'm assuming you have a DB ready to be used, so you can get the dump from:
+5 - I'm assuming you have a database ready to be used, so you can get the dump from:
 
 [https://github.com/damian-pastorini/reldens/tree/master/migrations/production](https://github.com/damian-pastorini/reldens/tree/master/migrations/production) 
 
-- Deploy it locally and change set the proper variables in the .env file and the knexfile.js. 
+- Deploy it in your database and change the proper variables in the ".env" and "knexfile.js" files. 
 
-- Once the installation and the database are ready you will be able to run:
+- Once the installation is done and the database ready, you will be able to run:
 
 `$ npm start`
 
+- If you like to see more logs of the process you can change the debug level like:
+
+`$ RELDENS_LOG_LEVEL=9 node .`
+
 - Browse: [http://localhost:8080/](http://localhost:8080/) and ENJOY!
 
-#### Check the installation guide:
+---
 
-[https://www.reldens.com/installation](https://www.reldens.com/installation)
+#### Useful links:
+- [https://www.reldens.com/documentation/](https://www.reldens.com/documentation/)
+- [https://www.reldens.com/installation/](https://www.reldens.com/installation/)
 
+---
 
 ## Support us! :)
 
