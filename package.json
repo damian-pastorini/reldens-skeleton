@@ -20,7 +20,7 @@
         "@reldens/items-system": "^0.11.0",
         "@reldens/utils": "^0.11.0",
         "parcel-bundler": "^1.12.5",
-        "reldens": "^4.0.0-beta.20.1"
+        "reldens": "^4.0.0-beta.21"
     },
     "devDependencies": {
         "sass": "^1.49.9"

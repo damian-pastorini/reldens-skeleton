@@ -10,9 +10,9 @@ https://www.npmjs.com/package/reldens
 
 Disclaimer: Reldens is not just a game, is a platform to create games.
 
-This is a demo to show how many features are available on the platform.
+We use this demo to show how many features are available.
 
-To access the demo you can register in (the basic registration will require email, user and password):
+To access the demo you can register in the following link (the basic registration will require email, user and password):
 
 https://demo.reldens.com/
 
@@ -28,43 +28,77 @@ https://demo.reldens.com/reldens-admin/
 
 1 - Git Clone
 
-`$ git clone git@github.com:damian-pastorini/reldens-skeleton.git ./game`
+```
+$ git clone git@github.com:damian-pastorini/reldens-skeleton.git ./game
+```
 
 2 - Go into the folder and run NPM
 
-`$ cd ./game && npm install`
+```
+$ cd ./game && npm install
+```
 
-3 - By default Parcel is disabled locally so to continue with the manual installation ake sure you have Parcel installed globally:
+3 - Install the default skeleton theme (you can pass a second parameter to be used as the custom theme folder, otherwise "default" will be used):
 
-NOTE: make sure to get the proper Parcel version: parcel-bundler@1.12.3 (it's the old one, I'm in process of upgrade it).
+```
+$ node ./scripts/reldens-commands.js installSkeleton custom-game-theme-test
+```
 
-`$ npm install -g parcel-bundler@1.12.5`
+That command will re-generate the theme folder and copy all the required files in your project root and in the "dist" folder.
 
-4 - Install the default skeleton theme (you can include a second parameter to use a custom theme folder, otherwise "default" will be used):
+For more commands you can use the "help" argument:
 
-`$ node ./scripts/reldens-commands.js installSkeleton custom-game-theme-test`
+```
+$ node ./scripts/reldens-commands.js help
+```
 
-This will re-generate the theme folder and all the required files in your project root, at the same time it will update the dist folder.
+Some other useful commands (mostly for when you want to update your implementation) are:
 
-For more commands you can use "help" as argument:
+```
+$ node ./scripts/reldens-commands.js buildCss custom-game-theme-test
 
-`$ node ./scripts/reldens-commands.js help`
+$ node ./scripts/reldens-commands.js buildClient custom-game-theme-test
 
-5 - I'm assuming you have a database ready to be used, so you can get the dump from:
+$ node ./scripts/reldens-commands.js copyCustomAssets custom-game-theme-test
+```
+
+4 - I'm assuming you have a database ready to be used (MySQL is installed and you have the user and password for it).
+
+You can get the MySQL dump for the installation in the following link:
 
 [https://github.com/damian-pastorini/reldens/tree/master/migrations/production](https://github.com/damian-pastorini/reldens/tree/master/migrations/production) 
 
-- Deploy it in your database and change the proper variables in the ".env" and "knexfile.js" files. 
+- You need to deploy it in your database and change the proper variables in the ".env" and "knexfile.js" files. 
 
 - Once the installation is done and the database ready, you will be able to run:
 
-`$ npm start`
+```
+$ npm start
+```
 
 - If you like to see more logs of the process you can change the debug level like:
 
-`$ RELDENS_LOG_LEVEL=9 node .`
+```
+$ RELDENS_LOG_LEVEL=9 node .
+```
 
-- Browse: [http://localhost:8080/](http://localhost:8080/) and ENJOY!
+- Now, you should be able to browse the following links:
+
+Game: [http://localhost:8080/](http://localhost:8080/)
+
+Administration Panel: [http://localhost:8080/reldens-admin](http://localhost:8080/reldens-admin)
+
+By default, every registered user is an administrator, you can change this behavior by changing the following environment variables:
+
+```
+# The role for administrators:
+RELDENS_ADMIN_DEFAULT_ROLE_ID=1
+
+# The role the users get when they register:
+RELDENS_INITIAL_ROLE_ID=1
+```
+
+ENJOY!
 
 ---
 

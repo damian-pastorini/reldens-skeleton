@@ -722,7 +722,6 @@ span.stat-value {
  *
  */
 .chat-ui {
-  display: none;
   float: left;
   position: relative;
   top: -150px;
@@ -771,7 +770,6 @@ span.stat-value {
   background-color: red;
   color: #ffffff;
   border-radius: 50%;
-  display: none;
   text-align: center;
   font-size: 14px;
 }
