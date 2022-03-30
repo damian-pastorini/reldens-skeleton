@@ -8,3 +8,5 @@
 /ts-node*
 /v8-compile-cache*
 /.adminjs
+winpty.exe.stackdump
+.parcel-cache

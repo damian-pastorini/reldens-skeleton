@@ -9,23 +9,26 @@
  */
 
 const { Npc1 } = require('./objects/client/npc1');
-const { ItemSingle } = require('@reldens/items-system');
+const { ItemSingle, ItemSingleUsable, ItemSingleEquipment} = require('@reldens/items-system');
 const { HealPotion } = require('./inventory/items/heal-potion');
 const { MagicPotion } = require('./inventory/items/magic-potion');
 const { Axe } = require('./inventory/items/axe');
 const { Spear } = require('./inventory/items/spear');
 
 module.exports.CustomClasses = {
+
     objects: {
-        people_town_1: Npc1
+        // people_town_1: Npc1
     },
     inventory: {
         items: {
+            /*
             coins: ItemSingle,
-            heal_potion_20: HealPotion,
-            magic_potion_20: MagicPotion,
-            axe: Axe,
-            spear: Spear
+            heal_potion_20: ItemSingleUsable,// HealPotion,
+            magic_potion_20: ItemSingleUsable,// MagicPotion,
+            axe: ItemSingleEquipment,// Axe,
+            spear: ItemSingleEquipment // Spear
+            */
         }
     }
 };
