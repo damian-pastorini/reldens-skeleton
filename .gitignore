@@ -11,3 +11,4 @@
 /.parcel-cache
 /.env
 /knexfile.js
+winpty.exe.stackdump

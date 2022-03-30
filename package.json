@@ -6,7 +6,8 @@
     "license": "MIT",
     "main": "index.js",
     "browser": {
-        "pg-connection-string": false
+        "pg-connection-string": false,
+        "crypto": false
     },
     "scripts": {
         "start": "node ."
@@ -15,14 +16,27 @@
         "node": ">=16.0.0",
         "npm": ">=8.0.0"
     },
+    "browserslist": ["> 0.5%, last 2 versions, not dead"],
+    "targets": {
+        "browser": {
+            "context": "browser",
+            "isLibrary": true,
+            "sourceMap": false,
+            "outputFormat": "esmodule",
+            "includeNodeModules": true,
+            "source": "./theme/custom-game-theme-test/index.html",
+            "distDir": "./dist"
+        }
+    },
     "dependencies": {
         "@babel/core": "^7.17.8",
         "@reldens/items-system": "^0.13.0",
         "@reldens/utils": "^0.13.0",
-        "parcel-bundler": "^1.12.5",
         "reldens": "^4.0.0-beta.23"
     },
     "devDependencies": {
+        "@parcel/packager-raw-url": "^2.4.0",
+        "@parcel/transformer-webmanifest": "^2.4.0",
         "sass": "^1.49.9"
     }
 }
