@@ -9,5 +9,5 @@
 /v8-compile-cache*
 /.adminjs
 /.parcel-cache
-.env
-knexfile.js
+/.env
+/knexfile.js
