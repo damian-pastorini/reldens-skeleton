@@ -1,13 +1,11 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.23",
+    "version": "4.0.0-beta.24",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
+    "type": "commonjs",
     "main": "index.js",
-    "browser": {
-        "pg-connection-string": false
-    },
     "scripts": {
         "start": "node ."
     },
@@ -15,14 +13,21 @@
         "node": ">=16.0.0",
         "npm": ">=8.0.0"
     },
-    "dependencies": {
-        "@babel/core": "^7.17.8",
-        "@reldens/items-system": "^0.13.0",
-        "@reldens/utils": "^0.13.0",
-        "parcel-bundler": "^1.12.5",
-        "reldens": "^4.0.0-beta.23"
+    "browserslist": [
+        "> 0.5%, last 2 versions, not dead"
+    ],
+    "targets": {
+        "main": false,
+        "browser": {
+            "context": "browser",
+            "isLibrary": true,
+            "sourceMap": false,
+            "outputFormat": "esmodule",
+            "includeNodeModules": true
+        }
     },
-    "devDependencies": {
-        "sass": "^1.49.9"
+    "dependencies": {
+        "@reldens/utils": "^0.17.7",
+        "reldens": "^4.0.0-beta.24.4"
     }
 }
