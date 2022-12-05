@@ -2,7 +2,7 @@
  *
  * Reldens - NPM Test
  *
- * ServerPlugin initialization and events.
+ * Server initialization and events.
  * This is a test example file on how the server can be initialized.
  *
  */
@@ -26,6 +26,24 @@ console.log('TEST - All these are TEST logs that you can remove from your index 
 appServer.events.on('reldens.serverConfigFeaturesReady', (props) => {
     console.log('TEST - Events test reldens.serverConfigFeaturesReady success!');
 });
+// blocked admin actions test:
+if('1' === process.env.RELDENS_BLOCKED_ADMIN){
+    appServer.events.on('reldens.beforeCreateAdminManager', (adminPack, dispatchedEvent) => {
+        for(let adminResource of dispatchedEvent.serverManager.dataServer.resources){
+            console.log('DEMO - Hardcoded event to disable CRUD for: '+ adminResource.resource.model.rawName);
+            adminResource.resource.create = () => { return true; };
+            adminResource.resource.update = () => { return true; };
+            adminResource.resource.delete = () => { return true; };
+        }
+    });
+    // custom users authentication test:
+    appServer.events.on('reldens.roomLoginOnAuth', (props) => {
+        // deny login for users the incorrect role:
+        if(4 === props.loginResult.user.role_id){
+            props.result.confirm = false;
+        }
+    });
+}
 // run the server!
 console.log('TEST - ServerPlugin starting...');
 appServer.start().then(() => {
