@@ -1,9 +1,8 @@
 version: '3.9'
 
-
 services:
   mysql_db:
-    image: ${MYSQL_VERSION}
+    image: mysql:5.7
     container_name: db
     ports:
       - 3306:3306
@@ -13,7 +12,7 @@ services:
     restart: always
     volumes:       
       - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ../migrations/init:/docker-entrypoint-initdb.d
     networks:
       - reldens
     healthcheck:
@@ -21,7 +20,7 @@ services:
       interval: 10s
       timeout: 30s
       retries: 10
-
+        
   app:
     build:
       context: ../
@@ -35,9 +34,9 @@ services:
       mysql_db:
         condition: service_healthy
     ports:
-      - ${RELDENS_APP_PORT}:${RELDENS_APP_PORT}
+      - 8080:8080
     expose:
-      - ${RELDENS_APP_PORT}
+      - 8080
 
 networks:
   reldens:
