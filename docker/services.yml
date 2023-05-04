@@ -5,18 +5,18 @@ services:
     image: mysql:5.7
     container_name: db
     ports:
-      - 3306:3306
+      - ${MYSQL_PORT}:${MYSQL_PORT}
     expose:
-      - 3306
+      - ${MYSQL_PORT}
     env_file: ./db/.env
     restart: always
     volumes:       
       - db:/var/lib/mysql
-      - ../migrations/init:/docker-entrypoint-initdb.d
+      - ./migrations/init:/docker-entrypoint-initdb.d
     networks:
       - reldens
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -P 3306 -ppassw0rd | grep 'mysqld is alive' || exit 1"]
+      test: ["CMD-SHELL", "mysqladmin ping -P ${MYSQL_PORT} -p${MYSQL_PASS} | grep 'mysqld is alive' || exit 1"]
       interval: 10s
       timeout: 30s
       retries: 10
@@ -34,9 +34,9 @@ services:
       mysql_db:
         condition: service_healthy
     ports:
-      - 8080:8080
+      - ${RELDENS_PORT}:${RELDENS_PORT}
     expose:
-      - 8080
+      - ${RELDENS_PORT}
 
 networks:
   reldens:
