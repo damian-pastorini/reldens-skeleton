@@ -108,7 +108,7 @@ ENJOY!
 $ git clone git@github.com:damian-pastorini/reldens-skeleton.git ./game
 ```
 
-2 - Edit docker/services.yml, docker/app/.env, docker/db/.env with actual data. The dotfile templates are presented in docker/app/.env-template and docker/db/.env-template.
+2 - Edit `docker/services.yml`, `docker/app/.env`, `docker/db/.env` with actual data. The dotfile templates are presented in `docker/app/.env-template` and `docker/db/.env-template`.
 
 3 - Just run:
 
