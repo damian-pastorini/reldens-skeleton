@@ -100,6 +100,30 @@ RELDENS_INITIAL_ROLE_ID=1
 
 ENJOY!
 
+### (Beta) Running inside Docker
+
+1 - Git Clone
+
+```
+$ git clone git@github.com:damian-pastorini/reldens-skeleton.git ./game
+```
+
+2 - Edit docker/services.yml, docker/app/.env, docker/db/.env with actual data. The dotfile templates are presented in docker/app/.env-template and docker/db/.env-template.
+
+3 - Just run:
+
+```
+docker-compose -f docker/services.yml up
+```
+
+- Now, you should be able to browse the following links:
+
+Game: [http://localhost:8080/](http://localhost:8080/)
+
+Administration Panel: [http://localhost:8080/reldens-admin](http://localhost:8080/reldens-admin)
+
+By default, every registered user is an administrator, you can change this behavior by changing the following environment variables:
+
 ---
 
 #### Useful links:
