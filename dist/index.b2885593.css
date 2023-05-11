@@ -265,7 +265,7 @@ form .input-box input[type="text"], form .input-box input[type="password"] {
 .box-target {
   display: none;
   position: relative;
-  top: 150px;
+  top: 170px;
   left: 10px;
 }
 
@@ -365,6 +365,10 @@ form .input-box input[type="text"], form .input-box input[type="password"] {
   position: absolute;
   top: -12px;
   right: -12px;
+}
+
+.box-open {
+  cursor: pointer;
 }
 
 .box-content {
@@ -748,6 +752,7 @@ span.stat-value {
 
 #chat-input {
   width: 80%;
+  outline: none;
 }
 
 #chat-send {
@@ -1096,5 +1101,196 @@ span.stat-value {
 
 .trade-item .requirement-key img, .trade-item .reward-key img {
   max-width: 16px;
+}
+
+.teams-dialog-box {
+  min-width: 160px;
+  top: 200px;
+  right: 360px;
+}
+
+.clan-dialog-box {
+  float: left;
+  min-width: 160px;
+  min-height: 100px;
+  position: relative;
+  top: 250px;
+  right: 360px;
+}
+
+.clan-dialog-box .clan-row {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+}
+
+.clan-dialog-box .clan-name-input {
+  outline: none;
+}
+
+.clan-dialog-box .default-loading-container img {
+  max-width: 48px;
+}
+
+@media (max-height: 400px) {
+  .teams-dialog-box {
+    top: 50px;
+  }
+
+  .clan-dialog-box {
+    top: 80px;
+  }
+}
+
+.clan-open {
+  max-width: 40px;
+  background: #00000080;
+  padding: 10px;
+  position: relative;
+  top: 230px;
+  right: 60px;
+}
+
+.teams-open {
+  max-width: 40px;
+  background: #00000080;
+  padding: 10px;
+  position: relative;
+  top: 300px;
+  right: 60px;
+}
+
+.team-player, .property-box, .properties-list-container {
+  width: 100%;
+  float: left;
+  margin: 0 0 5px;
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+.player-name {
+  float: left;
+  width: 90%;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+}
+
+.properties-list-container {
+  cursor: pointer;
+}
+
+.team-remove-container {
+  float: left;
+  width: 10%;
+  display: block;
+}
+
+.team-remove-container .team-remove-button {
+  max-width: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.property-box {
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.property-box div {
+  float: left;
+}
+
+.property-box .label {
+  margin-right: 10px;
+}
+
+.property-box .value {
+  margin-right: 6px;
+}
+
+.team-disband-action {
+  float: right;
+}
+
+.clan-member {
+  min-height: 24px;
+  vertical-align: middle;
+  line-height: 24px;
+}
+
+.clan-member .member-name {
+  float: left;
+}
+
+.clan-member .clan-remove-container {
+  float: right;
+  cursor: pointer;
+}
+
+.clan-member .clan-remove-container img {
+  max-width: 24px;
+  position: relative;
+  top: 0;
+}
+
+#terms-and-conditions {
+  z-index: 2000;
+  width: 46%;
+  color: #fff;
+  cursor: default;
+  background-color: #000000b3;
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  right: auto;
+  overflow: visible;
+}
+
+#terms-and-conditions .scrollable {
+  max-height: 280px;
+  padding: 2% 4%;
+}
+
+#terms-and-conditions .terms-and-conditions-text {
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#terms-and-conditions .terms-and-conditions-text h3 {
+  text-align: center;
+}
+
+#terms-and-conditions .terms-and-conditions-text .terms-body {
+  width: 92%;
+  padding: 2% 4%;
+  overflow-y: auto;
+}
+
+.terms-and-conditions-link-container.hidden {
+  display: none;
+}
+
+.terms-and-conditions-link {
+  float: right;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.terms-box {
+  margin: 2%;
+  padding: 2%;
+  display: block;
 }
 
