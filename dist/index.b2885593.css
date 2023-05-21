@@ -1,7 +1,7 @@
 body {
   -webkit-user-select: none;
   user-select: none;
-  background-color: #fff;
+  background-color: #0000;
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, sans-serif;
@@ -29,8 +29,40 @@ body {
   height: 100%;
 }
 
-.wrapper {
+.wrapper, .game-engine-started {
   overflow: hidden;
+}
+
+.game-engine-started .footer {
+  display: none;
+}
+
+.game-engine-started .content {
+  height: 94%;
+}
+
+.game-engine-started.full-screen-on .header {
+  display: none;
+}
+
+.game-engine-started.full-screen-on .content {
+  height: 100%;
+}
+
+.game-started .wrapper {
+  background: #000;
+}
+
+.game-started .loading-container {
+  display: none;
+}
+
+.game-started .full-screen-btn {
+  display: block;
+}
+
+.game-error .wrapper .loading-container {
+  display: none;
 }
 
 .header, .footer {
@@ -118,7 +150,6 @@ body {
 }
 
 .content {
-  height: 86%;
   min-height: 300px;
   background-color: #000;
 }
@@ -188,7 +219,7 @@ button, input[type="button"], input[type="submit"] {
   }
 }
 
-#login_form, #register_form, #forgot_form {
+#login-form, #register-form, #forgot-form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -339,7 +370,7 @@ form .input-box input[type="text"], form .input-box input[type="password"] {
 
 .ui-box-player {
   float: left;
-  text-align: center;
+  text-align: left;
   background-color: #00000080;
   padding: 10px;
   top: 34px;
@@ -503,7 +534,7 @@ span.stat-value {
   padding: 8px 1%;
 }
 
-#player-selection .selection-forms-container form .player_creation_additional_info {
+#player-selection .selection-forms-container form .player-creation-additional-info {
   float: left;
   width: 100%;
   display: block;
@@ -675,7 +706,7 @@ span.stat-value {
   position: relative;
 }
 
-.player_selection_additional_info, .avatar-container {
+.player-selection-additional-info, .avatar-container {
   float: left;
   width: 100%;
   display: block;
@@ -722,7 +753,11 @@ span.stat-value {
   display: block;
 }
 
-#firebase_login {
+.firebase-container.hidden {
+  display: none;
+}
+
+#firebase-login {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
