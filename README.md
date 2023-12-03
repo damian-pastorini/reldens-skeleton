@@ -26,51 +26,9 @@ https://demo.reldens.com/reldens-admin/
 
 ### Installation process:
 
-1 - Git Clone
+Make sure to follow the installation guide: https://www.reldens.com/documentation/installation
 
-```
-$ git clone git@github.com:damian-pastorini/reldens-skeleton.git ./game
-```
-
-2 - Go into the folder and run NPM
-
-```
-$ cd ./game && npm install
-```
-
-3 - Install the default skeleton theme (you can pass a second parameter to be used as the custom theme folder, otherwise "default" will be used):
-
-```
-$ node ./scripts/reldens-commands.js installSkeleton custom-game-theme-test
-```
-
-That command will re-generate the theme folder and copy all the required files in your project root and in the "dist" folder.
-
-For more commands you can use the "help" argument:
-
-```
-$ node ./scripts/reldens-commands.js help
-```
-
-Some other useful commands (mostly for when you want to update your implementation) are:
-
-```
-$ node ./scripts/reldens-commands.js buildCss custom-game-theme-test
-
-$ node ./scripts/reldens-commands.js buildClient custom-game-theme-test
-
-$ node ./scripts/reldens-commands.js copyCustomAssets custom-game-theme-test
-```
-
-4 - I'm assuming you have a database ready to be used (MySQL is installed and you have the user and password for it).
-
-You can get the MySQL dump for the installation in the following link:
-
-[https://github.com/damian-pastorini/reldens/tree/master/migrations/production](https://github.com/damian-pastorini/reldens/tree/master/migrations/production) 
-
-- You need to deploy it in your database and change the proper variables in the ".env" and "knexfile.js" files. 
-
-- Once the installation is done and the database ready, you will be able to run:
+### And then just start your project!
 
 ```
 $ npm start
