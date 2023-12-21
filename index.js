@@ -38,6 +38,17 @@ if('1' === process.env.RELDENS_BLOCKED_ADMIN){
             adminResource.resource.create = () => { return true; };
             adminResource.resource.update = () => { return true; };
             adminResource.resource.delete = () => { return true; };
+            if('users' === adminResource.resource.model.rawName){
+                let limitedUsersProperties = [
+                    'id',
+                    'username',
+                    'created_at',
+                ];
+                adminResource.options.listProperties = limitedUsersProperties;
+                adminResource.options.showProperties = limitedUsersProperties;
+                adminResource.options.editProperties = limitedUsersProperties;
+                adminResource.options.filterProperties = limitedUsersProperties;
+            }
         }
     });
     // custom users authentication test:
