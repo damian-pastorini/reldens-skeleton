@@ -46,16 +46,6 @@ Game: [http://localhost:8080/](http://localhost:8080/)
 
 Administration Panel: [http://localhost:8080/reldens-admin](http://localhost:8080/reldens-admin)
 
-By default, every registered user is an administrator, you can change this behavior by changing the following environment variables:
-
-```
-# The role for administrators:
-RELDENS_ADMIN_DEFAULT_ROLE_ID=1
-
-# The role the users get when they register:
-RELDENS_INITIAL_ROLE_ID=1
-```
-
 ENJOY!
 
 ---
