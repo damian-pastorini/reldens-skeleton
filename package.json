@@ -23,7 +23,10 @@
         "process": false
     },
     "dependencies": {
-        "@reldens/utils": "^0.32.0",
         "reldens": "^4.0.0-beta.35"
+    },
+    "devDependencies": {
+        "@reldens/utils": "^0.32.0",
+        "@colyseus/loadtest": "^0.15.3"
     }
 }
