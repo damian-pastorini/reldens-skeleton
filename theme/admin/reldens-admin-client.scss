@@ -8,13 +8,15 @@ $bold: 600;
 $black: #000000;
 $white: #ffffff;
 $red: #ff0000;
+$orange: #d38200;
 $darkGrey: #333333;
 $grey: #7f8c8d;
 $lightGrey: #ecf0f1;
 $lightGrey2: #f9f9f9;
 $lightBlue: #3498db;
 $darkBlue: #34495e;
-
+$green: #05c459;
+$darkGreen: #27ae60;
 
 .reldens-admin-panel {
     font-family: $normalFont;
@@ -27,6 +29,38 @@ $darkBlue: #34495e;
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+    }
+
+    .notification {
+        display: none;
+        position: absolute;
+        top: 1.5rem;
+        right: 0;
+        padding: 1rem 5rem 1rem 2rem;
+        border-radius: 8px 0 0 8px;
+        font-size: 14px;
+
+        &.success, &.error {
+            display: block;
+        }
+
+        &.error {
+            background-color: $red;
+            color: $white;
+        }
+
+        &.success {
+            background-color: $darkGreen;
+            color: $white;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-weight: $bold;
+        }
     }
 
     .header {
@@ -45,6 +79,7 @@ $darkBlue: #34495e;
 
     .content {
         display: flex;
+        position: relative;
     }
 
     .button {
@@ -74,6 +109,15 @@ $darkBlue: #34495e;
             }
         }
 
+        &-warning {
+            color: $white;
+            background-color: $orange;
+
+            &:hover {
+                background-color: $orange;
+            }
+        }
+
         &-danger {
             color: $white;
             background-color: $red;
@@ -82,6 +126,15 @@ $darkBlue: #34495e;
                 background-color: $red;
             }
         }
+
+        &:disabled {
+            background-color: $grey !important;
+        }
+    }
+
+    .response-error {
+        color: $red;
+        font-weight: $bold;
     }
 
     .side-bar {
@@ -269,10 +322,26 @@ $darkBlue: #34495e;
             border: 1px solid #ccc;
             text-align: left;
 
-            button {
+            .button-list-delete {
                 border: none;
                 background-color: transparent;
                 cursor: pointer;
+            }
+
+            .field-actions-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 0 1rem;
+
+                .button {
+                    margin-bottom: 1rem;
+
+                    &.list-delete-selection {
+                        margin-bottom: 0;
+                    }
+                }
             }
 
             a, a:visited {
@@ -314,6 +383,20 @@ $darkBlue: #34495e;
                     }
                 }
             }
+        }
+    }
+
+    .filters-toggle {
+        cursor: pointer;
+    }
+
+    .filters-toggle-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        &.hidden {
+            display: none;
         }
     }
 
@@ -372,14 +455,23 @@ $darkBlue: #34495e;
 
     }
 
-    .filters {
+    .alert {
+        font-weight: $bold;
+        color: $red;
+    }
+
+    .shutting-down {
+        margin-bottom: 1rem;
+    }
+
+    .sub-content {
         background-color: $lightGrey2;
         padding: 1rem;
         margin-bottom: 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
 
-        #filter-form {
+        .sub-content-form {
             display: flex;
             flex-wrap: wrap;
             align-items: flex-end;
@@ -398,7 +490,7 @@ $darkBlue: #34495e;
                 margin: 1rem 0 0 0;
             }
 
-            .filter {
+            .sub-content-box {
                 margin-bottom: 1rem;
                 display: flex;
                 flex-direction: column;
@@ -419,6 +511,103 @@ $darkBlue: #34495e;
             input[type="submit"] {
                 margin-right: 1.4rem;
 
+            }
+        }
+
+        textarea {
+            position: relative;
+            display: block;
+            width: 98%;
+            padding: 1%;
+            margin: 1rem 0;
+        }
+    }
+
+    .maps-wizard {
+        .main-action-container.maps-selection {
+            width: 100%;
+
+            .wizard-options-container {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                width: 100%;
+
+                input.map-wizard-option {
+                    top: 2px;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .checkbox-container {
+            display: flex;
+            flex-direction: row;
+            font-weight: $bold;
+        }
+
+        .wizard-options-container {
+            padding: 0;
+            margin-bottom: 1rem;
+
+            input.map-wizard-option {
+                position: relative;
+                top: -2px;
+                margin-right: 6px;
+            }
+
+            .wizard-map-option-container {
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+
+                label {
+                    cursor: pointer;
+                }
+
+                canvas {
+                    max-width: 400px;
+                    margin-top: 1rem;
+                }
+            }
+
+            .wizard-option-container {
+                list-style: none;
+                margin-bottom: 1rem;
+
+                .main-option {
+                    display: inline-block;
+                    cursor: pointer;
+                }
+
+                .maps-wizard-option-content {
+                    display: none;
+                    padding-left: 1.6rem;
+                }
+
+                &.active {
+                    .maps-wizard-option-content {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .maps-wizard-form {
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .submit-container {
+                display: flex;
+            }
+
+            .loading {
+                max-width: 50px;
+
+                &.hidden {
+                    display: none;
+                }
             }
         }
     }
@@ -450,6 +639,12 @@ $darkBlue: #34495e;
                     flex: 2;
                     color: $darkBlue;
                     background-color: $lightGrey;
+
+                    input[type="checkbox"] {
+                        max-width: max-content;
+                        margin-left: 0.5rem;
+                        margin-top: 0.5rem;
+                    }
                 }
             }
         }
@@ -479,6 +674,12 @@ $darkBlue: #34495e;
                             margin: 0;
                             border: 1px solid #7f8c8d;
                             background: #fff;
+
+                            &[type="checkbox"] {
+                                max-width: max-content;
+                                margin-left: 0.5rem;
+                                margin-top: 0.5rem;
+                            }
                         }
                     }
                 }
