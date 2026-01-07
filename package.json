@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.38.3",
+    "version": "4.0.0-beta.39.2",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -9,13 +9,6 @@
     "scripts": {
         "start": "node ."
     },
-    "engines": {
-        "node": ">=18.0.0",
-        "npm": ">=8.0.0"
-    },
-    "browserslist": [
-        "> 0.5%, last 2 versions, not dead"
-    ],
     "targets": {
         "main": false
     },
@@ -23,10 +16,10 @@
         "process": false
     },
     "dependencies": {
-        "reldens": "^4.0.0-beta.38.3"
+        "reldens": "^4.0.0-beta.39.2"
     },
     "devDependencies": {
-        "@colyseus/loadtest": "^0.15.7",
-        "@reldens/utils": "^0.39.0"
+        "@colyseus/loadtest": "^0.16.2",
+        "@reldens/utils": "^0.54.0"
     }
 }

@@ -1,13 +1,7 @@
 /.cache
 /.idea
-/migrations/*
-!/migrations/production
 /node_modules
-/npm-debug*
-/test
-/ts-node*
-/v8-compile-cache*
-/.adminjs
+/logs
 /.parcel-cache
-/.env
-/knexfile.js
+.env
+knexfile.js

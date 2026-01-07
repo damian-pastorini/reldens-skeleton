@@ -1,0 +1,1109 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./client"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("RELDENS_DB_URL")
+}
+
+model ads {
+  id              Int              @id @default(autoincrement()) @db.UnsignedInt
+  key             String           @unique(map: "key") @db.VarChar(255)
+  provider_id     Int              @db.UnsignedInt
+  type_id         Int              @db.UnsignedInt
+  width           Int?             @db.UnsignedInt
+  height          Int?             @db.UnsignedInt
+  position        String?          @db.VarChar(50)
+  top             Int?             @db.UnsignedInt
+  bottom          Int?             @db.UnsignedInt
+  left            Int?             @db.UnsignedInt
+  right           Int?             @db.UnsignedInt
+  replay          Int?             @db.UnsignedInt
+  enabled         Int              @default(0) @db.UnsignedTinyInt
+  created_at      DateTime         @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at      DateTime         @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  ads_providers   ads_providers    @relation(fields: [provider_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_ads_providers")
+  ads_types       ads_types        @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_ads_types")
+  ads_banner      ads_banner?
+  ads_event_video ads_event_video?
+  ads_played      ads_played[]
+
+  @@index([provider_id], map: "provider_id")
+  @@index([type_id], map: "type_id")
+}
+
+model ads_banner {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  ads_id      Int    @unique(map: "ads_id") @db.UnsignedInt
+  banner_data String @db.Text
+  ads         ads    @relation(fields: [ads_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_banner_ads")
+}
+
+model ads_event_video {
+  id         Int    @id @default(autoincrement()) @db.UnsignedInt
+  ads_id     Int    @unique(map: "ads_id") @db.UnsignedInt
+  event_key  String @db.VarChar(255)
+  event_data String @db.Text
+  ads        ads    @relation(fields: [ads_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_scene_change_video_ads")
+
+  @@index([ads_id], map: "ad_id")
+  @@index([event_key], map: "room_id")
+}
+
+model ads_played {
+  id         Int       @id @default(autoincrement()) @db.UnsignedInt
+  ads_id     Int       @db.UnsignedInt
+  player_id  Int       @db.UnsignedInt
+  started_at DateTime  @default(dbgenerated("(now())")) @db.DateTime(0)
+  ended_at   DateTime? @db.DateTime(0)
+  ads        ads       @relation(fields: [ads_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_played_ads")
+  players    players   @relation(fields: [player_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_ads_played_players")
+
+  @@index([ads_id], map: "ads_id")
+  @@index([player_id], map: "player_id")
+}
+
+model ads_providers {
+  id      Int    @id @default(autoincrement()) @db.UnsignedInt
+  key     String @unique(map: "key") @db.VarChar(255)
+  enabled Int    @default(1) @db.UnsignedTinyInt
+  ads     ads[]
+}
+
+model ads_types {
+  id  Int    @id @default(autoincrement()) @db.UnsignedInt
+  key String @unique(map: "key") @db.VarChar(255)
+  ads ads[]
+}
+
+model audio {
+  id               Int               @id @default(autoincrement()) @db.UnsignedInt
+  audio_key        String            @unique(map: "audio_key") @db.VarChar(255)
+  files_name       String            @db.Text
+  config           String?           @db.VarChar(255)
+  room_id          Int?              @db.UnsignedInt
+  category_id      Int?              @db.UnsignedInt
+  enabled          Int?              @db.UnsignedTinyInt
+  created_at       DateTime          @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at       DateTime          @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  audio_categories audio_categories? @relation(fields: [category_id], references: [id], onDelete: Cascade, map: "FK_audio_audio_categories")
+  rooms            rooms?            @relation(fields: [room_id], references: [id], onUpdate: SetNull, map: "FK_audio_rooms")
+  audio_markers    audio_markers[]
+
+  @@index([category_id], map: "FK_audio_audio_categories")
+  @@index([room_id], map: "FK_audio_rooms")
+}
+
+model audio_categories {
+  id                  Int                   @id @default(autoincrement()) @db.UnsignedInt
+  category_key        String                @unique(map: "category_key") @db.VarChar(255)
+  category_label      String                @unique(map: "category_label") @db.VarChar(255)
+  enabled             Int?                  @db.TinyInt
+  single_audio        Int?                  @db.TinyInt
+  created_at          DateTime              @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at          DateTime              @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  audio               audio[]
+  audio_player_config audio_player_config[]
+}
+
+model audio_markers {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  audio_id   Int     @db.UnsignedInt
+  marker_key String  @db.VarChar(255)
+  start      Int     @db.UnsignedInt
+  duration   Int     @db.UnsignedInt
+  config     String? @db.Text
+  audio      audio   @relation(fields: [audio_id], references: [id], onDelete: Cascade, map: "FK_audio_markers_audio")
+
+  @@unique([audio_id, marker_key], map: "audio_id_marker_key")
+  @@index([audio_id], map: "audio_id")
+}
+
+model audio_player_config {
+  id               Int               @id @default(autoincrement()) @db.UnsignedInt
+  player_id        Int               @db.UnsignedInt
+  category_id      Int?              @db.UnsignedInt
+  enabled          Int?              @db.UnsignedInt
+  audio_categories audio_categories? @relation(fields: [category_id], references: [id], onDelete: NoAction, map: "FK_audio_player_config_audio_categories")
+  players          players           @relation(fields: [player_id], references: [id], map: "FK_audio_player_config_players")
+
+  @@unique([player_id, category_id], map: "player_id_category_id")
+  @@index([category_id], map: "FK_audio_player_config_audio_categories")
+}
+
+model chat {
+  id                                      Int                 @id @default(autoincrement()) @db.UnsignedInt
+  player_id                               Int                 @db.UnsignedInt
+  room_id                                 Int?                @db.UnsignedInt
+  message                                 String              @db.VarChar(140)
+  private_player_id                       Int?                @db.UnsignedInt
+  message_type                            Int?                @db.UnsignedInt
+  message_time                            DateTime            @db.Timestamp(0)
+  players_chat_player_idToplayers         players             @relation("chat_player_idToplayers", fields: [player_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__players")
+  players_chat_private_player_idToplayers players?            @relation("chat_private_player_idToplayers", fields: [private_player_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__players_2")
+  rooms                                   rooms?              @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__scenes")
+  chat_message_types                      chat_message_types? @relation(fields: [message_type], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_chat_chat_message_types")
+
+  @@index([message_type], map: "FK_chat_chat_message_types")
+  @@index([private_player_id], map: "private_user_id")
+  @@index([room_id], map: "scene_id")
+  @@index([player_id], map: "user_id")
+}
+
+model chat_message_types {
+  id                       Int                  @id @default(autoincrement()) @db.UnsignedInt
+  key                      String               @db.VarChar(50)
+  show_tab                 Int?                 @db.UnsignedTinyInt
+  also_show_in_type        Int?                 @db.UnsignedInt
+  chat                     chat[]
+  chat_message_types       chat_message_types?  @relation("chat_message_typesTochat_message_types", fields: [also_show_in_type], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_chat_message_types_chat_message_types")
+  other_chat_message_types chat_message_types[] @relation("chat_message_typesTochat_message_types")
+
+  @@index([also_show_in_type], map: "FK_chat_message_types_chat_message_types")
+}
+
+model clan {
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
+  owner_id     Int            @unique(map: "owner_id") @db.UnsignedInt
+  name         String         @unique(map: "name") @default("") @db.VarChar(50)
+  points       Int            @default(0) @db.UnsignedInt
+  level        Int            @db.UnsignedInt
+  created_at   DateTime       @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at   DateTime       @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  clan_levels  clan_levels    @relation(fields: [level], references: [key], onDelete: NoAction, onUpdate: NoAction, map: "FK_clan_clan_levels")
+  players      players        @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_clan_players")
+  clan_members clan_members[]
+
+  @@index([level], map: "FK_clan_clan_levels")
+}
+
+model clan_levels {
+  id                    Int                     @id @default(autoincrement()) @db.UnsignedInt
+  key                   Int                     @unique(map: "key") @db.UnsignedInt
+  label                 String                  @db.VarChar(255)
+  required_experience   BigInt?                 @db.UnsignedBigInt
+  clan                  clan[]
+  clan_levels_modifiers clan_levels_modifiers[]
+}
+
+model clan_levels_modifiers {
+  id              Int             @id @default(autoincrement()) @db.UnsignedInt
+  level_id        Int             @db.UnsignedInt
+  key             String          @db.VarChar(255)
+  property_key    String          @db.VarChar(255)
+  operation       Int             @db.UnsignedInt
+  value           String          @db.VarChar(255)
+  minValue        String?         @db.VarChar(255)
+  maxValue        String?         @db.VarChar(255)
+  minProperty     String?         @db.VarChar(255)
+  maxProperty     String?         @db.VarChar(255)
+  clan_levels     clan_levels     @relation(fields: [level_id], references: [id], onDelete: NoAction, map: "FK_clan_levels_modifiers_clan_levels")
+  operation_types operation_types @relation(fields: [operation], references: [key], onDelete: NoAction, map: "FK_clan_levels_modifiers_operation_types")
+
+  @@index([operation], map: "FK_clan_levels_modifiers_operation_types")
+  @@index([level_id], map: "level_key")
+  @@index([key], map: "modifier_id")
+}
+
+model clan_members {
+  id        Int     @id @default(autoincrement()) @db.UnsignedInt
+  clan_id   Int     @db.UnsignedInt
+  player_id Int     @unique(map: "player_id") @db.UnsignedInt
+  clan      clan    @relation(fields: [clan_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_clan_members_clan")
+  players   players @relation(fields: [player_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_clan_members_players")
+
+  @@unique([clan_id, player_id], map: "clan_id_player_id")
+  @@index([clan_id], map: "FK__clan")
+  @@index([player_id], map: "FK__players")
+}
+
+model config {
+  id           Int          @id @default(autoincrement()) @db.UnsignedInt
+  scope        String       @db.VarChar(255)
+  path         String       @db.VarChar(255)
+  value        String       @db.Text
+  type         Int          @db.UnsignedInt
+  config_types config_types @relation(fields: [type], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_config_config_types")
+
+  @@unique([scope, path], map: "scope_path")
+  @@index([type], map: "FK_config_config_types")
+}
+
+model config_types {
+  id     Int      @id @default(autoincrement()) @db.UnsignedInt
+  label  String   @default("0") @db.VarChar(50)
+  config config[]
+}
+
+model drops_animations {
+  id           Int        @id @default(autoincrement()) @db.UnsignedInt
+  item_id      Int        @unique(map: "item_id_unique") @db.UnsignedInt
+  asset_type   String?    @db.VarChar(255)
+  asset_key    String     @db.VarChar(255)
+  file         String     @db.VarChar(255)
+  extra_params String?    @db.Text
+  items_item   items_item @relation(fields: [item_id], references: [id], onDelete: Cascade, map: "FK_drops_animations_items_item")
+
+  @@index([item_id], map: "item_id")
+}
+
+model features {
+  id         Int    @id @default(autoincrement()) @db.UnsignedInt
+  code       String @unique(map: "code") @db.VarChar(255)
+  title      String @db.VarChar(255)
+  is_enabled Int?   @db.UnsignedTinyInt
+}
+
+model items_group {
+  id             Int          @id @default(autoincrement()) @db.UnsignedInt
+  key            String       @db.VarChar(255)
+  label          String       @db.VarChar(255)
+  description    String?      @db.Text
+  files_name     String?      @db.Text
+  sort           Int?
+  items_limit    Int          @default(0)
+  limit_per_item Int          @default(0)
+  items_item     items_item[]
+}
+
+model items_inventory {
+  id             Int        @id @default(autoincrement()) @db.UnsignedInt
+  owner_id       Int        @db.UnsignedInt
+  item_id        Int        @db.UnsignedInt
+  qty            Int        @default(0)
+  remaining_uses Int?
+  is_active      Int?       @db.TinyInt
+  items_item     items_item @relation(fields: [item_id], references: [id], onDelete: NoAction, map: "FK_items_inventory_items_item")
+
+  @@index([item_id], map: "FK_items_inventory_items_item")
+}
+
+model items_item {
+  id                                                                                  Int                          @id @unique(map: "id") @default(autoincrement()) @db.UnsignedInt
+  key                                                                                 String                       @unique(map: "key") @db.VarChar(255)
+  type                                                                                Int                          @default(0)
+  group_id                                                                            Int?                         @db.UnsignedInt
+  label                                                                               String                       @db.VarChar(255)
+  description                                                                         String?                      @db.VarChar(255)
+  qty_limit                                                                           Int                          @default(0)
+  uses_limit                                                                          Int                          @default(1)
+  useTimeOut                                                                          Int?
+  execTimeOut                                                                         Int?
+  customData                                                                          String?                      @db.Text
+  created_at                                                                          DateTime                     @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                                                                          DateTime                     @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  drops_animations                                                                    drops_animations?
+  items_inventory                                                                     items_inventory[]
+  items_group                                                                         items_group?                 @relation(fields: [group_id], references: [id], onDelete: NoAction, map: "FK_items_item_items_group")
+  items_types                                                                         items_types                  @relation(fields: [type], references: [id], onDelete: NoAction, map: "FK_items_item_items_types")
+  items_item_modifiers                                                                items_item_modifiers[]
+  objects_items_inventory                                                             objects_items_inventory[]
+  objects_items_requirements_objects_items_requirements_item_keyToitems_item          objects_items_requirements[] @relation("objects_items_requirements_item_keyToitems_item")
+  objects_items_requirements_objects_items_requirements_required_item_keyToitems_item objects_items_requirements[] @relation("objects_items_requirements_required_item_keyToitems_item")
+  objects_items_rewards_objects_items_rewards_item_keyToitems_item                    objects_items_rewards[]      @relation("objects_items_rewards_item_keyToitems_item")
+  objects_items_rewards_objects_items_rewards_reward_item_keyToitems_item             objects_items_rewards[]      @relation("objects_items_rewards_reward_item_keyToitems_item")
+  rewards                                                                             rewards[]
+
+  @@index([group_id], map: "group_id")
+  @@index([type], map: "type")
+}
+
+model items_item_modifiers {
+  id              Int             @id @default(autoincrement()) @db.UnsignedInt
+  item_id         Int             @db.UnsignedInt
+  key             String          @db.VarChar(255)
+  property_key    String          @db.VarChar(255)
+  operation       Int             @db.UnsignedInt
+  value           String          @db.VarChar(255)
+  maxProperty     String?         @db.VarChar(255)
+  items_item      items_item      @relation(fields: [item_id], references: [id], onDelete: NoAction, map: "FK_items_item_modifiers_items_item")
+  operation_types operation_types @relation(fields: [operation], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_items_item_modifiers_operation_types")
+
+  @@index([item_id], map: "item_id")
+  @@index([operation], map: "operation")
+}
+
+model items_types {
+  id         Int          @id @default(autoincrement())
+  key        String       @unique(map: "key") @db.VarChar(255)
+  items_item items_item[]
+}
+
+model locale {
+  id            Int            @id @default(autoincrement()) @db.UnsignedInt
+  locale        String         @db.VarChar(5)
+  language_code String         @db.VarChar(2)
+  country_code  String?        @db.VarChar(2)
+  enabled       Int?           @db.UnsignedTinyInt
+  snippets      snippets[]
+  users_locale  users_locale[]
+}
+
+model objects {
+  id                         Int                          @id @default(autoincrement()) @db.UnsignedInt
+  room_id                    Int                          @db.UnsignedInt
+  layer_name                 String                       @db.VarChar(255)
+  tile_index                 Int?                         @db.UnsignedInt
+  class_type                 Int?                         @db.UnsignedInt
+  object_class_key           String                       @unique(map: "object_class_key") @db.VarChar(255)
+  client_key                 String                       @db.Text
+  title                      String?                      @db.VarChar(255)
+  private_params             String?                      @db.Text
+  client_params              String?                      @db.Text
+  enabled                    Int?                         @db.TinyInt
+  created_at                 DateTime                     @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                 DateTime                     @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  objects_types              objects_types?               @relation(fields: [class_type], references: [id], onDelete: NoAction, map: "FK_objects_objects_types")
+  rooms                      rooms                        @relation(fields: [room_id], references: [id], onDelete: NoAction, map: "FK_objects_rooms")
+  objects_animations         objects_animations[]
+  objects_assets             objects_assets[]
+  objects_items_inventory    objects_items_inventory[]
+  objects_items_requirements objects_items_requirements[]
+  objects_items_rewards      objects_items_rewards[]
+  objects_skills             objects_skills[]
+  objects_stats              objects_stats[]
+  respawn                    respawn[]
+  rewards                    rewards[]
+
+  @@unique([room_id, layer_name, tile_index], map: "room_id_layer_name_tile_index")
+  @@index([class_type], map: "class_type")
+  @@index([room_id], map: "room_id")
+}
+
+model objects_animations {
+  id            Int     @id @default(autoincrement()) @db.UnsignedInt
+  object_id     Int     @db.UnsignedInt
+  animationKey  String  @db.VarChar(255)
+  animationData String  @db.Text
+  objects       objects @relation(fields: [object_id], references: [id], onDelete: NoAction, map: "FK_objects_animations_objects")
+
+  @@unique([object_id, animationKey], map: "object_id_animationKey")
+  @@index([id], map: "id")
+  @@index([object_id], map: "object_id")
+}
+
+model objects_assets {
+  object_asset_id Int     @id @default(autoincrement()) @db.UnsignedInt
+  object_id       Int     @db.UnsignedInt
+  asset_type      String  @db.VarChar(255)
+  asset_key       String  @db.VarChar(255)
+  asset_file      String  @db.VarChar(255)
+  extra_params    String? @db.Text
+  objects         objects @relation(fields: [object_id], references: [id], onDelete: NoAction, map: "FK_objects_assets_objects")
+
+  @@index([object_id], map: "object_id")
+}
+
+model objects_items_inventory {
+  id             Int        @id @default(autoincrement()) @db.UnsignedInt
+  owner_id       Int        @db.UnsignedInt
+  item_id        Int        @db.UnsignedInt
+  qty            Int        @default(0)
+  remaining_uses Int?
+  is_active      Int?       @db.TinyInt
+  items_item     items_item @relation(fields: [item_id], references: [id], onDelete: NoAction, map: "FK_objects_items_inventory_ibfk_1")
+  objects        objects    @relation(fields: [owner_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_items_inventory_objects")
+
+  @@index([item_id], map: "FK_items_inventory_items_item")
+  @@index([owner_id], map: "FK_objects_items_inventory_objects")
+}
+
+model objects_items_requirements {
+  id                                                                  Int        @id @default(autoincrement()) @db.UnsignedInt
+  object_id                                                           Int        @db.UnsignedInt
+  item_key                                                            String     @default("") @db.VarChar(255)
+  required_item_key                                                   String     @default("") @db.VarChar(255)
+  required_quantity                                                   Int        @default(0) @db.UnsignedInt
+  auto_remove_requirement                                             Int?       @db.UnsignedTinyInt
+  items_item_objects_items_requirements_item_keyToitems_item          items_item @relation("objects_items_requirements_item_keyToitems_item", fields: [item_key], references: [key], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_items_requirements_items_item")
+  items_item_objects_items_requirements_required_item_keyToitems_item items_item @relation("objects_items_requirements_required_item_keyToitems_item", fields: [required_item_key], references: [key], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_items_requirements_items_item_2")
+  objects                                                             objects    @relation(fields: [object_id], references: [id], map: "FK_objects_items_requirements_objects")
+
+  @@index([item_key], map: "FK_objects_items_requirements_items_item")
+  @@index([required_item_key], map: "FK_objects_items_requirements_items_item_2")
+  @@index([object_id], map: "FK_objects_items_requirements_objects")
+}
+
+model objects_items_rewards {
+  id                                                           Int        @id @default(autoincrement()) @db.UnsignedInt
+  object_id                                                    Int        @db.UnsignedInt
+  item_key                                                     String     @default("") @db.VarChar(255)
+  reward_item_key                                              String     @default("") @db.VarChar(255)
+  reward_quantity                                              Int        @default(0) @db.UnsignedInt
+  reward_item_is_required                                      Int?       @db.UnsignedTinyInt
+  items_item_objects_items_rewards_item_keyToitems_item        items_item @relation("objects_items_rewards_item_keyToitems_item", fields: [item_key], references: [key], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_items_rewards_items_item")
+  items_item_objects_items_rewards_reward_item_keyToitems_item items_item @relation("objects_items_rewards_reward_item_keyToitems_item", fields: [reward_item_key], references: [key], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_items_rewards_items_item_2")
+  objects                                                      objects    @relation(fields: [object_id], references: [id], map: "objects_items_rewards_ibfk_1")
+
+  @@index([object_id], map: "FK_objects_items_requirements_objects")
+  @@index([item_key], map: "FK_objects_items_rewards_items_item")
+  @@index([reward_item_key], map: "FK_objects_items_rewards_items_item_2")
+}
+
+model objects_skills {
+  id             Int            @id @default(autoincrement()) @db.UnsignedInt
+  object_id      Int            @db.UnsignedInt
+  skill_id       Int            @db.UnsignedInt
+  target_id      Int            @db.UnsignedInt
+  objects        objects        @relation(fields: [object_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_skills_objects")
+  skills_skill   skills_skill   @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_skills_skills_skill")
+  target_options target_options @relation(fields: [target_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_objects_skills_target_options")
+
+  @@index([object_id], map: "FK_objects_skills_objects")
+  @@index([skill_id], map: "FK_objects_skills_skills_skill")
+  @@index([target_id], map: "FK_objects_skills_target_options")
+}
+
+model objects_stats {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  object_id  Int     @db.UnsignedInt
+  stat_id    Int     @db.UnsignedInt
+  base_value Int     @db.UnsignedInt
+  value      Int     @db.UnsignedInt
+  objects    objects @relation(fields: [object_id], references: [id], map: "FK_object_current_stats_objects")
+  stats      stats   @relation(fields: [stat_id], references: [id], map: "FK_objects_current_stats_objects_stats")
+
+  @@unique([object_id, stat_id], map: "object_id_stat_id")
+  @@index([object_id], map: "object_id")
+  @@index([stat_id], map: "stat_id")
+}
+
+model objects_types {
+  id      Int       @id @default(autoincrement()) @db.UnsignedInt
+  key     String    @unique(map: "key") @db.VarChar(255)
+  objects objects[]
+}
+
+model operation_types {
+  id                          Int                           @id @default(autoincrement()) @db.UnsignedInt
+  label                       String?                       @db.VarChar(50)
+  key                         Int                           @unique(map: "key") @db.UnsignedInt
+  clan_levels_modifiers       clan_levels_modifiers[]
+  items_item_modifiers        items_item_modifiers[]
+  rewards_modifiers           rewards_modifiers[]
+  skills_levels_modifiers     skills_levels_modifiers[]
+  skills_skill_owner_effects  skills_skill_owner_effects[]
+  skills_skill_target_effects skills_skill_target_effects[]
+}
+
+model players {
+  id                                   Int                    @id @default(autoincrement()) @db.UnsignedInt
+  user_id                              Int                    @db.UnsignedInt
+  name                                 String                 @db.VarChar(255)
+  created_at                           DateTime               @default(now()) @db.Timestamp(0)
+  updated_at                           DateTime               @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  ads_played                           ads_played[]
+  audio_player_config                  audio_player_config[]
+  chat_chat_player_idToplayers         chat[]                 @relation("chat_player_idToplayers")
+  chat_chat_private_player_idToplayers chat[]                 @relation("chat_private_player_idToplayers")
+  clan                                 clan?
+  clan_members                         clan_members?
+  users                                users                  @relation(fields: [user_id], references: [id], onDelete: NoAction, map: "FK_players_users")
+  players_state                        players_state?
+  players_stats                        players_stats[]
+  rewards_events_state                 rewards_events_state[]
+  scores                               scores[]
+
+  @@unique([user_id, name], map: "user_id_name")
+  @@index([user_id], map: "FK_players_users")
+}
+
+model players_state {
+  id        Int     @id @default(autoincrement()) @db.UnsignedInt
+  player_id Int     @unique(map: "player_id") @db.UnsignedInt
+  room_id   Int     @db.UnsignedInt
+  x         Int     @db.UnsignedInt
+  y         Int     @db.UnsignedInt
+  dir       String  @db.VarChar(25)
+  players   players @relation(fields: [player_id], references: [id], onDelete: NoAction, map: "FK_player_state_player_stats")
+  rooms     rooms   @relation(fields: [room_id], references: [id], onDelete: NoAction, map: "FK_player_state_rooms")
+
+  @@index([player_id], map: "FK_player_state_player_stats")
+  @@index([room_id], map: "FK_player_state_rooms")
+}
+
+model players_stats {
+  id         Int     @id @default(autoincrement()) @db.UnsignedInt
+  player_id  Int     @db.UnsignedInt
+  stat_id    Int     @db.UnsignedInt
+  base_value Int     @db.UnsignedInt
+  value      Int     @db.UnsignedInt
+  players    players @relation(fields: [player_id], references: [id], map: "FK_player_current_stats_players")
+  stats      stats   @relation(fields: [stat_id], references: [id], map: "FK_players_current_stats_players_stats")
+
+  @@unique([player_id, stat_id], map: "player_id_stat_id")
+  @@index([stat_id], map: "stat_id")
+  @@index([player_id], map: "user_id")
+}
+
+model respawn {
+  id              Int      @id @default(autoincrement()) @db.UnsignedInt
+  object_id       Int      @db.UnsignedInt
+  respawn_time    Int      @default(0) @db.UnsignedInt
+  instances_limit Int      @default(0) @db.UnsignedInt
+  layer           String   @db.VarChar(255)
+  created_at      DateTime @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at      DateTime @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  objects         objects  @relation(fields: [object_id], references: [id], onDelete: NoAction, map: "FK_respawn_objects")
+
+  @@index([object_id], map: "respawn_object_id")
+}
+
+model rewards {
+  id                Int                @id @default(autoincrement()) @db.UnsignedInt
+  object_id         Int                @db.UnsignedInt
+  item_id           Int?               @db.UnsignedInt
+  modifier_id       Int?               @db.UnsignedInt
+  experience        Int                @default(0) @db.UnsignedInt
+  drop_rate         Int                @db.UnsignedInt
+  drop_quantity     Int                @db.UnsignedInt
+  is_unique         Int                @default(0) @db.UnsignedTinyInt
+  was_given         Int                @default(0) @db.UnsignedTinyInt
+  has_drop_body     Int                @default(0) @db.UnsignedTinyInt
+  created_at        DateTime           @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at        DateTime           @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  items_item        items_item?        @relation(fields: [item_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rewards_items_item")
+  objects           objects            @relation(fields: [object_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rewards_objects")
+  rewards_modifiers rewards_modifiers? @relation(fields: [modifier_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rewards_rewards_modifiers")
+
+  @@index([item_id], map: "FK_rewards_items_item")
+  @@index([object_id], map: "FK_rewards_objects")
+  @@index([modifier_id], map: "FK_rewards_rewards_modifiers")
+}
+
+model rewards_events {
+  id                   Int                    @id @default(autoincrement()) @db.UnsignedInt
+  label                String                 @db.VarChar(255)
+  description          String?                @db.VarChar(255)
+  handler_key          String                 @db.VarChar(255)
+  event_key            String                 @db.VarChar(255)
+  event_data           String                 @db.VarChar(255)
+  position             Int                    @default(0) @db.UnsignedInt
+  enabled              Int?                   @db.TinyInt
+  active_from          DateTime?              @db.DateTime(0)
+  active_to            DateTime?              @db.DateTime(0)
+  rewards_events_state rewards_events_state[]
+
+  @@index([event_key], map: "event_key")
+}
+
+model rewards_events_state {
+  id                Int            @id @default(autoincrement()) @db.UnsignedInt
+  rewards_events_id Int            @db.UnsignedInt
+  player_id         Int            @db.UnsignedInt
+  state             String?        @db.Text
+  rewards_events    rewards_events @relation(fields: [rewards_events_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__rewards_events")
+  players           players        @relation(fields: [player_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rewards_events_state_players")
+
+  @@index([rewards_events_id], map: "rewards_events_id")
+  @@index([player_id], map: "user_id")
+}
+
+model rewards_modifiers {
+  id              Int             @id @default(autoincrement()) @db.UnsignedInt
+  key             String          @db.VarChar(255)
+  property_key    String          @db.VarChar(255)
+  operation       Int             @db.UnsignedInt
+  value           String          @db.VarChar(255)
+  minValue        String?         @db.VarChar(255)
+  maxValue        String?         @db.VarChar(255)
+  minProperty     String?         @db.VarChar(255)
+  maxProperty     String?         @db.VarChar(255)
+  rewards         rewards[]
+  operation_types operation_types @relation(fields: [operation], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_rewards_modifiers_operation_types")
+
+  @@index([key], map: "modifier_id")
+  @@index([operation], map: "operation")
+}
+
+model rooms {
+  id                                                          Int                   @id @default(autoincrement()) @db.UnsignedInt
+  name                                                        String                @unique(map: "key") @db.VarChar(255)
+  title                                                       String                @db.VarChar(255)
+  map_filename                                                String                @db.VarChar(255)
+  scene_images                                                String                @db.VarChar(255)
+  room_class_key                                              String?               @db.VarChar(255)
+  server_url                                                  String?               @db.VarChar(255)
+  customData                                                  String?               @db.Text
+  created_at                                                  DateTime              @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                                                  DateTime              @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  audio                                                       audio[]
+  chat                                                        chat[]
+  objects                                                     objects[]
+  players_state                                               players_state[]
+  rooms_change_points_rooms_change_points_room_idTorooms      rooms_change_points[] @relation("rooms_change_points_room_idTorooms")
+  rooms_change_points_rooms_change_points_next_room_idTorooms rooms_change_points[] @relation("rooms_change_points_next_room_idTorooms")
+  rooms_return_points_rooms_return_points_from_room_idTorooms rooms_return_points[] @relation("rooms_return_points_from_room_idTorooms")
+  rooms_return_points_rooms_return_points_room_idTorooms      rooms_return_points[] @relation("rooms_return_points_room_idTorooms")
+}
+
+model rooms_change_points {
+  id                                            Int   @id @unique(map: "id") @default(autoincrement()) @db.UnsignedInt
+  room_id                                       Int   @db.UnsignedInt
+  tile_index                                    Int   @db.UnsignedInt
+  next_room_id                                  Int   @db.UnsignedInt
+  rooms_rooms_change_points_room_idTorooms      rooms @relation("rooms_change_points_room_idTorooms", fields: [room_id], references: [id], onDelete: NoAction, map: "FK_rooms_change_points_rooms")
+  rooms_rooms_change_points_next_room_idTorooms rooms @relation("rooms_change_points_next_room_idTorooms", fields: [next_room_id], references: [id], onDelete: NoAction, map: "FK_rooms_change_points_rooms_2")
+
+  @@index([next_room_id], map: "FK_rooms_change_points_rooms_2")
+  @@index([room_id], map: "scene_id")
+}
+
+model rooms_return_points {
+  id                                            Int    @id @default(autoincrement()) @db.UnsignedInt
+  room_id                                       Int    @db.UnsignedInt
+  direction                                     String @db.VarChar(5)
+  x                                             Int    @db.UnsignedInt
+  y                                             Int    @db.UnsignedInt
+  is_default                                    Int?   @db.UnsignedTinyInt
+  from_room_id                                  Int?   @db.UnsignedInt
+  rooms_rooms_return_points_from_room_idTorooms rooms? @relation("rooms_return_points_from_room_idTorooms", fields: [from_room_id], references: [id], onDelete: Restrict, map: "FK_rooms_return_points_rooms_from_room_id")
+  rooms_rooms_return_points_room_idTorooms      rooms  @relation("rooms_return_points_room_idTorooms", fields: [room_id], references: [id], onDelete: NoAction, map: "FK_rooms_return_points_rooms_room_id")
+
+  @@index([room_id], map: "FK_scenes_return_points_rooms")
+  @@index([from_room_id], map: "FK_scenes_return_points_rooms_2")
+}
+
+model scores {
+  id                    Int       @id @default(autoincrement()) @db.UnsignedInt
+  player_id             Int       @db.UnsignedInt
+  total_score           Int       @db.UnsignedInt
+  players_kills_count   Int       @db.UnsignedInt
+  npcs_kills_count      Int       @db.UnsignedInt
+  last_player_kill_time DateTime? @db.DateTime(0)
+  last_npc_kill_time    DateTime? @db.DateTime(0)
+  created_at            DateTime  @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at            DateTime  @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  players               players   @relation(fields: [player_id], references: [id], onDelete: Cascade, map: "FK_scores_players")
+
+  @@index([player_id], map: "player_id")
+}
+
+model scores_detail {
+  id             Int      @id @default(autoincrement()) @db.UnsignedInt
+  player_id      Int      @db.UnsignedInt
+  obtained_score Int      @db.UnsignedInt
+  kill_time      DateTime @default(now()) @db.DateTime(0)
+  kill_player_id Int?     @db.UnsignedInt
+  kill_npc_id    Int?     @db.UnsignedInt
+
+  @@index([player_id], map: "player_id")
+}
+
+model skills_class_level_up_animations {
+  id                Int                @id @default(autoincrement()) @db.UnsignedInt
+  class_path_id     Int?               @db.UnsignedInt
+  level_id          Int?               @db.UnsignedInt
+  animationData     String             @db.Text
+  skills_class_path skills_class_path? @relation(fields: [class_path_id], references: [id], onDelete: Restrict, map: "FK_skills_class_level_up_skills_class_path")
+  skills_levels     skills_levels?     @relation(fields: [level_id], references: [id], onDelete: Restrict, map: "FK_skills_class_level_up_skills_levels")
+
+  @@unique([class_path_id, level_id], map: "class_path_id_level_id")
+  @@index([level_id], map: "FK_skills_class_level_up_skills_levels")
+}
+
+model skills_class_path {
+  id                               Int                                @id @default(autoincrement()) @db.UnsignedInt
+  key                              String                             @unique(map: "key") @db.VarChar(255)
+  label                            String?                            @db.VarChar(255)
+  levels_set_id                    Int                                @db.UnsignedInt
+  enabled                          Int?                               @db.UnsignedTinyInt
+  created_at                       DateTime                           @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                       DateTime                           @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  skills_class_level_up_animations skills_class_level_up_animations[]
+  skills_levels_set                skills_levels_set                  @relation(fields: [levels_set_id], references: [id], onDelete: NoAction, map: "FK_skills_class_path_skills_levels_set")
+  skills_class_path_level_labels   skills_class_path_level_labels[]
+  skills_class_path_level_skills   skills_class_path_level_skills[]
+  skills_owners_class_path         skills_owners_class_path[]
+
+  @@index([levels_set_id], map: "levels_set_id")
+}
+
+model skills_class_path_level_labels {
+  id                Int               @id @default(autoincrement()) @db.UnsignedInt
+  class_path_id     Int               @db.UnsignedInt
+  level_id          Int               @db.UnsignedInt
+  label             String            @db.VarChar(255)
+  skills_class_path skills_class_path @relation(fields: [class_path_id], references: [id], onDelete: NoAction, map: "FK__skills_class_path")
+  skills_levels     skills_levels     @relation(fields: [level_id], references: [id], onDelete: NoAction, map: "FK_skills_class_path_level_labels_skills_levels")
+
+  @@unique([class_path_id, level_id], map: "class_path_id_level_key")
+  @@index([class_path_id], map: "class_path_id")
+  @@index([level_id], map: "level_key")
+}
+
+model skills_class_path_level_skills {
+  id                Int               @id @default(autoincrement()) @db.UnsignedInt
+  class_path_id     Int               @db.UnsignedInt
+  level_id          Int               @db.UnsignedInt
+  skill_id          Int               @db.UnsignedInt
+  skills_class_path skills_class_path @relation(fields: [class_path_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_skills_class_path_level_skills_skills_class_path")
+  skills_levels     skills_levels     @relation(fields: [level_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_skills_class_path_level_skills_skills_levels_id")
+  skills_skill      skills_skill      @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_skills_class_path_level_skills_skills_skill")
+
+  @@unique([class_path_id, level_id, skill_id], map: "class_path_id_level_id_skill_id")
+  @@index([class_path_id], map: "class_path_id")
+  @@index([level_id], map: "level_key")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_groups {
+  id                          Int                           @id @default(autoincrement()) @db.UnsignedInt
+  key                         String                        @db.VarChar(255)
+  label                       String                        @db.VarChar(255)
+  description                 String                        @db.VarChar(255)
+  sort                        Int                           @default(0) @db.UnsignedInt
+  skills_skill_group_relation skills_skill_group_relation[]
+}
+
+model skills_levels {
+  id                               Int                                @id @default(autoincrement()) @db.UnsignedInt
+  key                              Int                                @db.UnsignedInt
+  label                            String                             @db.VarChar(255)
+  required_experience              BigInt?                            @db.UnsignedBigInt
+  level_set_id                     Int                                @db.UnsignedInt
+  skills_class_level_up_animations skills_class_level_up_animations[]
+  skills_class_path_level_labels   skills_class_path_level_labels[]
+  skills_class_path_level_skills   skills_class_path_level_skills[]
+  skills_levels_set                skills_levels_set                  @relation(fields: [level_set_id], references: [id], onDelete: NoAction, map: "FK_skills_levels_skills_levels_set")
+  skills_levels_modifiers          skills_levels_modifiers[]
+
+  @@unique([key, level_set_id], map: "key_level_set_id")
+  @@index([level_set_id], map: "level_set_id")
+}
+
+model skills_levels_modifiers {
+  id              Int             @id @default(autoincrement()) @db.UnsignedInt
+  level_id        Int             @db.UnsignedInt
+  key             String          @db.VarChar(255)
+  property_key    String          @db.VarChar(255)
+  operation       Int             @db.UnsignedInt
+  value           String          @db.VarChar(255)
+  minValue        String?         @db.VarChar(255)
+  maxValue        String?         @db.VarChar(255)
+  minProperty     String?         @db.VarChar(255)
+  maxProperty     String?         @db.VarChar(255)
+  operation_types operation_types @relation(fields: [operation], references: [key], onDelete: NoAction, map: "FK_skills_levels_modifiers_operation_types")
+  skills_levels   skills_levels   @relation(fields: [level_id], references: [id], onDelete: NoAction, map: "FK_skills_levels_modifiers_skills_levels")
+
+  @@index([operation], map: "FK_skills_levels_modifiers_operation_types")
+  @@index([level_id], map: "level_key")
+  @@index([key], map: "modifier_id")
+}
+
+model skills_levels_modifiers_conditions {
+  id                 Int                                            @id @default(autoincrement()) @db.UnsignedInt
+  levels_modifier_id Int                                            @db.UnsignedInt
+  key                String                                         @db.VarChar(255)
+  property_key       String                                         @db.VarChar(255)
+  conditional        skills_levels_modifiers_conditions_conditional
+  value              String                                         @db.VarChar(255)
+
+  @@index([levels_modifier_id], map: "levels_modifier_id")
+}
+
+model skills_levels_set {
+  id                           Int                 @id @default(autoincrement()) @db.UnsignedInt
+  key                          String?             @unique(map: "key") @db.VarChar(255)
+  label                        String?             @db.VarChar(255)
+  autoFillRanges               Int?                @db.UnsignedTinyInt
+  autoFillExperienceMultiplier Int?                @db.UnsignedInt
+  created_at                   DateTime            @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                   DateTime            @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  skills_class_path            skills_class_path[]
+  skills_levels                skills_levels[]
+}
+
+model skills_owners_class_path {
+  id                Int               @id @default(autoincrement()) @db.UnsignedInt
+  class_path_id     Int               @db.UnsignedInt
+  owner_id          Int               @db.UnsignedInt
+  currentLevel      BigInt            @default(0) @db.UnsignedBigInt
+  currentExp        BigInt            @default(0) @db.UnsignedBigInt
+  skills_class_path skills_class_path @relation(fields: [class_path_id], references: [id], onDelete: NoAction, map: "FK_skills_owners_class_path_skills_class_path")
+
+  @@index([class_path_id], map: "level_set_id")
+}
+
+model skills_skill {
+  id                             Int                              @id @default(autoincrement()) @db.UnsignedInt
+  key                            String                           @unique(map: "key") @db.VarChar(255)
+  type                           Int                              @db.UnsignedInt
+  label                          String?                          @db.VarChar(255)
+  autoValidation                 Int?                             @db.TinyInt
+  skillDelay                     Int
+  castTime                       Int
+  usesLimit                      Int                              @default(0)
+  range                          Int
+  rangeAutomaticValidation       Int?                             @db.TinyInt
+  rangePropertyX                 String                           @db.VarChar(255)
+  rangePropertyY                 String                           @db.VarChar(255)
+  rangeTargetPropertyX           String?                          @db.VarChar(255)
+  rangeTargetPropertyY           String?                          @db.VarChar(255)
+  allowSelfTarget                Int?                             @db.TinyInt
+  criticalChance                 Int?
+  criticalMultiplier             Int?
+  criticalFixedValue             Int?
+  customData                     String?                          @db.Text
+  created_at                     DateTime                         @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at                     DateTime                         @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  objects_skills                 objects_skills[]
+  skills_class_path_level_skills skills_class_path_level_skills[]
+  skills_skill_type              skills_skill_type                @relation(fields: [type], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_skills_skill_skills_skill_type")
+  skills_skill_animations        skills_skill_animations[]
+  skills_skill_attack            skills_skill_attack?
+  skills_skill_group_relation    skills_skill_group_relation?
+  skills_skill_owner_conditions  skills_skill_owner_conditions[]
+  skills_skill_owner_effects     skills_skill_owner_effects[]
+  skills_skill_physical_data     skills_skill_physical_data?
+  skills_skill_target_effects    skills_skill_target_effects[]
+
+  @@index([type], map: "FK_skills_skill_skills_skill_type")
+}
+
+model skills_skill_animations {
+  id            Int          @id @default(autoincrement()) @db.UnsignedInt
+  skill_id      Int          @db.UnsignedInt
+  key           String       @db.VarChar(255)
+  classKey      String?      @db.VarChar(255)
+  animationData String       @db.Text
+  skills_skill  skills_skill @relation(fields: [skill_id], references: [id], map: "FK_skills_skill_animations_skills_skill")
+
+  @@unique([skill_id, key], map: "skill_id_key")
+  @@index([id], map: "id")
+  @@index([key], map: "key")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_attack {
+  id                   Int          @id @default(autoincrement()) @db.UnsignedInt
+  skill_id             Int          @unique(map: "skill_id_unique") @db.UnsignedInt
+  affectedProperty     String       @db.VarChar(255)
+  allowEffectBelowZero Int?         @db.UnsignedTinyInt
+  hitDamage            Int          @db.UnsignedInt
+  applyDirectDamage    Int?         @db.UnsignedTinyInt
+  attackProperties     String?      @db.Text
+  defenseProperties    String?      @db.Text
+  aimProperties        String?      @db.Text
+  dodgeProperties      String?      @db.Text
+  dodgeFullEnabled     Int?         @default(1) @db.TinyInt
+  dodgeOverAimSuccess  Int?         @default(1) @db.TinyInt
+  damageAffected       Int?         @db.TinyInt
+  criticalAffected     Int?         @db.TinyInt
+  skills_skill         skills_skill @relation(fields: [skill_id], references: [id], onDelete: NoAction, map: "FK__skills_skill_attack")
+
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_group_relation {
+  id            Int           @id @default(autoincrement()) @db.UnsignedInt
+  skill_id      Int           @unique(map: "skill_id_unique") @db.UnsignedInt
+  group_id      Int           @db.UnsignedInt
+  skills_groups skills_groups @relation(fields: [group_id], references: [id], onDelete: NoAction, map: "FK__skills_groups")
+  skills_skill  skills_skill  @relation(fields: [skill_id], references: [id], onDelete: NoAction, map: "FK__skills_skill")
+
+  @@index([group_id], map: "group_id")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_owner_conditions {
+  id           Int                                       @id @default(autoincrement()) @db.UnsignedInt
+  skill_id     Int                                       @db.UnsignedInt
+  key          String                                    @db.VarChar(255)
+  property_key String                                    @db.VarChar(255)
+  conditional  skills_skill_owner_conditions_conditional
+  value        String                                    @db.VarChar(255)
+  skills_skill skills_skill                              @relation(fields: [skill_id], references: [id], map: "FK_skills_skill_owner_conditions_skills_skill")
+
+  @@unique([skill_id, property_key], map: "skill_id_property_key")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_owner_effects {
+  id                                    Int                                     @id @default(autoincrement()) @db.UnsignedInt
+  skill_id                              Int                                     @db.UnsignedInt
+  key                                   String                                  @db.VarChar(255)
+  property_key                          String                                  @db.VarChar(255)
+  operation                             Int                                     @db.UnsignedInt
+  value                                 String                                  @db.VarChar(255)
+  minValue                              String                                  @db.VarChar(255)
+  maxValue                              String                                  @db.VarChar(255)
+  minProperty                           String?                                 @db.VarChar(255)
+  maxProperty                           String?                                 @db.VarChar(255)
+  operation_types                       operation_types                         @relation(fields: [operation], references: [key], onDelete: NoAction, map: "FK_skills_skill_owner_effects_operation_types")
+  skills_skill                          skills_skill                            @relation(fields: [skill_id], references: [id], onDelete: NoAction, map: "FK_skills_skill_owner_effects_skills_skill")
+  skills_skill_owner_effects_conditions skills_skill_owner_effects_conditions[]
+
+  @@index([operation], map: "FK_skills_skill_owner_effects_operation_types")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_owner_effects_conditions {
+  id                         Int                                               @id @default(autoincrement()) @db.UnsignedInt
+  skill_owner_effect_id      Int                                               @db.UnsignedInt
+  key                        String                                            @db.VarChar(255)
+  property_key               String                                            @db.VarChar(255)
+  conditional                skills_skill_owner_effects_conditions_conditional
+  value                      String                                            @db.VarChar(255)
+  skills_skill_owner_effects skills_skill_owner_effects                        @relation(fields: [skill_owner_effect_id], references: [id], onDelete: NoAction, map: "FK_skills_skill_owner_effects_conditions_skill_owner_effects")
+
+  @@index([skill_owner_effect_id], map: "skill_owner_effect_id")
+}
+
+model skills_skill_physical_data {
+  id                  Int          @id @default(autoincrement()) @db.UnsignedInt
+  skill_id            Int          @unique(map: "skill_id") @db.UnsignedInt
+  magnitude           Int          @db.UnsignedInt
+  objectWidth         Int          @db.UnsignedInt
+  objectHeight        Int          @db.UnsignedInt
+  validateTargetOnHit Int?         @db.UnsignedTinyInt
+  skills_skill        skills_skill @relation(fields: [skill_id], references: [id], onDelete: NoAction, map: "FK_skills_skill_physical_data_skills_skill")
+
+  @@index([skill_id], map: "attack_skill_id")
+}
+
+model skills_skill_target_effects {
+  id                                     Int                                      @id @default(autoincrement()) @db.UnsignedInt
+  skill_id                               Int                                      @db.UnsignedInt
+  key                                    String                                   @db.VarChar(255)
+  property_key                           String                                   @db.VarChar(255)
+  operation                              Int                                      @db.UnsignedInt
+  value                                  String                                   @db.VarChar(255)
+  minValue                               String                                   @db.VarChar(255)
+  maxValue                               String                                   @db.VarChar(255)
+  minProperty                            String?                                  @db.VarChar(255)
+  maxProperty                            String?                                  @db.VarChar(255)
+  skills_skill                           skills_skill                             @relation(fields: [skill_id], references: [id], onDelete: NoAction, map: "FK_skills_skill_effect_modifiers")
+  operation_types                        operation_types                          @relation(fields: [operation], references: [key], onDelete: NoAction, map: "FK_skills_skill_target_effects_operation_types")
+  skills_skill_target_effects_conditions skills_skill_target_effects_conditions[]
+
+  @@index([operation], map: "FK_skills_skill_target_effects_operation_types")
+  @@index([skill_id], map: "skill_id")
+}
+
+model skills_skill_target_effects_conditions {
+  id                          Int                                                @id @default(autoincrement()) @db.UnsignedInt
+  skill_target_effect_id      Int                                                @db.UnsignedInt
+  key                         String                                             @db.VarChar(255)
+  property_key                String                                             @db.VarChar(255)
+  conditional                 skills_skill_target_effects_conditions_conditional
+  value                       String                                             @db.VarChar(255)
+  skills_skill_target_effects skills_skill_target_effects                        @relation(fields: [skill_target_effect_id], references: [id], onDelete: NoAction, map: "FK_skills_skill_target_effects_conditions_skill_target_effects")
+
+  @@index([skill_target_effect_id], map: "skill_target_effect_id")
+}
+
+model skills_skill_type {
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
+  key          String         @unique(map: "key") @db.VarChar(255)
+  skills_skill skills_skill[]
+}
+
+model snippets {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  locale_id  Int      @db.UnsignedInt
+  key        String   @db.VarChar(255)
+  value      String   @db.Text
+  created_at DateTime @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at DateTime @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  locale     locale   @relation(fields: [locale_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_snippets_locale")
+
+  @@index([locale_id], map: "locale_id")
+}
+
+model stats {
+  id            Int             @id @default(autoincrement()) @db.UnsignedInt
+  key           String          @unique(map: "key") @db.VarChar(255)
+  label         String          @db.VarChar(255)
+  description   String          @db.VarChar(255)
+  base_value    Int             @db.UnsignedInt
+  customData    String?         @db.Text
+  created_at    DateTime        @default(dbgenerated("(now())")) @db.Timestamp(0)
+  updated_at    DateTime        @default(dbgenerated("'now()'")) @db.Timestamp(0)
+  objects_stats objects_stats[]
+  players_stats players_stats[]
+}
+
+model target_options {
+  id             Int              @id @default(autoincrement()) @db.UnsignedInt
+  target_key     String           @unique(map: "target_key") @db.VarChar(50)
+  target_label   String?          @db.VarChar(50)
+  objects_skills objects_skills[]
+}
+
+model users {
+  id           Int            @id @default(autoincrement()) @db.UnsignedInt
+  email        String         @unique(map: "email") @db.VarChar(255)
+  username     String         @unique(map: "username") @db.VarChar(255)
+  password     String         @db.VarChar(255)
+  role_id      Int            @db.UnsignedInt
+  status       String         @db.VarChar(255)
+  created_at   DateTime       @default(now()) @db.Timestamp(0)
+  updated_at   DateTime       @default(now()) @db.Timestamp(0)
+  played_time  Int            @default(0)
+  login_count  Int            @default(0)
+  players      players[]
+  users_locale users_locale[]
+  users_login  users_login[]
+}
+
+model users_locale {
+  id        Int     @id @default(autoincrement()) @db.UnsignedInt
+  locale_id Int?    @db.UnsignedInt
+  user_id   Int?    @db.UnsignedInt
+  locale    locale? @relation(fields: [locale_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_players_locale_locale")
+  users     users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_users_locale_users")
+
+  @@unique([locale_id, user_id], map: "locale_id_player_id")
+  @@index([locale_id], map: "locale_id")
+  @@index([user_id], map: "player_id")
+}
+
+model users_login {
+  id          Int       @id @default(autoincrement()) @db.UnsignedInt
+  user_id     Int       @db.UnsignedInt
+  login_date  DateTime  @default(dbgenerated("(now())")) @db.Timestamp(0)
+  logout_date DateTime? @db.Timestamp(0)
+  users       users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_users_login_users")
+
+  @@index([user_id], map: "user_id")
+}
+
+enum skills_levels_modifiers_conditions_conditional {
+  eq
+  ne
+  lt
+  gt
+  le
+  ge
+}
+
+enum skills_skill_owner_conditions_conditional {
+  eq
+  ne
+  lt
+  gt
+  le
+  ge
+}
+
+enum skills_skill_owner_effects_conditions_conditional {
+  eq
+  ne
+  lt
+  gt
+  le
+  ge
+}
+
+enum skills_skill_target_effects_conditions_conditional {
+  eq
+  ne
+  lt
+  gt
+  le
+  ge
+}

@@ -12,13 +12,13 @@ Disclaimer: Reldens is not just a game, is a platform to create games.
 
 We use this demo to show how many features are available.
 
-To access the demo you can register in the following link (the basic registration will require email, user and password):
+To access the demo, you can register in the following link (the basic registration will require email, user and password):
 
 https://demo.reldens.com/
 
-In order to access the server admin you need use the email.
+In order to access the server admin, you need to use the email.
 
-IMPORTANT: every action in this admin demo is blocked on purpose, in order to really test all it's features you need to do it on your own implementation. 
+IMPORTANT: every action in this admin demo is blocked on purpose, in order to really test all its features, you need to do it on your own implementation. 
 
 https://demo.reldens.com/reldens-admin/
 
@@ -34,7 +34,7 @@ Make sure to follow the installation guide: https://www.reldens.com/documentatio
 $ npm start
 ```
 
-- If you like to see more logs of the process you can change the debug level like:
+- If you like to see more logs of the process, you can change the debug level like:
 
 ```
 $ RELDENS_LOG_LEVEL=9 node .
@@ -56,12 +56,8 @@ ENJOY!
 
 ---
 
-## Support us! :)
+## Support or sponsor the project :)
 
-If you like to contribute or donate to support the project please feel free to contact me at damian.pastorini@gmail.com.
-
-Or:
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I2I81VISA)
-
-[Become a Patron!](https://www.patreon.com/bePatron?u=18074832)
+- If you like to contribute or donate to support the project please feel free to contact me on [Discord](https://discord.gg/HuJMxUY).
+- [Support me on Ko-Fi](https://ko-fi.com/I2I81VISA)
+- [Become a Patron!](https://www.patreon.com/bePatron?u=18074832)
