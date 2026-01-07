@@ -1274,7 +1274,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\dap\\work\\reldens\\skeleton\\prisma\\client",
+      "value": "/var/www/demo.reldens.com/prisma/client",
       "fromEnvVar": null
     },
     "config": {
@@ -1283,7 +1283,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-1.1.x",
         "native": true
       },
       {
@@ -1292,11 +1292,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\dap\\work\\reldens\\skeleton\\prisma\\schema.prisma",
+    "sourceFilePath": "/var/www/demo.reldens.com/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "..",
@@ -1353,10 +1353,6 @@ warnEnvConflicts({
 const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
-
-// file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma/client/query_engine-windows.dll.node")
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-1.1.x.so.node");
