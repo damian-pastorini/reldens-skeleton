@@ -645,8 +645,8 @@ model rooms_change_points {
   room_id                                       Int   @db.UnsignedInt
   tile_index                                    Int   @db.UnsignedInt
   next_room_id                                  Int   @db.UnsignedInt
-  rooms_rooms_change_points_room_idTorooms      rooms @relation("rooms_change_points_room_idTorooms", fields: [room_id], references: [id], onDelete: NoAction, map: "FK_rooms_change_points_rooms")
-  rooms_rooms_change_points_next_room_idTorooms rooms @relation("rooms_change_points_next_room_idTorooms", fields: [next_room_id], references: [id], onDelete: NoAction, map: "FK_rooms_change_points_rooms_2")
+  rooms_rooms_change_points_room_idTorooms      rooms @relation("rooms_change_points_room_idTorooms", fields: [room_id], references: [id], onDelete: Cascade, map: "FK_rooms_change_points_rooms")
+  rooms_rooms_change_points_next_room_idTorooms rooms @relation("rooms_change_points_next_room_idTorooms", fields: [next_room_id], references: [id], onDelete: Cascade, map: "FK_rooms_change_points_rooms_2")
 
   @@index([next_room_id], map: "FK_rooms_change_points_rooms_2")
   @@index([room_id], map: "scene_id")
@@ -660,8 +660,8 @@ model rooms_return_points {
   y                                             Int    @db.UnsignedInt
   is_default                                    Int?   @db.UnsignedTinyInt
   from_room_id                                  Int?   @db.UnsignedInt
-  rooms_rooms_return_points_from_room_idTorooms rooms? @relation("rooms_return_points_from_room_idTorooms", fields: [from_room_id], references: [id], onDelete: Restrict, map: "FK_rooms_return_points_rooms_from_room_id")
-  rooms_rooms_return_points_room_idTorooms      rooms  @relation("rooms_return_points_room_idTorooms", fields: [room_id], references: [id], onDelete: NoAction, map: "FK_rooms_return_points_rooms_room_id")
+  rooms_rooms_return_points_from_room_idTorooms rooms? @relation("rooms_return_points_from_room_idTorooms", fields: [from_room_id], references: [id], onDelete: Cascade, map: "FK_rooms_return_points_rooms_from_room_id")
+  rooms_rooms_return_points_room_idTorooms      rooms  @relation("rooms_return_points_room_idTorooms", fields: [room_id], references: [id], onDelete: Cascade, map: "FK_rooms_return_points_rooms_room_id")
 
   @@index([room_id], map: "FK_scenes_return_points_rooms")
   @@index([from_room_id], map: "FK_scenes_return_points_rooms_2")

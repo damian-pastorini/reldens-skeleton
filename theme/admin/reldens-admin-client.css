@@ -1,5 +1,5 @@
 /*
- * Reldens - Administration Panel
+ * Reldens - CMS - Administration Panel
  */
 
 :root {
@@ -25,7 +25,7 @@
     background-color: var(--lightGrey);
     margin: 0;
     padding: 0;
-    font-size: 12px;
+    font-size: 0.75rem;
 
     .wrapper {
         display: flex;
@@ -40,7 +40,7 @@
         right: 0;
         padding: 1rem 5rem 1rem 2rem;
         border-radius: 8px 0 0 8px;
-        font-size: 14px;
+        font-size: 0.875rem;
 
         &.success, &.error {
             display: block;
@@ -91,7 +91,7 @@
         padding: 0.5rem 1rem;
         border: none;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 0.875rem;
         cursor: pointer;
         text-decoration: none;
 
@@ -133,6 +133,11 @@
 
         &:hover {
             background-color: var(--red);
+        }
+
+        svg, path {
+            width: 22px;
+            fill: var(--white);
         }
     }
 
@@ -211,7 +216,7 @@
                 color: var(--lightGrey);
                 text-decoration: none;
                 border-left: 3px solid transparent;
-                font-size: 12px;
+                font-size: 0.75rem;
                 border-left: 3px solid #0000;
                 padding: 0.1rem 0.1rem 0.1rem 1rem;
                 margin-top: 0.3rem;
@@ -242,7 +247,7 @@
             color: var(--lightGrey);
             text-decoration: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: var(--font-semi-bold);
             border-bottom: 1px solid var(--darkBlue);
 
@@ -267,13 +272,19 @@
     }
 
     .entity-list {
-        overflow: auto;
-
         .actions {
             display: flex;
             justify-content: end;
             margin-bottom: 1rem;
         }
+
+        .extra-actions {
+            justify-content: end;
+        }
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
     }
 
     .forms-container {
@@ -283,7 +294,7 @@
     }
 
     .form-title {
-        font-size: 22px;
+        font-size: 1.375rem;
         margin-bottom: 2%;
         color: var(--darkGrey);
         text-align: center;
@@ -329,7 +340,7 @@
     }
 
     & h2 {
-        font-size: 22px;
+        font-size: 1.375rem;
         margin: 0 0 2rem;
         color: var(--darkGrey);
         text-align: center;
@@ -356,7 +367,7 @@
         }
 
         & th.field {
-            padding: 1.5rem 0;
+            padding: 1rem 0;
 
             & span {
                 color: var(--white);
@@ -379,17 +390,22 @@
 
             .field-actions-container {
                 display: flex;
-                flex-direction: column;
-                justify-content: center;
+                flex-direction: row;
+                justify-content: space-around;
                 align-items: center;
                 margin: 0 1rem;
 
                 .button {
-                    margin-bottom: 1rem;
+                    border: 1px solid var(--white);
+                }
 
-                    &.list-select {
-                        margin-bottom: 0;
-                    }
+                .list-select {
+                    margin-bottom: 0;
+                }
+
+                .list-delete-selection {
+                    padding: 0.34rem 1rem;
+                    margin: 0 0.2rem;
                 }
             }
 
@@ -418,7 +434,7 @@
 
         .field-edit {
             & span {
-                & svg, path {
+                & svg, & path {
                     width: 24px;
                     color: var(--lightBlue);
                 }
@@ -427,12 +443,56 @@
 
         .field-delete {
             & span {
-                & svg, path {
+                & svg, & path {
                     width: 24px;
-                    fill: var(--lightBlue);
+                    fill: var(--red);
                 }
             }
         }
+    }
+
+    .sortable {
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--lightBlue);
+
+            .sort-icon {
+                opacity: 0.7;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .sort-indicators {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+        gap: 2px;
+    }
+
+    .sort-icon {
+        width: 12px;
+        height: 12px;
+        fill: var(--grey);
+        opacity: 0.4;
+        transition: opacity 0.2s;
+
+        &.active {
+            fill: var(--white);
+            opacity: 1;
+        }
+    }
+
+    .sorted {
+        background-color: var(--darkBlue);
     }
 
     .filters-toggle {
@@ -533,7 +593,7 @@
                 vertical-align: middle;
                 align-items: center;
                 margin: 0 1rem 1rem 0;
-                font-size: 14px;
+                font-size: 0.875rem;
                 color: var(--darkGrey);
 
                 &.filters-toggle {
@@ -591,7 +651,6 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        margin-bottom: 1rem;
         flex-wrap: wrap;
         gap: 1rem;
     }
@@ -650,7 +709,7 @@
 
     .entity-view, .entity-edit {
         & h2 {
-            font-size: 22px;
+            font-size: 1.375rem;
             margin-bottom: 2rem;
             color: var(--darkGrey);
             text-align: center;
@@ -690,6 +749,10 @@
                         max-width: max-content;
                         margin-left: 0.5rem;
                         margin-top: 0.5rem;
+                    }
+
+                    .remove-upload-btn {
+                        cursor: pointer;
                     }
                 }
             }
@@ -757,7 +820,7 @@
     .extra-actions {
         display: flex;
         width: 100%;
-        justify-content: end;
+        justify-content: center;
         margin: 1rem 0;
     }
 
@@ -769,6 +832,8 @@
     .extra-content-container, .default-room-container {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        box-sizing: border-box;
         padding: 1rem 0;
         margin-top: 1rem;
         text-align: left;
@@ -804,7 +869,7 @@
 
     .dialog-content h5 {
         margin: 0 0 1rem 0;
-        font-size: 18px;
+        font-size: 1.125rem;
         color: var(--darkGrey);
     }
 
@@ -817,6 +882,54 @@
         display: flex;
         justify-content: flex-end;
         gap: 1rem;
+    }
+
+    /* === RELDENS-SPECIFIC: TILESET ALERT STYLES === */
+
+    .tileset-alert-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 0;
+
+    }
+
+    .upload-files-with-alert {
+        flex: 1;
+    }
+
+    .tileset-alert-icon-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: 0.5rem;
+    }
+
+    .tileset-alert-icon {
+        max-width: 24px;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+
+    .tileset-alert-icon-container .tileset-info-message {
+        position: absolute;
+        left: 30px;
+        top: 0;
+        min-width: 250px;
+        max-width: 350px;
+        padding: 0.5rem;
+        background-color: var(--white);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        color: var(--darkGrey);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+
+        &.hidden {
+            display: none;
+        }
     }
 
     /* === RELDENS-SPECIFIC: MAPS WIZARD STYLES === */
@@ -943,6 +1056,153 @@
                 margin: 1.5rem 0 0;
             }
         }
+    }
+
+    /* === RELDENS-SPECIFIC: THEME MANAGER STYLES === */
+
+    #selected-theme {
+        width: max-content;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        background-color: var(--white);
+        cursor: pointer;
+    }
+
+    .sub-content-box {
+        margin-bottom: 2rem;
+
+        & h3 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .theme-manager-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .command-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .command-item {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        position: relative;
+    }
+
+    .button-info {
+        padding: 0;
+        min-width: 20px;
+        width: 20px;
+        height: 20px;
+        font-size: 0;
+        position: relative;
+        background-color: var(--grey);
+        border-radius: 50%;
+        flex-shrink: 0;
+
+        &::before {
+            content: "?";
+            font-size: 0.75rem;
+            font-weight: var(--bold);
+            color: var(--white);
+            font-style: normal;
+            display: block;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        &:hover {
+            background-color: var(--darkGrey);
+        }
+    }
+
+    .command-info-tooltip {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 0.5rem;
+        min-width: 250px;
+        max-width: 350px;
+        padding: 0.75rem;
+        background-color: var(--darkGrey);
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: normal;
+        line-height: 1.4;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        &.visible {
+            display: block;
+        }
+
+        .tooltip-title {
+            font-weight: var(--bold);
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.25rem;
+        }
+
+        .tooltip-description {
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip-details {
+            font-size: 0.7rem;
+            color: var(--lightGrey);
+        }
+    }
+
+    .section-description {
+        margin: 0.5rem 0 1rem;
+        color: var(--darkGrey);
+        font-size: 0.875rem;
+
+        &.warning {
+            color: var(--orange);
+            font-weight: var(--bold);
+            text-align: center;
+            border-top: 1px solid var(--orange);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+    }
+
+    .info-text {
+        margin: 0.5rem 0;
+        color: var(--grey);
+        font-size: 0.75rem;
+        font-style: italic;
+    }
+
+    .theme-manager-heading {
+        margin-top: 2rem;
+    }
+
+    .reboot-notice {
+        display: table;
+        margin: 0 auto 1rem;
+        padding: 0.4rem 1.5rem;
+        background-color: var(--lightGrey);
+        border: 1px solid var(--grey);
+        border-radius: 4px;
+        text-align: center;
+        color: var(--grey);
+        font-size: 0.75rem;
+        font-style: italic;
     }
 
 }

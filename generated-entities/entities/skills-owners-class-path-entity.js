@@ -21,6 +21,7 @@ class SkillsOwnersClassPathEntity extends EntityProperties
             class_path_id: {
                 type: 'reference',
                 reference: 'skills_class_path',
+                alias: 'related_skills_class_path',
                 isRequired: true,
                 dbType: 'int'
             },

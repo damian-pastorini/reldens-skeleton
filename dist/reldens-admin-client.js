@@ -4,12 +4,14 @@
  *
  */
 
-if(window.trustedTypes?.createPolicy){
-    trustedTypes.createPolicy('default', {
-        createHTML: s => s,
-        createScriptURL: s => s
+let trustedTypesPolicy = null;
+if(window.trustedTypes && window.trustedTypes.createPolicy){
+    trustedTypesPolicy = window.trustedTypes.createPolicy('default', {
+        createHTML: (s) => s,
+        createScriptURL: (s) => s
     });
 }
+window.trustedTypesPolicy = trustedTypesPolicy;
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -19,9 +21,8 @@ window.addEventListener('DOMContentLoaded', () => {
     let queryString = location.search;
     let urlParams = new URLSearchParams(queryString);
 
-    // error codes messages map (CMS base + Reldens extensions):
+    // error codes messages map:
     let errorMessages = {
-        // CMS base messages:
         saveBadPatchData: 'Bad patch data on update.',
         saveEntityStorageError: 'Entity storage error.',
         saveEntityError: 'Entity could not be saved.',
@@ -29,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
         errorView: 'Could not render view page.',
         errorEdit: 'Could not render edit page.',
         errorId: 'Missing entity ID on POST.',
-        // Reldens-specific messages:
+        // Reldens custom messages:
         mapsWizardImportDataError: 'Map could not be imported, missing generated map data.',
         mapsWizardImportError: 'Map could not be imported.',
         objectsImportMissingDataError: 'Object could not be imported, missing JSON files.',
@@ -44,9 +45,11 @@ window.addEventListener('DOMContentLoaded', () => {
         errorMissingRoomY: 'Missing return point Y.',
         errorSaveChangePoint: 'Error saving change point.',
         errorSaveReturnPoint: 'Error saving return point.',
+        themeManagerMissingTheme: 'Please select a theme.',
+        themeManagerMissingCommand: 'Please select a command.',
+        themeManagerExecutionError: 'Theme command execution failed.',
     };
 
-    // activate expand/collapse elements and modals (from functions.js):
     activateExpandCollapse();
 
     activateModalElements();
@@ -100,23 +103,24 @@ window.addEventListener('DOMContentLoaded', () => {
             form.addEventListener('submit', (event) => {
                 let submitButton = form.querySelector('input[type="submit"], button[type="submit"]');
                 submitButton.disabled = true;
-                let loadingImage = document.querySelector('.submit-container .loading');
-                if(loadingImage){
-                    loadingImage.classList.remove('hidden');
-                }
+                let loadingImage = form.querySelector('.loading');
                 if(form.classList.contains('form-delete') || form.classList.contains('confirmation-required')){
                     event.preventDefault();
                     showConfirmDialog((confirmed) => {
                         if(confirmed){
+                            if(loadingImage){
+                                loadingImage.classList.remove('hidden');
+                            }
                             form.submit();
                         }
                         if(!confirmed){
                             submitButton.disabled = false;
-                            if(loadingImage){
-                                loadingImage.classList.add('hidden');
-                            }
                         }
                     });
+                    return;
+                }
+                if(loadingImage){
+                    loadingImage.classList.remove('hidden');
                 }
             });
         }
@@ -185,11 +189,56 @@ window.addEventListener('DOMContentLoaded', () => {
                             params.set(filterName, filterInput.value);
                         }
                     }
-                    let newUrl = url.pathname + '?' + params;
-                    window.location.href = newUrl;
+                    let sortedHeader = document.querySelector('th.sorted');
+                    if(sortedHeader){
+                        let columnName = sortedHeader.getAttribute('data-column');
+                        let sortDirection = sortedHeader.classList.contains('sorted-asc') ? 'asc' : 'desc';
+                        params.set('sortBy', columnName);
+                        params.set('sortDirection', sortDirection);
+                    }
+                    window.location.href = url.pathname+'?'+params;
                     return false;
                 });
             }
+        }
+    }
+
+    // column sorting functionality:
+    let sortableHeaders = document.querySelectorAll('th.sortable');
+    if(sortableHeaders){
+        for(let header of sortableHeaders){
+            header.addEventListener('click', () => {
+                let sortForm = header.querySelector('.sort-form');
+                if(!sortForm){
+                    return;
+                }
+                let columnName = header.getAttribute('data-column');
+                let currentSortDirection = header.classList.contains('sorted-asc')
+                    ? 'asc'
+                    : header.classList.contains('sorted-desc') ? 'desc' : '';
+                let newSortDirection = 'asc';
+                if('asc' === currentSortDirection){
+                    newSortDirection = 'desc';
+                }
+                let sortByInput = sortForm.querySelector('input[name="sortBy"]');
+                let sortDirectionInput = sortForm.querySelector('input[name="sortDirection"]');
+                sortByInput.value = columnName;
+                sortDirectionInput.value = newSortDirection;
+                let entitySearchInput = document.querySelector('#entityFilterTerm');
+                let entityFilterTermInput = sortForm.querySelector('input[name="entityFilterTerm"]');
+                if(entityFilterTermInput){
+                    entityFilterTermInput.value = entitySearchInput?.value || '';
+                }
+                let allFilters = document.querySelectorAll('.filters-toggle-content .filter input');
+                for(let filterInput of allFilters){
+                    let filterName = filterInput.name.replace(/^filters\[/, '').replace(/\]$/, '');
+                    let sortFormFilterInput = sortForm.querySelector('input[data-filter-key="'+filterName+'"]');
+                    if(sortFormFilterInput){
+                        sortFormFilterInput.value = filterInput.value;
+                    }
+                }
+                sortForm.submit();
+            });
         }
     }
 
@@ -259,6 +308,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 ? 'Success!'
                 : 'There was an error: '+escapeHTML(errorMessages[result] || result);
             deleteCookie('result');
+            queryParams.delete('result');
+            let newUrl = location.pathname + (queryParams.toString() ? '?' + queryParams.toString() : '');
+            window.history.replaceState({}, '', newUrl);
         }
     }
 
@@ -298,6 +350,86 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // remove upload button functionality:
+    let removeUploadButtons = document.querySelectorAll('.remove-upload-btn');
+    if(removeUploadButtons){
+        for(let button of removeUploadButtons){
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                let fieldName = button.getAttribute('data-field');
+                let fileName = button.getAttribute('data-filename');
+                let fileInput = document.getElementById(fieldName);
+                let form = fileInput?.closest('form');
+                if(!fileInput){
+                    return;
+                }
+                if(!form){
+                    return;
+                }
+                let currentFileDisplay = button.closest('.upload-current-file');
+                let container = button.closest('.upload-files-container');
+                let isRequired = container && 'true' === container.dataset.required;
+                if(isRequired){
+                    let remainingFiles = container.querySelectorAll('.upload-current-file');
+                    if(2 === remainingFiles.length){
+                        let allRemoveButtons = container.querySelectorAll('.remove-upload-btn');
+                        for(let removeBtn of allRemoveButtons){
+                            removeBtn.remove();
+                        }
+                    }
+                }
+                if(currentFileDisplay){
+                    currentFileDisplay.remove();
+                }
+                if(fileName){
+                    let hiddenFieldName = 'removed_'+fieldName;
+                    let existingHiddenInput = form.querySelector('input[name="'+hiddenFieldName+'"]');
+                    if(existingHiddenInput){
+                        let currentValue = existingHiddenInput.value;
+                        let filesArray = currentValue ? currentValue.split(',') : [];
+                        if(-1 === filesArray.indexOf(fileName)){
+                            filesArray.push(fileName);
+                        }
+                        existingHiddenInput.value = filesArray.join(',');
+                        return;
+                    }
+                    let hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = hiddenFieldName;
+                    hiddenInput.value = fileName;
+                    form.appendChild(hiddenInput);
+                    return;
+                }
+                fileInput.value = '';
+                let clearFieldName = 'clear_'+fieldName;
+                let existingClearInput = form.querySelector('input[name="'+clearFieldName+'"]');
+                if(existingClearInput){
+                    return;
+                }
+                let clearInput = document.createElement('input');
+                clearInput.type = 'hidden';
+                clearInput.name = clearFieldName;
+                clearInput.value = '1';
+                form.appendChild(clearInput);
+            });
+        }
+    }
+
+    // tileset alert icon toggle:
+    let tilesetAlertIcons = document.querySelectorAll('.tileset-alert-icon');
+    if(tilesetAlertIcons){
+        for(let icon of tilesetAlertIcons){
+            icon.addEventListener('click', () => {
+                let message = icon.nextElementSibling;
+                if(message && message.classList.contains('tileset-info-message')){
+                    message.classList.toggle('hidden');
+                }
+            });
+        }
+    }
+
+    // Reldens custom functions:
 
     // create rooms link function:
     let entityDataElement = document.querySelector('[data-entity-serialized-data]');
@@ -381,6 +513,101 @@ window.addEventListener('DOMContentLoaded', () => {
         tileset.onerror = () => {
             console.error('Error loading tileset image');
         };
+    }
+
+    // theme manager functionality:
+    let themeSelector = document.querySelector('#selected-theme');
+    let executeCommandButtons = document.querySelectorAll('.execute-command');
+    let showCommandInfoButtons = document.querySelectorAll('.show-command-info');
+    let commandDescriptionsData = document.querySelector('#command-descriptions-data');
+    let commandDescriptions = {};
+
+    if(commandDescriptionsData){
+        try {
+            commandDescriptions = JSON.parse(commandDescriptionsData.textContent);
+        } catch(error){
+            console.error('Failed to parse command descriptions', error);
+        }
+    }
+
+    if(executeCommandButtons){
+        for(let button of executeCommandButtons){
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                if(!themeSelector || !themeSelector.value){
+                    return;
+                }
+                let commandName = button.dataset.command;
+                if(!commandName){
+                    return;
+                }
+                let form = button.closest('form');
+                if(!form){
+                    return;
+                }
+                let formThemeInput = form.querySelector('input[name="selected-theme"]');
+                let formCommandInput = form.querySelector('input[name="command"]');
+                if(!formThemeInput || !formCommandInput){
+                    return;
+                }
+                formThemeInput.value = themeSelector.value;
+                formCommandInput.value = commandName;
+                let commandItem = button.closest('.command-item');
+                let loadingImage = commandItem ? commandItem.querySelector('.command-loading') : null;
+                showConfirmDialog((confirmed) => {
+                    if(confirmed){
+                        if(loadingImage){
+                            loadingImage.classList.remove('hidden');
+                        }
+                        form.submit();
+                    }
+                });
+            });
+        }
+    }
+
+    if(showCommandInfoButtons){
+        let allTooltips = document.querySelectorAll('.command-info-tooltip');
+        for(let button of showCommandInfoButtons){
+            let commandName = button.dataset.command;
+            if(!commandName){
+                continue;
+            }
+            let commandItem = button.closest('.command-item');
+            if(!commandItem){
+                continue;
+            }
+            let tooltip = commandItem.querySelector('.command-info-tooltip[data-command="'+commandName+'"]');
+            if(!tooltip){
+                continue;
+            }
+            let commandInfo = commandDescriptions[commandName];
+            if(commandInfo){
+                let descriptionElement = tooltip.querySelector('.tooltip-description');
+                let detailsElement = tooltip.querySelector('.tooltip-details');
+                if(descriptionElement){
+                    descriptionElement.textContent = commandInfo.description || '';
+                }
+                if(detailsElement){
+                    detailsElement.textContent = commandInfo.details || '';
+                }
+            }
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                for(let otherTooltip of allTooltips){
+                    if(otherTooltip !== tooltip){
+                        otherTooltip.classList.remove('visible');
+                    }
+                }
+                tooltip.classList.toggle('visible');
+            });
+        }
+        document.addEventListener('click', () => {
+            for(let tooltip of allTooltips){
+                tooltip.classList.remove('visible');
+            }
+        });
     }
 
 });

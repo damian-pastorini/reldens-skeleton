@@ -26,6 +26,7 @@ class ItemsInventoryEntity extends EntityProperties
             item_id: {
                 type: 'reference',
                 reference: 'items_item',
+                alias: 'related_items_item',
                 isRequired: true,
                 dbType: 'int'
             },
