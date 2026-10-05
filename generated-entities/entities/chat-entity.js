@@ -22,13 +22,14 @@ class ChatEntity extends EntityProperties
                 type: 'reference',
                 reference: 'players',
                 alias: 'related_players_player',
-                isRequired: true,
+                onDelete: 'setNull',
                 dbType: 'int'
             },
             room_id: {
                 type: 'reference',
                 reference: 'rooms',
                 alias: 'related_rooms',
+                onDelete: 'setNull',
                 dbType: 'int'
             },
             message: {
@@ -39,12 +40,14 @@ class ChatEntity extends EntityProperties
                 type: 'reference',
                 reference: 'players',
                 alias: 'related_players_private_player',
+                onDelete: 'setNull',
                 dbType: 'int'
             },
             message_type: {
                 type: 'reference',
                 reference: 'chat_message_types',
                 alias: 'related_chat_message_types',
+                onDelete: 'noAction',
                 dbType: 'int'
             },
             message_time: {

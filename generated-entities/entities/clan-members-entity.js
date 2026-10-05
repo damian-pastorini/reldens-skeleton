@@ -22,6 +22,7 @@ class ClanMembersEntity extends EntityProperties
                 type: 'reference',
                 reference: 'clan',
                 alias: 'related_clan',
+                onDelete: 'noAction',
                 isRequired: true,
                 dbType: 'int'
             },
@@ -29,7 +30,9 @@ class ClanMembersEntity extends EntityProperties
                 type: 'reference',
                 reference: 'players',
                 alias: 'related_players',
+                onDelete: 'cascade',
                 isRequired: true,
+                isUnique: true,
                 dbType: 'int'
             }
         };

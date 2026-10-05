@@ -6,14 +6,15 @@
 
 module.exports.entitiesTranslations = {
     labels: {
-        'ads_banner': 'Ads Banner',
+        'admin_sessions': 'Admin Sessions',
         'ads': 'Ads',
+        'ads_banner': 'Ads Banner',
         'ads_event_video': 'Ads Event Video',
         'ads_played': 'Ads Played',
         'ads_providers': 'Ads Providers',
         'ads_types': 'Ads Types',
-        'audio_categories': 'Audio Categories',
         'audio': 'Audio',
+        'audio_categories': 'Audio Categories',
         'audio_markers': 'Audio Markers',
         'audio_player_config': 'Audio Player Config',
         'chat': 'Chat',
@@ -26,15 +27,16 @@ module.exports.entitiesTranslations = {
         'config_types': 'Config Types',
         'drops_animations': 'Drops Animations',
         'features': 'Features',
+        'ip_lists': 'Ip Lists',
         'items_group': 'Items Group',
         'items_inventory': 'Items Inventory',
         'items_item': 'Items Item',
         'items_item_modifiers': 'Items Item Modifiers',
         'items_types': 'Items Types',
         'locale': 'Locale',
+        'objects': 'Objects',
         'objects_animations': 'Objects Animations',
         'objects_assets': 'Objects Assets',
-        'objects': 'Objects',
         'objects_items_inventory': 'Objects Items Inventory',
         'objects_items_requirements': 'Objects Items Requirements',
         'objects_items_rewards': 'Objects Items Rewards',
@@ -45,36 +47,37 @@ module.exports.entitiesTranslations = {
         'players': 'Players',
         'players_state': 'Players State',
         'players_stats': 'Players Stats',
+        'quests_progress': 'Quests Progress',
         'respawn': 'Respawn',
         'rewards': 'Rewards',
         'rewards_events': 'Rewards Events',
         'rewards_events_state': 'Rewards Events State',
         'rewards_modifiers': 'Rewards Modifiers',
-        'rooms_change_points': 'Rooms Change Points',
         'rooms': 'Rooms',
+        'rooms_change_points': 'Rooms Change Points',
         'rooms_return_points': 'Rooms Return Points',
-        'scores_detail': 'Scores Detail',
         'scores': 'Scores',
+        'scores_detail': 'Scores Detail',
         'skills_class_level_up_animations': 'Skills Class Level Up Animations',
         'skills_class_path': 'Skills Class Path',
         'skills_class_path_level_labels': 'Skills Class Path Level Labels',
         'skills_class_path_level_skills': 'Skills Class Path Level Skills',
         'skills_groups': 'Skills Groups',
         'skills_levels': 'Skills Levels',
-        'skills_levels_modifiers_conditions': 'Skills Levels Modifiers Conditions',
         'skills_levels_modifiers': 'Skills Levels Modifiers',
+        'skills_levels_modifiers_conditions': 'Skills Levels Modifiers Conditions',
         'skills_levels_set': 'Skills Levels Set',
         'skills_owners_class_path': 'Skills Owners Class Path',
+        'skills_skill': 'Skills Skill',
         'skills_skill_animations': 'Skills Skill Animations',
         'skills_skill_attack': 'Skills Skill Attack',
-        'skills_skill': 'Skills Skill',
         'skills_skill_group_relation': 'Skills Skill Group Relation',
         'skills_skill_owner_conditions': 'Skills Skill Owner Conditions',
-        'skills_skill_owner_effects_conditions': 'Skills Skill Owner Effects Conditions',
         'skills_skill_owner_effects': 'Skills Skill Owner Effects',
+        'skills_skill_owner_effects_conditions': 'Skills Skill Owner Effects Conditions',
         'skills_skill_physical_data': 'Skills Skill Physical Data',
-        'skills_skill_target_effects_conditions': 'Skills Skill Target Effects Conditions',
         'skills_skill_target_effects': 'Skills Skill Target Effects',
+        'skills_skill_target_effects_conditions': 'Skills Skill Target Effects Conditions',
         'skills_skill_type': 'Skills Skill Type',
         'snippets': 'Snippets',
         'stats': 'Stats',
@@ -84,10 +87,11 @@ module.exports.entitiesTranslations = {
         'users_login': 'Users Login'
     },
     fields: {
-        'ads_banner': {
+        'admin_sessions': {
             'id': 'ID',
-            'ads_id': 'Ads ID',
-            'banner_data': 'Banner Data'
+            'sid': 'Sid',
+            'data': 'Data',
+            'expires': 'Expires'
         },
         'ads': {
             'id': 'ID',
@@ -105,6 +109,11 @@ module.exports.entitiesTranslations = {
             'enabled': 'Enabled',
             'created_at': 'Created At',
             'updated_at': 'Updated At'
+        },
+        'ads_banner': {
+            'id': 'ID',
+            'ads_id': 'Ads ID',
+            'banner_data': 'Banner Data'
         },
         'ads_event_video': {
             'id': 'ID',
@@ -128,15 +137,6 @@ module.exports.entitiesTranslations = {
             'id': 'ID',
             'key': 'Key'
         },
-        'audio_categories': {
-            'id': 'ID',
-            'category_key': 'Category Key',
-            'category_label': 'Category Label',
-            'enabled': 'Enabled',
-            'single_audio': 'Single Audio',
-            'created_at': 'Created At',
-            'updated_at': 'Updated At'
-        },
         'audio': {
             'id': 'ID',
             'audio_key': 'Audio Key',
@@ -145,6 +145,15 @@ module.exports.entitiesTranslations = {
             'room_id': 'Room ID',
             'category_id': 'Category ID',
             'enabled': 'Enabled',
+            'created_at': 'Created At',
+            'updated_at': 'Updated At'
+        },
+        'audio_categories': {
+            'id': 'ID',
+            'category_key': 'Category Key',
+            'category_label': 'Category Label',
+            'enabled': 'Enabled',
+            'single_audio': 'Single Audio',
             'created_at': 'Created At',
             'updated_at': 'Updated At'
         },
@@ -234,6 +243,15 @@ module.exports.entitiesTranslations = {
             'title': 'Title',
             'is_enabled': 'Is Enabled'
         },
+        'ip_lists': {
+            'id': 'ID',
+            'address': 'Address',
+            'list_type': 'List Type',
+            'reason': 'Reason',
+            'expires_at': 'Expires At',
+            'created_at': 'Created At',
+            'updated_at': 'Updated At'
+        },
         'items_group': {
             'id': 'ID',
             'key': 'Key',
@@ -287,20 +305,6 @@ module.exports.entitiesTranslations = {
             'country_code': 'Country Code',
             'enabled': 'Enabled'
         },
-        'objects_animations': {
-            'id': 'ID',
-            'object_id': 'Object ID',
-            'animationKey': 'AnimationKey',
-            'animationData': 'AnimationData'
-        },
-        'objects_assets': {
-            'object_asset_id': 'Object Asset ID',
-            'object_id': 'Object ID',
-            'asset_type': 'Asset Type',
-            'asset_key': 'Asset Key',
-            'asset_file': 'Asset File',
-            'extra_params': 'Extra Params'
-        },
         'objects': {
             'id': 'ID',
             'room_id': 'Room ID',
@@ -315,6 +319,20 @@ module.exports.entitiesTranslations = {
             'enabled': 'Enabled',
             'created_at': 'Created At',
             'updated_at': 'Updated At'
+        },
+        'objects_animations': {
+            'id': 'ID',
+            'object_id': 'Object ID',
+            'animationKey': 'AnimationKey',
+            'animationData': 'AnimationData'
+        },
+        'objects_assets': {
+            'object_asset_id': 'Object Asset ID',
+            'object_id': 'Object ID',
+            'asset_type': 'Asset Type',
+            'asset_key': 'Asset Key',
+            'asset_file': 'Asset File',
+            'extra_params': 'Extra Params'
         },
         'objects_items_inventory': {
             'id': 'ID',
@@ -384,6 +402,12 @@ module.exports.entitiesTranslations = {
             'base_value': 'Base Value',
             'value': 'Value'
         },
+        'quests_progress': {
+            'id': 'ID',
+            'player_id': 'Player ID',
+            'quest_key': 'Quest Key',
+            'customData': 'CustomData'
+        },
         'respawn': {
             'id': 'ID',
             'object_id': 'Object ID',
@@ -436,12 +460,6 @@ module.exports.entitiesTranslations = {
             'minProperty': 'MinProperty',
             'maxProperty': 'MaxProperty'
         },
-        'rooms_change_points': {
-            'id': 'ID',
-            'room_id': 'Room ID',
-            'tile_index': 'Tile Index',
-            'next_room_id': 'Next Room ID'
-        },
         'rooms': {
             'id': 'ID',
             'name': 'Name',
@@ -454,6 +472,12 @@ module.exports.entitiesTranslations = {
             'created_at': 'Created At',
             'updated_at': 'Updated At'
         },
+        'rooms_change_points': {
+            'id': 'ID',
+            'room_id': 'Room ID',
+            'tile_index': 'Tile Index',
+            'next_room_id': 'Next Room ID'
+        },
         'rooms_return_points': {
             'id': 'ID',
             'room_id': 'Room ID',
@@ -462,14 +486,6 @@ module.exports.entitiesTranslations = {
             'y': 'Y',
             'is_default': 'Is Default',
             'from_room_id': 'From Room ID'
-        },
-        'scores_detail': {
-            'id': 'ID',
-            'player_id': 'Player ID',
-            'obtained_score': 'Obtained Score',
-            'kill_time': 'Kill Time',
-            'kill_player_id': 'Kill Player ID',
-            'kill_npc_id': 'Kill Npc ID'
         },
         'scores': {
             'id': 'ID',
@@ -481,6 +497,14 @@ module.exports.entitiesTranslations = {
             'last_npc_kill_time': 'Last Npc Kill Time',
             'created_at': 'Created At',
             'updated_at': 'Updated At'
+        },
+        'scores_detail': {
+            'id': 'ID',
+            'player_id': 'Player ID',
+            'obtained_score': 'Obtained Score',
+            'kill_time': 'Kill Time',
+            'kill_player_id': 'Kill Player ID',
+            'kill_npc_id': 'Kill Npc ID'
         },
         'skills_class_level_up_animations': {
             'id': 'ID',
@@ -523,14 +547,6 @@ module.exports.entitiesTranslations = {
             'required_experience': 'Required Experience',
             'level_set_id': 'Level Set ID'
         },
-        'skills_levels_modifiers_conditions': {
-            'id': 'ID',
-            'levels_modifier_id': 'Levels Modifier ID',
-            'key': 'Key',
-            'property_key': 'Property Key',
-            'conditional': 'Conditional',
-            'value': 'Value'
-        },
         'skills_levels_modifiers': {
             'id': 'ID',
             'level_id': 'Level ID',
@@ -542,6 +558,14 @@ module.exports.entitiesTranslations = {
             'maxValue': 'MaxValue',
             'minProperty': 'MinProperty',
             'maxProperty': 'MaxProperty'
+        },
+        'skills_levels_modifiers_conditions': {
+            'id': 'ID',
+            'levels_modifier_id': 'Levels Modifier ID',
+            'key': 'Key',
+            'property_key': 'Property Key',
+            'conditional': 'Conditional',
+            'value': 'Value'
         },
         'skills_levels_set': {
             'id': 'ID',
@@ -558,29 +582,6 @@ module.exports.entitiesTranslations = {
             'owner_id': 'Owner ID',
             'currentLevel': 'CurrentLevel',
             'currentExp': 'CurrentExp'
-        },
-        'skills_skill_animations': {
-            'id': 'ID',
-            'skill_id': 'Skill ID',
-            'key': 'Key',
-            'classKey': 'ClassKey',
-            'animationData': 'AnimationData'
-        },
-        'skills_skill_attack': {
-            'id': 'ID',
-            'skill_id': 'Skill ID',
-            'affectedProperty': 'AffectedProperty',
-            'allowEffectBelowZero': 'AllowEffectBelowZero',
-            'hitDamage': 'HitDamage',
-            'applyDirectDamage': 'ApplyDirectDamage',
-            'attackProperties': 'AttackProperties',
-            'defenseProperties': 'DefenseProperties',
-            'aimProperties': 'AimProperties',
-            'dodgeProperties': 'DodgeProperties',
-            'dodgeFullEnabled': 'DodgeFullEnabled',
-            'dodgeOverAimSuccess': 'DodgeOverAimSuccess',
-            'damageAffected': 'DamageAffected',
-            'criticalAffected': 'CriticalAffected'
         },
         'skills_skill': {
             'id': 'ID',
@@ -605,6 +606,29 @@ module.exports.entitiesTranslations = {
             'created_at': 'Created At',
             'updated_at': 'Updated At'
         },
+        'skills_skill_animations': {
+            'id': 'ID',
+            'skill_id': 'Skill ID',
+            'key': 'Key',
+            'classKey': 'ClassKey',
+            'animationData': 'AnimationData'
+        },
+        'skills_skill_attack': {
+            'id': 'ID',
+            'skill_id': 'Skill ID',
+            'affectedProperty': 'AffectedProperty',
+            'allowEffectBelowZero': 'AllowEffectBelowZero',
+            'hitDamage': 'HitDamage',
+            'applyDirectDamage': 'ApplyDirectDamage',
+            'attackProperties': 'AttackProperties',
+            'defenseProperties': 'DefenseProperties',
+            'aimProperties': 'AimProperties',
+            'dodgeProperties': 'DodgeProperties',
+            'dodgeFullEnabled': 'DodgeFullEnabled',
+            'dodgeOverAimSuccess': 'DodgeOverAimSuccess',
+            'damageAffected': 'DamageAffected',
+            'criticalAffected': 'CriticalAffected'
+        },
         'skills_skill_group_relation': {
             'id': 'ID',
             'skill_id': 'Skill ID',
@@ -613,14 +637,6 @@ module.exports.entitiesTranslations = {
         'skills_skill_owner_conditions': {
             'id': 'ID',
             'skill_id': 'Skill ID',
-            'key': 'Key',
-            'property_key': 'Property Key',
-            'conditional': 'Conditional',
-            'value': 'Value'
-        },
-        'skills_skill_owner_effects_conditions': {
-            'id': 'ID',
-            'skill_owner_effect_id': 'Skill Owner Effect ID',
             'key': 'Key',
             'property_key': 'Property Key',
             'conditional': 'Conditional',
@@ -638,6 +654,14 @@ module.exports.entitiesTranslations = {
             'minProperty': 'MinProperty',
             'maxProperty': 'MaxProperty'
         },
+        'skills_skill_owner_effects_conditions': {
+            'id': 'ID',
+            'skill_owner_effect_id': 'Skill Owner Effect ID',
+            'key': 'Key',
+            'property_key': 'Property Key',
+            'conditional': 'Conditional',
+            'value': 'Value'
+        },
         'skills_skill_physical_data': {
             'id': 'ID',
             'skill_id': 'Skill ID',
@@ -645,14 +669,6 @@ module.exports.entitiesTranslations = {
             'objectWidth': 'ObjectWidth',
             'objectHeight': 'ObjectHeight',
             'validateTargetOnHit': 'ValidateTargetOnHit'
-        },
-        'skills_skill_target_effects_conditions': {
-            'id': 'ID',
-            'skill_target_effect_id': 'Skill Target Effect ID',
-            'key': 'Key',
-            'property_key': 'Property Key',
-            'conditional': 'Conditional',
-            'value': 'Value'
         },
         'skills_skill_target_effects': {
             'id': 'ID',
@@ -665,6 +681,14 @@ module.exports.entitiesTranslations = {
             'maxValue': 'MaxValue',
             'minProperty': 'MinProperty',
             'maxProperty': 'MaxProperty'
+        },
+        'skills_skill_target_effects_conditions': {
+            'id': 'ID',
+            'skill_target_effect_id': 'Skill Target Effect ID',
+            'key': 'Key',
+            'property_key': 'Property Key',
+            'conditional': 'Conditional',
+            'value': 'Value'
         },
         'skills_skill_type': {
             'id': 'ID',
@@ -703,7 +727,9 @@ module.exports.entitiesTranslations = {
             'created_at': 'Created At',
             'updated_at': 'Updated At',
             'played_time': 'Played Time',
-            'login_count': 'Login Count'
+            'login_count': 'Login Count',
+            'password_reset_sent_at': 'Password Reset Sent At',
+            'origin': 'Origin'
         },
         'users_locale': {
             'id': 'ID',

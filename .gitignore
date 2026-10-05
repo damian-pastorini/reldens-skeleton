@@ -5,3 +5,17 @@
 /.parcel-cache
 .env
 knexfile.js
+.mcp.json
+/.claude/settings.json
+/.claude/settings.local.json
+/.claude/instructions.md
+/CLAUDE.local.md
+/.claude/skills/
+/.claude/hook-state.json
+/.playwright-mcp
+/test-results
+/tests/e2e/reports
+/.claude/claude-sessions.md
+/.claude/session-summary-state.json
+/.claude/hook-bypass.flag
+.hooks-ignore

@@ -22,11 +22,15 @@ class SkillsOwnersClassPathEntity extends EntityProperties
                 type: 'reference',
                 reference: 'skills_class_path',
                 alias: 'related_skills_class_path',
+                onDelete: 'noAction',
                 isRequired: true,
                 dbType: 'int'
             },
             owner_id: {
-                type: 'number',
+                type: 'reference',
+                reference: 'players',
+                alias: 'related_players',
+                onDelete: 'cascade',
                 isRequired: true,
                 dbType: 'int'
             },

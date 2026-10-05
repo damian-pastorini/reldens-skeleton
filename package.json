@@ -1,6 +1,6 @@
 {
     "name": "reldens-skeleton",
-    "version": "4.0.0-beta.39.8",
+    "version": "4.0.0-beta.39.9",
     "description": "Reldens - Skeleton",
     "author": "Damian A. Pastorini",
     "license": "MIT",
@@ -16,10 +16,10 @@
         "process": false
     },
     "dependencies": {
-        "reldens": "^4.0.0-beta.39.8"
+        "reldens": "^4.0.0-beta.39.9"
     },
     "devDependencies": {
-        "@colyseus/loadtest": "^0.16.2",
-        "@reldens/utils": "^0.54.0"
+        "@colyseus/loadtest": "^0.18.3",
+        "@reldens/utils": "^0.60.0"
     }
 }

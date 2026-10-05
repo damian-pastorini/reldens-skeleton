@@ -21,6 +21,7 @@ class AudioEntity extends EntityProperties
             },
             audio_key: {
                 isRequired: true,
+                isUnique: true,
                 dbType: 'varchar'
             },
             files_name: {
@@ -35,12 +36,14 @@ class AudioEntity extends EntityProperties
                 type: 'reference',
                 reference: 'rooms',
                 alias: 'related_rooms',
+                onDelete: 'setNull',
                 dbType: 'int'
             },
             category_id: {
                 type: 'reference',
                 reference: 'audio_categories',
                 alias: 'related_audio_categories',
+                onDelete: 'cascade',
                 dbType: 'int'
             },
             enabled: {

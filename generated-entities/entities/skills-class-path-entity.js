@@ -22,6 +22,7 @@ class SkillsClassPathEntity extends EntityProperties
             },
             key: {
                 isRequired: true,
+                isUnique: true,
                 dbType: 'varchar'
             },
             [titleProperty]: {
@@ -31,6 +32,7 @@ class SkillsClassPathEntity extends EntityProperties
                 type: 'reference',
                 reference: 'skills_levels_set',
                 alias: 'related_skills_levels_set',
+                onDelete: 'noAction',
                 isRequired: true,
                 dbType: 'int'
             },
